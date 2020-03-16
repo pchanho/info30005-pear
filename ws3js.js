@@ -8,7 +8,7 @@ let gameState = {
 function setWord () {
 	
 }
-
+// test comment
 
 function validate (guess) {
   
