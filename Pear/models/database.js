@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-const uri = "mongodb+srv://username:password@cluster0-bmldn.mongodb.net/INFO30005?retryWrites=true&w=majority";
+const uri = "mongodb+srv://<username>:<password>@pear-ox5gs.mongodb.net/test?retryWrites=true&w=majority";
 /*need to put username, password*/
 
 
