@@ -25,6 +25,25 @@ var createCafe = function(req, res, next) {
     res.redirect('/');
 };
 
+
+//Create (Conversation)
+var createConversation = function(req, res, next) {
+    var item = {
+        name:req.body.name,
+        address:req.body.address,
+        distance:req.body.distance,
+        rating:req.body.rating,
+        photo:req.body.photo
+    };
+
+    var data = new Cafe(item);
+    data.save();
+
+    res.redirect('/');
+};
+
+
+/*
 // Read (exampe)
 var findAllCafes = function(req, res, next) {
     Cafe.find()
@@ -33,6 +52,7 @@ var findAllCafes = function(req, res, next) {
             res.render('index', {items: doc});
         });
 };
+
 
 // Update (exampe)
 var updateCafe = function(req, res, next) {
@@ -58,6 +78,7 @@ var deleteCafe = function(req, res, next) {
     Cafe.findByIdAndRemove(id).exec();
     res.redirect('/');
 };
+*/
 
 
 //export functions (examples)
