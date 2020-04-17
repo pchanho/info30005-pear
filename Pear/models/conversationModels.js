@@ -5,7 +5,7 @@ var conversationSchema = new Schema({
     topic: {
     	type: String, 
     	required: true
-    },
+    }/*,
     topicImage: {
     	type: String
     },
@@ -15,9 +15,10 @@ var conversationSchema = new Schema({
     startTime: {
     	type:Number
     }
+    */
 }, 
 
 {collection: 'Conversations'}); //flagged -- is this needed?
 
-mongoose.model('convesations', conversationSchema);
+mongoose.model('conversations', conversationSchema);
 

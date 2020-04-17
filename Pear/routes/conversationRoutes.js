@@ -7,7 +7,9 @@ Authors: Glenn Deevesh Aiden Gemma Dimitri
 const express = require('express');
 
 // add our router
-const counversationRouter = express.Router();
+const conversationRoutes = express.Router();
+
+
 
 // handle ???
 
@@ -31,7 +33,9 @@ authorRouter.get('/:id', (req, res) => authorController.getAuthorByID(req, res))
 
 
 // require the author controller
-const Controller = require('../Pear/controllers/conversationControllers.js');
+const conversationController = require('../controllers/conversationControllers.js');
 
+
+conversationRoutes.post('/create', conversationController.createConversation);
 // export the router 
-module.exports = conversationRouter;
+module.exports = conversationRoutes;

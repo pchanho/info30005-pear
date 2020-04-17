@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-const uri = "mongodb+srv://<username>:<password>@pear-ox5gs.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb+srv://Glenn:123@pear-ox5gs.mongodb.net/test?retryWrites=true&w=majority";
 /*need to put username, password*/
 
 
@@ -13,4 +13,6 @@ mongoose.connect(uri,
         }
     });
 
+    require('./conversationModels.js');
+    require('./messageModels.js');
 // require('');  need to modify
