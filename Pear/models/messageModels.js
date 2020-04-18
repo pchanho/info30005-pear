@@ -14,6 +14,6 @@ var messageSchema = new Schema({
     }
 }, 
 
-{collection: 'Messages'}); //flagged -- is this needed?
+{collection: 'Messages'});
 
 mongoose.model('messages', messageSchema);

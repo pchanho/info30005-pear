@@ -9,10 +9,6 @@ const express = require('express');
 // add our router
 const conversationRoutes = express.Router();
 
-
-
-// handle ???
-
 /*
 
 EXAMPLES
@@ -26,16 +22,18 @@ authorRouter.get('/:id', (req, res) => authorController.getAuthorByID(req, res))
 */
 
 
-// handle ???
-
-
-// handle ???
-
-
 // require the author controller
 const conversationController = require('../controllers/conversationControllers.js');
 
-
+//create
 conversationRoutes.post('/create', conversationController.createConversation);
+
+//delete
+conversationRoutes.post('/delete', conversationController.deleteConversation);
+
 // export the router 
 module.exports = conversationRoutes;
+
+
+
+

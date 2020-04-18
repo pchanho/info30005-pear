@@ -11,7 +11,7 @@ var Messages = mongoose.model('messages');
 
 // C R U D
 
-// Create (exampe)
+// Create Conversation
 
 var createConversation = function(req, res, next) {
     var item = {
@@ -75,6 +75,17 @@ var updateCafe = function(req, res, next) {
     res.redirect('/');
 };
 
+*/
+
+//Delete Conversation by id
+var deleteConversation = function(req, res, next) {
+    var id = req.body.id;
+    Conversation.findByIdAndRemove(id).exec();
+    res.redirect('/');
+};
+
+/*
+
 // Delete (exampe)
 var deleteCafe = function(req, res, next) {
     var id = req.body.id;
@@ -91,3 +102,5 @@ module.exports.updateCafe = updateCafe;
 module.exports.deleteCafe = deleteCafe;
 */
 module.exports.createConversation = createConversation;
+module.exports.deleteConversation = deleteConversation;
+
