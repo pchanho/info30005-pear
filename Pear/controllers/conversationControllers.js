@@ -80,7 +80,7 @@ var updateCafe = function(req, res, next) {
 //Delete Conversation by id
 var deleteConversation = function(req, res, next) {
     var id = req.body.id;
-    Conversation.findByIdAndRemove(id).exec();
+    Conversations.findByIdAndRemove(id).exec();
     res.redirect('/');
 };
 
