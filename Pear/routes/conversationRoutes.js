@@ -28,6 +28,12 @@ const conversationController = require('../controllers/conversationControllers.j
 //create
 conversationRoutes.post('/create', conversationController.createConversation);
 
+//read
+conversationRoutes.get('/read', conversationController.findAllConversations);
+
+//update
+conversationRoutes.put('/update', conversationController.updateConversation);
+
 //delete
 conversationRoutes.post('/delete', conversationController.deleteConversation);
 

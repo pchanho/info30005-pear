@@ -44,9 +44,18 @@ var createConversation = function(req, res, next) {
 
     res.redirect('/');
 };
+*/
 
+//returns all conversations
+var findAllConversations = function(req, res, next) {
+    Conversations.find()
+        .lean()
+        .then(function(doc) {
+            res.render('index', {items: doc});
+        });
+};
 
-
+/*
 // Read (exampe)
 var findAllCafes = function(req, res, next) {
     Cafe.find()
@@ -55,8 +64,24 @@ var findAllCafes = function(req, res, next) {
             res.render('index', {items: doc});
         });
 };
+*/
 
+//Delete Conversation by id
 
+var updateConversation = function(req, res, next) {
+    var id = req.body.id;
+
+    Conversations.findById(id, function(err, doc) {
+        if (err) {
+            console.error('error, no conversation found');
+        }
+        doc.topic = req.body.topic;
+        doc.save();
+    });
+    res.redirect('/');
+};
+
+/*
 // Update (exampe)
 var updateCafe = function(req, res, next) {
     var id = req.body.id;
@@ -78,6 +103,7 @@ var updateCafe = function(req, res, next) {
 */
 
 //Delete Conversation by id
+
 var deleteConversation = function(req, res, next) {
     var id = req.body.id;
     Conversations.findByIdAndRemove(id).exec();
@@ -103,4 +129,5 @@ module.exports.deleteCafe = deleteCafe;
 */
 module.exports.createConversation = createConversation;
 module.exports.deleteConversation = deleteConversation;
-
+module.exports.updateConversation = updateConversation;
+module.exports.findAllConversations = findAllConversations;
