@@ -2,13 +2,23 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var supportSchema = new Schema({
-        title: String,
+        title: {
+            type:String,
+            required:true
+        },
 
-        body: String,
+        body: {
+            type:String,
+            required:true
+        },
 
-        image: String,
+        image: {
+            type:String
+        },
 
-        video: String,
+        video: {
+            type:String
+        },
     },
     {collection: 'Supports'});
 
