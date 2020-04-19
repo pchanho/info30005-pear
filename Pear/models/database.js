@@ -15,4 +15,5 @@ mongoose.connect(uri,
 
     require('./conversationModels.js');
     require('./messageModels.js');
+    require('./accountModels.js');
 // require('');  need to modify

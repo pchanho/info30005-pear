@@ -29,10 +29,14 @@ const conversationRoutes = require('./routes/conversationRoutes');
 //ADD ANY OTHER ROUTES HERE
 const supportRoutes = require('./routes/supportRoutes');
 
+const accountRoutes = require('./routes/accountRoutes');
+
 // the author routes are added onto the end of '/author-management'
 app.use("/conversation", conversationRoutes);
 //ADD ANY OTHER ROUTES HERE
 app.use("/support", supportRoutes);
+
+app.use("/account", accountRoutes);
 
 // start app and listen for incoming requests on port 3000
 app.listen(3000, () => {

@@ -20,7 +20,7 @@ var createAccount = function(req, res, next) {
 
 // Read function
 /*
-var read = function(req, res, next) {
+var readAccount = function(req, res, next) {
     Account.find()
         .lean()
         .then(function(doc) {
@@ -28,6 +28,7 @@ var read = function(req, res, next) {
         });
 };
 */
+
 
 // Update function
 var updateAccount = function(req, res, next) {

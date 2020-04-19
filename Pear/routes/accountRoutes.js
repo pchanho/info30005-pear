@@ -8,9 +8,16 @@ var accountControllers = require('../controller/accountControllers');
 
 //handle the GET request on root of account-management path
 
+//create
 accountRoutes.post('/create', accountController.createAccount);
+
+//read
 accountRoutes.post('/read', accountController.readAccount);
+
+//update
 accountRoutes.post('/update', accountController.updateAccount);
+
+//delete
 accountRoutes.post('/delete', accountController.deleteAccount);
 
 
