@@ -13,6 +13,8 @@ mongoose.connect(uri,
         }
     });
 
-    require('./conversationModels.js');
-    require('./messageModels.js');
-// require('');  need to modify
+// INCLUDE YOUR MODELS HERE
+require('./conversationModels.js');
+require('./messageModels.js');
+require('./supportModels.js');
+

@@ -28,13 +28,13 @@ const conversationController = require('../controllers/conversationControllers.j
 //create
 conversationRoutes.post('/create', conversationController.createConversation);
 
-//read
-conversationRoutes.get('/read', conversationController.findAllConversations);
+// read all conversations and their items
+conversationRoutes.get('/readAll', conversationController.readAllConversations);
 
-//update
+// update a single conversation's items
 conversationRoutes.put('/update', conversationController.updateConversation);
 
-//delete
+//delete conversation by id
 conversationRoutes.post('/delete', conversationController.deleteConversation);
 
 // export the router 

@@ -1,16 +1,12 @@
+
+// import libraries
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-
-/* connect to the database and register the schema
-   put this line after the var routes = require('./routes/index'); will cause
-   error: `Schema hasn't been registered for model "cafes".
- */
+// connect to the database and register each schema
+// this must occur before importing each of the routes (line 22)
 require('./models/database.js');
-
-
-
 
 // use the body-parser middleware, which parses request bodies into req.body
 // support parsing of json
@@ -23,16 +19,15 @@ app.get("/", (req, res) => {
   res.send("<H1>Pear</H1>");
 });
 
-// handle author-management related requests
-// first import the conversation route
+// first import the each of the routes
 const conversationRoutes = require('./routes/conversationRoutes');
-//ADD ANY OTHER ROUTES HERE
 const supportRoutes = require('./routes/supportRoutes');
+// ADD ANY OTHER ROUTES HERE
 
-// the author routes are added onto the end of '/author-management'
+// then specify the path for each of the routes
 app.use("/conversation", conversationRoutes);
-//ADD ANY OTHER ROUTES HERE
 app.use("/support", supportRoutes);
+// ADD ANY OTHER ROUTES HERE
 
 // start app and listen for incoming requests on port 3000
 app.listen(3000, () => {

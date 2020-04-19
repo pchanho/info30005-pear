@@ -1,11 +1,13 @@
+// import libraries
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// create schema
 var conversationSchema = new Schema({
     topic: {
     	type: String, 
     	required: true
-    }/*,
+    },
     topicImage: {
     	type: String
     },
@@ -15,10 +17,10 @@ var conversationSchema = new Schema({
     startTime: {
     	type:Number
     }
-    */
 }, 
+// specify a specific name for the collection that the schema will appear in
+{collection: 'Conversations'});
 
-{collection: 'Conversations'}); //flagged -- is this needed?
-
+// store schema
 mongoose.model('conversations', conversationSchema);
 

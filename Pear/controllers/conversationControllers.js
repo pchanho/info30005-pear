@@ -1,25 +1,16 @@
+
+// import libraries
 var mongoose = require('mongoose');
-
 var Conversations = mongoose.model('conversations');
-
 var Messages = mongoose.model('messages');
 
-
-
-
-
-
-// C R U D
-
-// Create Conversation
-
+// create conversation
 var createConversation = function(req, res, next) {
     var item = {
-        topic:req.body.topic/*,
+        topic:req.body.topic,
         topicImage:req.body.topicImage,
         particpants:req.body.particpants,
         startTime:req.body.startTime,
-        */
     };
 
     var data = new Conversations(item);
@@ -28,26 +19,8 @@ var createConversation = function(req, res, next) {
     res.redirect('/');
 };
 
-/*
-//Create (Conversation)
-var createConversation = function(req, res, next) {
-    var item = {
-        name:req.body.name,
-        address:req.body.address,
-        distance:req.body.distance,
-        rating:req.body.rating,
-        photo:req.body.photo
-    };
-
-    var data = new Cafe(item);
-    data.save();
-
-    res.redirect('/');
-};
-*/
-
-//returns all conversations
-var findAllConversations = function(req, res, next) {
+// read all conversations and their items
+var readAllConversations = function(req, res, next) {
     Conversations.find()
         .lean()
         .then(function(doc) {
@@ -55,19 +28,7 @@ var findAllConversations = function(req, res, next) {
         });
 };
 
-/*
-// Read (exampe)
-var findAllCafes = function(req, res, next) {
-    Cafe.find()
-        .lean()
-        .then(function(doc) {
-            res.render('index', {items: doc});
-        });
-};
-*/
-
-//Delete Conversation by id
-
+// update a single conversation's items
 var updateConversation = function(req, res, next) {
     var id = req.body.id;
 
@@ -76,58 +37,25 @@ var updateConversation = function(req, res, next) {
             console.error('error, no conversation found');
         }
         doc.topic = req.body.topic;
+        doc.topicImage = req.body.topicImage;
+        doc.participants = req.body.participants;
+        doc.startTime = req.body.startTime;
         doc.save();
     });
     res.redirect('/');
 };
 
-/*
-// Update (exampe)
-var updateCafe = function(req, res, next) {
-    var id = req.body.id;
-
-    Cafe.findById(id, function(err, doc) {
-        if (err) {
-            console.error('error, no cafe found');
-        }
-        doc.name = req.body.name;
-        doc.address = req.body.address;
-        doc.distance = req.body.distance;
-        doc.rating = req.body.rating;
-        doc.photo = req.body.photo;
-        doc.save();
-    });
-    res.redirect('/');
-};
-
-*/
-
-//Delete Conversation by id
-
+// delete entire conversation by id
 var deleteConversation = function(req, res, next) {
     var id = req.body.id;
     Conversations.findByIdAndRemove(id).exec();
     res.redirect('/');
 };
 
-/*
-
-// Delete (exampe)
-var deleteCafe = function(req, res, next) {
-    var id = req.body.id;
-    Cafe.findByIdAndRemove(id).exec();
-    res.redirect('/');
-};
-
-
-
-//export functions (examples)
-module.exports.findAllCafes = findAllCafes;
-module.exports.createCafe = createCafe;
-module.exports.updateCafe = updateCafe;
-module.exports.deleteCafe = deleteCafe;
-*/
+// export functions
 module.exports.createConversation = createConversation;
-module.exports.deleteConversation = deleteConversation;
+module.exports.readAllConversations = readAllConversations;
 module.exports.updateConversation = updateConversation;
-module.exports.findAllConversations = findAllConversations;
+module.exports.deleteConversation = deleteConversation;
+
+
