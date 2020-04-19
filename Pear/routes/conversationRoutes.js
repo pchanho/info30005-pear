@@ -35,7 +35,7 @@ conversationRoutes.get('/readAll', conversationController.readAllConversations);
 conversationRoutes.put('/update', conversationController.updateConversation);
 
 //delete conversation by id
-conversationRoutes.post('/delete', conversationController.deleteConversation);
+conversationRoutes.delete('/delete', conversationController.deleteConversation);
 
 // export the router
 module.exports = conversationRoutes;
