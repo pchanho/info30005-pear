@@ -1,4 +1,4 @@
-/* 
+/*
 INFO30005 Group Assignment
 
 Authors: Glenn Deevesh Aiden Gemma Dimitri
@@ -37,9 +37,5 @@ conversationRoutes.put('/update', conversationController.updateConversation);
 //delete conversation by id
 conversationRoutes.post('/delete', conversationController.deleteConversation);
 
-// export the router 
+// export the router
 module.exports = conversationRoutes;
-
-
-
-
