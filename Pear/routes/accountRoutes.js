@@ -1,10 +1,10 @@
 var express = require('express');
 
 //add router
-var accountRouters = express.Router();
+var accountRoutes = express.Router();
 
 //require the account controller
-var accountControllers = require('../controller/accountControllers');
+var accountController = require('../controllers/accountControllers');
 
 //handle the GET request on root of account-management path
 
@@ -12,14 +12,14 @@ var accountControllers = require('../controller/accountControllers');
 accountRoutes.post('/create', accountController.createAccount);
 
 //read
-accountRoutes.post('/read', accountController.readAccount);
+//accountRoutes.post('/read', accountController.readAccount);
 
 //update
-accountRoutes.post('/update', accountController.updateAccount);
+//accountRoutes.post('/update', accountController.updateAccount);
 
 //delete
 accountRoutes.post('/delete', accountController.deleteAccount);
 
 
 //export the router
-module.exports = accountRouters;
+module.exports = accountRoutes;

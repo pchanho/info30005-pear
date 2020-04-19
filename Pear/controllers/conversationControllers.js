@@ -9,7 +9,7 @@ var createConversation = function(req, res, next) {
     var item = {
         topic:req.body.topic,
         topicImage:req.body.topicImage,
-        particpants:req.body.particpants,
+        participants:req.body.particpants,
         startTime:req.body.startTime,
     };
 
@@ -24,7 +24,7 @@ var readAllConversations = function(req, res, next) {
     Conversations.find()
         .lean()
         .then(function(doc) {
-            res.render('index', {items: doc});
+            res.render('conversations/readAll', {items: doc});
         });
 };
 

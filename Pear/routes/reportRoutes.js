@@ -23,13 +23,13 @@ authorRouter.get('/:id', (req, res) => authorController.getAuthorByID(req, res))
 
 
 // require the report controller
-const reportController = require('../reports/reportControllers.js');
+const reportController = require('../controllers/reportControllers.js');
 
 //create
-conversationRoutes.post('/create', reportController.createReport);
+reportRoutes.post('/create', reportController.createReport);
 
 //delete
-conversationRoutes.delete('/delete', reportController.deleteReport);
+reportRoutes.delete('/delete', reportController.deleteReport);
 
 // export the router 
 module.exports = reportRoutes;

@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
-// var Supports = mongoose.model('supports');
-// var supports = require('../models/supportModels');
-const Supports = mongoose.model(supports);
+const Supports = mongoose.model('supports');
 
 
 

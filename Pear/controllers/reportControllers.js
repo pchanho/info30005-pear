@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var Reports = mongoose.model('Reports');
+var Reports = mongoose.model('reports');
 
 // C R U D
 

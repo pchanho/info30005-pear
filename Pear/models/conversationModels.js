@@ -11,7 +11,7 @@ var conversationSchema = new Schema({
     topicImage: {
     	type: String
     },
-    particpants: {
+    participants: {
     	type: [String]
     },
     startTime: {
