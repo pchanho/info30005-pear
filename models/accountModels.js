@@ -11,7 +11,7 @@ var accountSchema = new Schema({
     	type: String,
         required: true
     },
-    /*
+
     firstName: {
     	type: String,
         required: true
@@ -20,7 +20,7 @@ var accountSchema = new Schema({
     	type: String,
         required: true
     },
-     other fields */
+    /* other fields */
 },
 
 //names the schema
