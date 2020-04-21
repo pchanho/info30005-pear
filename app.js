@@ -33,7 +33,7 @@ app.use("/account", accountRoutes);
 app.use("/report", reportRoutes);
 // ADD ANY OTHER ROUTES HERE
 
-// start app and listen for incoming requests on port 3000
-app.listen(3000, () => {
-  console.log("The app is listening on port 3000!");
+// start app and listen for incoming requests on port 3000 or the best alternative
+app.listen(process.env.PORT || 3000, () => 
+	{ console.log("The library app is running!");
 });
