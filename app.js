@@ -35,5 +35,5 @@ app.use("/report", reportRoutes);
 
 // start app and listen for incoming requests on port 3000
 app.listen(process.env.PORT || 3000, () => { 
-	console.log("The library app is running!");
+	console.log("The pear app is running!");
 });
