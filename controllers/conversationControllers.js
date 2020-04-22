@@ -21,12 +21,25 @@ var createConversation = function(req, res, next) {
 
 // read all conversations and their items
 var readAllConversations = function(req, res, next) {
+    Conversations.find({}, function(err, result) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.json(result);
+        }
+      });
+        
+};
+
+/* OLD CODE
+var readAllConversations = function(req, res, next) {
     Conversations.find()
         .lean()
         .then(function(doc) {
             res.render('conversations/readAll', {items: doc});
         });
 };
+*/
 
 // update a single conversation's items
 var updateConversation = function(req, res, next) {
