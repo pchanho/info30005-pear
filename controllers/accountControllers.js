@@ -1,50 +1,45 @@
-//import libraries
 var mongoose = require('mongoose');
-var Accounts = mongoose.model('accounts');
+
+var Account = mongoose.model('account');
 
 
 //function to handle a request - CRUD
 
-//create account
+//create function
 var createAccount = function(req, res, next) {
-    var newAccount = {
-        firstName:req.body.firstName,
-        lastName:req.body.lastName,
-        email:req.body.email,
-        password:req.body.password,
-        isValid:req.body.isValid,
+    var login = {
+        username:req.body.topic,
+        password:req.body.topic
     };
 
-    var data = new Accounts(newAccount);
+    var data = new Account(login);
     data.save();
 
     res.redirect('/');
 };
 
-// Read all accounts
-var readAllAccounts = function(req, res, next) {
-    Accounts.find()
+// Read function
+/*
+var readAccount = function(req, res, next) {
+    Account.find()
         .lean()
         .then(function(doc) {
-            //res.render('accounts/readAll', {items: doc});
+            res.render('index', {items: doc});
         });
 };
+*/
 
 
-
-// Update account
+// Update function
 var updateAccount = function(req, res, next) {
     var id = req.body.id;
 
-    Accounts.findById(id, function(err, doc) {
+    Account.findById(id, function(err, doc) {
         if (err) {
-            console.error('error, no account found');
+            console.error('error, no cafe found');
         }
-        doc.firstName = req.body.firstName;
-        doc.lastName = req.body.lastName;
-        doc.email = req.body.email;
+        doc.username = req.body.username;
         doc.password = req.body.password;
-        doc.isValid = req.body.isValid;
         /* add other params */
         doc.save();
     });
@@ -54,14 +49,12 @@ var updateAccount = function(req, res, next) {
 // Delete function
 var deleteAccount = function(req, res, next) {
     var id = req.body.id;
-    Accounts.findByIdAndRemove(id).exec();
+    Account.findByIdAndRemove(id).exec();
     res.redirect('/');
 };
 
 //export the callbacks
 module.exports = {
     createAccount,
-    readAllAccounts,
-    updateAccount,
-    deleteAccount,
+    deleteAccount
 };
