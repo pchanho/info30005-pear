@@ -21,12 +21,37 @@ var createConversation = function(req, res, next) {
 
 // read all conversations and their items
 var readAllConversations = function(req, res, next) {
+    Conversations.find({}, function(err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.json(doc);
+        }
+      });
+};
+
+/* OLD CODE
+var readAllConversations = function(req, res, next) {
     Conversations.find()
         .lean()
         .then(function(doc) {
             res.render('conversations/readAll', {items: doc});
         });
 };
+*/
+
+// read one conversation and it's items
+var readOneConversation = function(req, res, next) {
+    var id = req.body.id;
+
+    Conversations.findById(id, function(err, doc) {
+        if (err) {
+            console.error('error, no conversation found');
+        } else {
+            res.json(doc);
+        }
+    });
+}
 
 // update a single conversation's items
 var updateConversation = function(req, res, next) {
@@ -55,6 +80,7 @@ var deleteConversation = function(req, res, next) {
 // export functions
 module.exports.createConversation = createConversation;
 module.exports.readAllConversations = readAllConversations;
+module.exports.readOneConversation = readOneConversation;
 module.exports.updateConversation = updateConversation;
 module.exports.deleteConversation = deleteConversation;
 
