@@ -1,17 +1,9 @@
+// import libraries
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 //creating schema for database
 var accountSchema = new Schema({
-    username: {
-    	type: String,
-        required: true
-    },
-    password: {
-    	type: String,
-        required: true
-    },
-    /*
     firstName: {
     	type: String,
         required: true
@@ -20,10 +12,22 @@ var accountSchema = new Schema({
     	type: String,
         required: true
     },
-     other fields */
+    email: {
+    	type: String,
+        required: true
+    },
+    password: {
+    	type: String,
+        required: true
+    },
+    isValid: {
+        type: Boolean,
+        default: false
+    },
+    /* other fields */
 },
 
 //names the schema
-{collection: 'Account'});
+{collection: 'Accounts'});
 
-mongoose.model('account', accountSchema);
+mongoose.model('accounts', accountSchema);
