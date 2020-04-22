@@ -31,6 +31,9 @@ conversationRoutes.post('/create', conversationController.createConversation);
 // read all conversations and their items
 conversationRoutes.get('/readAll', conversationController.readAllConversations);
 
+// read a single conversation and it's items
+conversationRoutes.get('/readOne', conversationController.readOneConversation);
+
 // update a single conversation's items
 conversationRoutes.put('/update', conversationController.updateConversation);
 
