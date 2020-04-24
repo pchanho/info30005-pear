@@ -2,6 +2,7 @@
 // import libraries
 var mongoose = require('mongoose');
 var Conversations = mongoose.model('conversations');
+var conversationModel = require('../models/conversationModels.js');
 //var Messages = mongoose.model('messages');
 
 // create conversation
@@ -41,20 +42,17 @@ var readAllConversations = function(req, res, next) {
 };
 */
 
-// read all conversations new conversations that are not filled (readNewConversations) 
-
-
 // read all conversations where:
 // status = NOT_FULL = 0
-
-
-
-
-
-
-
-
-
+var readNewConversations = function(req, res, next) {
+    Conversations.find({status:0}, function(err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.json(doc);
+        }
+      });
+};
 
 // read one conversation and it's items
 var readOneConversation = function(req, res, next) {
@@ -115,6 +113,7 @@ var deleteConversation = function(req, res, next) {
 module.exports = {
     createConversation,
     readAllConversations,
+    readNewConversations,
     readOneConversation,
     readParticipants,
     updateConversation,

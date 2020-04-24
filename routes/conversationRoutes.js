@@ -32,6 +32,8 @@ conversationRoutes.post('/create', conversationController.createConversation);
 conversationRoutes.get('/readAll', conversationController.readAllConversations);
 
 // read all conversations new conversations that are not filled (readNewConversations) 
+conversationRoutes.get('/readNew', conversationController.readNewConversations);
+
 // create constant for MAX_CONVERSATION_SIZE
 // create constant for EMPTY CONVERSATION
 
