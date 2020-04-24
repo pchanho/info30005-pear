@@ -16,7 +16,9 @@ var conversationSchema = new Schema({
     },
     startTime: {
     	type:Number
-    }
+    },
+
+    // finished
 }, 
 // specify a specific name for the collection that the schema will appear in
 {collection: 'Conversations'});

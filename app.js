@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
 
 // first import the each of the routes
 const conversationRoutes = require('./routes/conversationRoutes');
+const messageRoutes = require('./routes/messageRoutes');
 const supportRoutes = require('./routes/supportRoutes');
 const accountRoutes = require('./routes/accountRoutes');
 const reportRoutes = require('./routes/reportRoutes');
@@ -28,6 +29,7 @@ const reportRoutes = require('./routes/reportRoutes');
 
 // then specify the path for each of the routes
 app.use("/conversation", conversationRoutes);
+app.use("/message", messageRoutes);
 app.use("/support", supportRoutes);
 app.use("/account", accountRoutes);
 app.use("/report", reportRoutes);

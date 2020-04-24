@@ -22,7 +22,7 @@ authorRouter.get('/:id', (req, res) => authorController.getAuthorByID(req, res))
 */
 
 
-// require the author controller
+// require the conversation controller
 const conversationController = require('../controllers/conversationControllers.js');
 
 //create
@@ -31,8 +31,14 @@ conversationRoutes.post('/create', conversationController.createConversation);
 // read all conversations and their items
 conversationRoutes.get('/readAll', conversationController.readAllConversations);
 
+// read all conversations new conversations that are not filled (readNewConversations) 
+// create constant for MAX_CONVERSATION_SIZE
+// create constant for EMPTY CONVERSATION
+
 // read a single conversation and it's items
 conversationRoutes.get('/readOne', conversationController.readOneConversation);
+
+// read participants
 
 // update a single conversation's items
 conversationRoutes.put('/update', conversationController.updateConversation);
