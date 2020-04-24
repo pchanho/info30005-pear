@@ -6,10 +6,11 @@ var Conversations = mongoose.model('conversations');
 
 // create conversation
 var createConversation = function(req, res, next) {
+    console.log(req.body.participants)
     var item = {
         topic:req.body.topic,
         topicImage:req.body.topicImage,
-        participants:req.body.particpants,
+        participants:req.body.participants,
         startTime:req.body.startTime,
     };
 
@@ -55,9 +56,20 @@ var readOneConversation = function(req, res, next) {
             res.json(doc);
         }
     });
-}
+};
 
 // read participants
+var readParticipants = function(req, res, next) {
+    var id = req.body.id;
+
+    Conversations.findById(id, 'participants', { lean: true }, function (err, doc) {
+        if (err) {
+            console.error('error, no conversation found');
+        } else {
+            res.json(doc);
+        }
+    });
+}
 
 // update a single conversation's items
 var updateConversation = function(req, res, next) {
@@ -84,10 +96,13 @@ var deleteConversation = function(req, res, next) {
 };
 
 // export functions
-module.exports.createConversation = createConversation;
-module.exports.readAllConversations = readAllConversations;
-module.exports.readOneConversation = readOneConversation;
-module.exports.updateConversation = updateConversation;
-module.exports.deleteConversation = deleteConversation;
+module.exports = {
+    createConversation,
+    readAllConversations,
+    readOneConversation,
+    readParticipants,
+    updateConversation,
+    deleteConversation
+};
 
 

@@ -39,6 +39,7 @@ conversationRoutes.get('/readAll', conversationController.readAllConversations);
 conversationRoutes.get('/readOne', conversationController.readOneConversation);
 
 // read participants
+conversationRoutes.get('/readParticipants', conversationController.readParticipants);
 
 // update a single conversation's items
 conversationRoutes.put('/update', conversationController.updateConversation);

@@ -12,7 +12,7 @@ var conversationSchema = new Schema({
     	type: String
     },
     participants: {
-    	type: [String]
+    	type: [{type: String}]
     },
     startTime: {
     	type:Number
