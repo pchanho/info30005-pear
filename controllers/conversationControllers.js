@@ -6,12 +6,12 @@ var Conversations = mongoose.model('conversations');
 
 // create conversation
 var createConversation = function(req, res, next) {
-    console.log(req.body.participants)
     var item = {
         topic:req.body.topic,
         topicImage:req.body.topicImage,
         participants:req.body.participants,
         startTime:req.body.startTime,
+        status:req.body.status,
     };
 
     var data = new Conversations(item);
@@ -42,8 +42,19 @@ var readAllConversations = function(req, res, next) {
 */
 
 // read all conversations new conversations that are not filled (readNewConversations) 
-// create constant for MAX_CONVERSATION_SIZE
-// create constant for EMPTY CONVERSATION
+
+
+// read all conversations where:
+// status = NOT_FULL = 0
+
+
+
+
+
+
+
+
+
 
 // read one conversation and it's items
 var readOneConversation = function(req, res, next) {
@@ -72,6 +83,10 @@ var readParticipants = function(req, res, next) {
 }
 
 // update a single conversation's items
+
+// *** Currently this overrides, 
+// *** look into having a function (Or multiple functions) that only edit the required fields
+
 var updateConversation = function(req, res, next) {
     var id = req.body.id;
 
@@ -83,6 +98,7 @@ var updateConversation = function(req, res, next) {
         doc.topicImage = req.body.topicImage;
         doc.participants = req.body.participants;
         doc.startTime = req.body.startTime;
+        doc.status = req.body.status;
         doc.save();
     });
     res.redirect('/');

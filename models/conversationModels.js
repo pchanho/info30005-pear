@@ -2,6 +2,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+const NOT_FULL = 0
+const FULL = 1
+const ENDED = 2
+
 // create schema
 var conversationSchema = new Schema({
     topic: {
@@ -15,10 +19,12 @@ var conversationSchema = new Schema({
     	type: [{type: String}]
     },
     startTime: {
-    	type:Number
+    	type:Date
     },
-
-    // finished
+    status: {
+        type: Number,
+        default: NOT_FULL
+    }
 }, 
 // specify a specific name for the collection that the schema will appear in
 {collection: 'Conversations'});

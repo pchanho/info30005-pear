@@ -27,8 +27,6 @@ var messageSchema = new Schema({
     media: {
         type: String
     }
-
-
 }, 
 
 {collection: 'Messages'});

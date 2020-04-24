@@ -23,18 +23,40 @@ var createMessage = function(req, res, next) {
 
 // read all messages
 var readAllMessages = function(req, res, next) {
-
+    Messages.find({}, function(err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.json(doc);
+        }
+      });
 };
 
 // read all messages from a particular conversation 
 // (for user history and admin purposes)
 var readSpecificMessages = function(req, res, next) {
 
+// provide conversationId
+
+
+
+
+
+// returns all messages associated with praticular conversationId
+
 };
 
 // read one message
 var readOneMessage = function(req, res, next) {
+    var id = req.body.id;
 
+    Messages.findById(id, function(err, doc) {
+        if (err) {
+            console.error('error, no conversation found');
+        } else {
+            res.json(doc);
+        }
+    });
 };
 
 // update message
