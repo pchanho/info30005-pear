@@ -9,10 +9,12 @@ var conversationModel = require('../models/conversationModels.js');
 var createConversation = function(req, res, next) {
     var item = {
         topic:req.body.topic,
+        category:req.body.category,
         topicImage:req.body.topicImage,
-        participants:req.body.participants,
+        participantsId:req.body.participantsId,
         startTime:req.body.startTime,
         status:req.body.status,
+        messagesId:req.body.messagesId,
     };
 
     var data = new Conversations(item);
@@ -71,7 +73,7 @@ var readOneConversation = function(req, res, next) {
 var readParticipants = function(req, res, next) {
     var id = req.body.id;
 
-    Conversations.findById(id, 'participants', { lean: true }, function (err, doc) {
+    Conversations.findById(id, 'participantsId', { lean: true }, function (err, doc) {
         if (err) {
             console.error('error, no conversation found');
         } else {
@@ -93,10 +95,12 @@ var updateConversation = function(req, res, next) {
             console.error('error, no conversation found');
         }
         doc.topic = req.body.topic;
+        doc.category = req.body.category;
         doc.topicImage = req.body.topicImage;
-        doc.participants = req.body.participants;
+        doc.participantsId = req.body.participantsId;
         doc.startTime = req.body.startTime;
         doc.status = req.body.status;
+        doc.messagesId = req.body.messagesId;
         doc.save();
     });
     res.redirect('/');
