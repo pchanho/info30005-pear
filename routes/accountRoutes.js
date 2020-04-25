@@ -12,7 +12,8 @@ const accountController = require('../controllers/accountControllers');
 accountRoutes.post('/create', accountController.createAccount);
 
 //read
-//accountRoutes.get('/readAll', accountController.readAccount);
+accountRoutes.get('/readAll', accountController.readAllAccounts);
+accountRoutes.get('/readOne', accountController.readOneAccount);
 
 //update
 accountRoutes.put('/update', accountController.updateAccount);
