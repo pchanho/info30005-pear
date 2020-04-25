@@ -2,7 +2,7 @@
 // import libraries
 var mongoose = require('mongoose');
 var Conversations = mongoose.model('conversations');
-var Messages = mongoose.model('messages');
+//var Messages = mongoose.model('messages');
 
 // create conversation
 var createConversation = function(req, res, next) {
@@ -40,6 +40,10 @@ var readAllConversations = function(req, res, next) {
 };
 */
 
+// read all conversations new conversations that are not filled (readNewConversations) 
+// create constant for MAX_CONVERSATION_SIZE
+// create constant for EMPTY CONVERSATION
+
 // read one conversation and it's items
 var readOneConversation = function(req, res, next) {
     var id = req.body.id;
@@ -52,6 +56,8 @@ var readOneConversation = function(req, res, next) {
         }
     });
 }
+
+// read participants
 
 // update a single conversation's items
 var updateConversation = function(req, res, next) {

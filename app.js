@@ -21,20 +21,24 @@ app.get("/", (req, res) => {
 
 // first import the each of the routes
 const conversationRoutes = require('./routes/conversationRoutes');
+const messageRoutes = require('./routes/messageRoutes');
 const supportRoutes = require('./routes/supportRoutes');
 const accountRoutes = require('./routes/accountRoutes');
 const reportRoutes = require('./routes/reportRoutes');
 const loginRoutes = require('./routes/loginRoutes');
+const faqRoutes = require('./routes/faqRoutes');
 // ADD ANY OTHER ROUTES HERE
 
 // then specify the path for each of the routes
 app.use("/conversation", conversationRoutes);
+app.use("/message", messageRoutes);
 app.use("/support", supportRoutes);
 app.use("/account", accountRoutes);
 app.use("/report", reportRoutes);
 app.use("/login", loginRoutes);
 
 // ADD ANY OTHER ROUTES HERE
+app.use("/faq", faqRoutes);
 
 // start app and listen for incoming requests on port 3000
 app.listen(process.env.PORT || 3000, () => {

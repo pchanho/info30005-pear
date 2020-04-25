@@ -31,3 +31,4 @@ require('./messageModels.js');
 require('./supportModels.js');
 require('./accountModels.js');
 require('./reportModels.js');
+require('./faqModels');
