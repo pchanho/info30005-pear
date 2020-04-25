@@ -9,9 +9,9 @@ var createMessage = function(req, res, next) {
         conversationId:req.body.conversationId,
         sender:req.body.sender,
         sentAt:req.body.sentAt,
-        message:req.body.message,
-        mediaAttached:req.body.mediaAttached,
-        media:req.body.media,
+        text:req.body.text,
+        image:req.body.image,
+        video:req.body.video,
 
     };
 
@@ -70,9 +70,9 @@ var updateMessage = function(req, res, next) {
         doc.conversationId = req.body.conversationId;
         doc.sender = req.body.sender;
         doc.sentAt = req.body.sentAt;
-        doc.message = req.body.message;
-        doc.mediaAttached = req.body.mediaAttached;
-        doc.media = req.body.media;
+        doc.text = req.body.text;
+        doc.image = req.body.image;
+        doc.video = req.body.video;
         doc.save();
     });
     res.redirect('/');
