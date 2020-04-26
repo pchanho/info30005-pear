@@ -37,11 +37,6 @@ var readAllMessages = function(req, res, next) {
 var readSpecificMessages = function(req, res, next) {
 
 // provide conversationId
-
-
-
-
-
 // returns all messages associated with praticular conversationId
 
 };
@@ -60,6 +55,8 @@ var readOneMessage = function(req, res, next) {
 };
 
 // update message
+// not accessible to user (admin use only i.e. censoring)
+
 var updateMessage = function(req, res, next) {
     var id = req.body.id;
 
@@ -79,6 +76,7 @@ var updateMessage = function(req, res, next) {
 };
 
 // delete message by id
+// not accessible to user (admin use only i.e. deleting old messages)
 var deleteMessage = function(req, res, next) {
     var id = req.body.id;
     Messages.findByIdAndRemove(id).exec();

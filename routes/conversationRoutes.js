@@ -34,9 +34,6 @@ conversationRoutes.get('/readAll', conversationController.readAllConversations);
 // read all conversations new conversations that are not filled (readNewConversations) 
 conversationRoutes.get('/readNew', conversationController.readNewConversations);
 
-// create constant for MAX_CONVERSATION_SIZE
-// create constant for EMPTY CONVERSATION
-
 // read a single conversation and it's items
 conversationRoutes.get('/readOne', conversationController.readOneConversation);
 
@@ -45,6 +42,14 @@ conversationRoutes.get('/readParticipants', conversationController.readParticipa
 
 // update a single conversation's items
 conversationRoutes.put('/update', conversationController.updateConversation);
+
+// should we add " In " to our routes, i.e addParticipantsIn ?
+
+conversationRoutes.put('/addParticipants', conversationController.addParticipantsInConversation);
+
+conversationRoutes.put('/removeParticipants', conversationController.removeParticipantsInConversation);
+
+conversationRoutes.put('/updateMessages', conversationController.updateMessagesInConversation);
 
 //delete conversation by id
 conversationRoutes.delete('/delete', conversationController.deleteConversation);

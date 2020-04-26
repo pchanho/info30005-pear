@@ -34,18 +34,11 @@ var readAllConversations = function(req, res, next) {
       });
 };
 
-/* OLD CODE
-var readAllConversations = function(req, res, next) {
-    Conversations.find()
-        .lean()
-        .then(function(doc) {
-            res.render('conversations/readAll', {items: doc});
-        });
-};
-*/
-
 // read all conversations where:
 // status = NOT_FULL = 0
+
+// TODO: fix constants
+
 var readNewConversations = function(req, res, next) {
     Conversations.find({status:0}, function(err, doc) {
         if (err) {
@@ -82,11 +75,7 @@ var readParticipants = function(req, res, next) {
     });
 }
 
-// update a single conversation's items
-
-// *** Currently this overrides, 
-// *** look into having a function (Or multiple functions) that only edit the required fields
-
+// update a single conversation's items (for admin)
 var updateConversation = function(req, res, next) {
     var id = req.body.id;
     var participantsId = req.body.participantsId;
@@ -95,13 +84,38 @@ var updateConversation = function(req, res, next) {
         if (err) {
             console.log(err);
           } else {
-              console.log(doc)
+              console.log(doc) // remove later
           } 
     })
             
     res.redirect('/');
 };  
 
+// *** Currently this overrides, 
+// *** look into having a function (Or multiple functions) that only edit the required fields
+
+// key events which occur:
+
+// * person joins / leaves
+// updateParticipantsInConversation
+// (potentially a separate function for add and remove) 
+
+// * message sent
+// updateMessagesInConversation
+
+// * updating / changing image???
+
+var addParticipantsInConversation = function(req, res, next) {
+
+};
+
+var removeParticipantsInConversation = function(req, res, next) {
+
+};
+
+var updateMessagesInConversation = function(req, res, next) {
+
+};
 
 // delete entire conversation by id
 var deleteConversation = function(req, res, next) {
@@ -118,6 +132,9 @@ module.exports = {
     readOneConversation,
     readParticipants,
     updateConversation,
+    addParticipantsInConversation,
+    removeParticipantsInConversation,
+    updateMessagesInConversation,
     deleteConversation
 };
 
