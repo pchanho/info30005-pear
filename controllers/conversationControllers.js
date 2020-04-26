@@ -89,22 +89,19 @@ var readParticipants = function(req, res, next) {
 
 var updateConversation = function(req, res, next) {
     var id = req.body.id;
+    var participantsId = req.body.participantsId;
 
-    Conversations.findById(id, function(err, doc) {
+    Conversations.updateOne({ "_id" : id }, {$push: { "participantsId" : participantsId } }, function(err,doc){
         if (err) {
-            console.error('error, no conversation found');
-        }
-        doc.topic = req.body.topic;
-        doc.category = req.body.category;
-        doc.topicImage = req.body.topicImage;
-        doc.participantsId = req.body.participantsId;
-        doc.startTime = req.body.startTime;
-        doc.status = req.body.status;
-        doc.messagesId = req.body.messagesId;
-        doc.save();
-    });
+            console.log(err);
+          } else {
+              console.log(doc)
+          } 
+    })
+            
     res.redirect('/');
-};
+};  
+
 
 // delete entire conversation by id
 var deleteConversation = function(req, res, next) {
