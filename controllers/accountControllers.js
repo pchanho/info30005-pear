@@ -3,42 +3,56 @@ var mongoose = require('mongoose');
 
 var Accounts = mongoose.model('accounts');
 
+const bcrypt = require('bcrypt');
+
 
 //function to handle a request - CRUD
 
 //create account
 var createAccount = function(req, res, next) {
-    var newAccount = {
-        firstName:req.body.firstName,
-        lastName:req.body.lastName,
-        email:req.body.email,
-        password:req.body.password,
-        isValid:req.body.isValid,
-    };
+    bcrypt.hash(req.body.password, 10, function (err,   hash) {
+        var newAccount = {
+            firstName:req.body.firstName,
+            lastName:req.body.lastName,
+            email:req.body.email,
+            password:hash,
+            isValid:req.body.isValid,
+        };
 
-    var data = new Accounts(newAccount);
-    data.save();
+        var data = new Accounts(newAccount);
+        data.save();
 
-    res.redirect('/');
+        res.redirect('/');
+    });
 };
 
 // Read function
-/*
-var readAccount = function(req, res, next) {
-    Account.find()
+
 // Read all accounts
 var readAllAccounts = function(req, res, next) {
-    Accounts.find()
-        .lean()
-        .then(function(doc) {
-            res.render('index', {items: doc});
-            //res.render('accounts/readAll', {items: doc});
-        });
+    Accounts.find({}, function(err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.json(doc);
+        }
+      });
 };
-*/
+
 
 
 // Update function
+var readOneAccount = function(req, res, next) {
+    var id = req.body.id;
+
+    Accounts.findById(id, function(err, doc) {
+        if (err) {
+            console.error('error, no account found');
+        } else {
+            res.json(doc);
+        }
+    });
+}
 
 // Update account
 var updateAccount = function(req, res, next) {
@@ -68,7 +82,8 @@ var deleteAccount = function(req, res, next) {
 //export the callbacks
 module.exports = {
     createAccount,
-    //readAllAccounts,
+    readOneAccount,
+    readAllAccounts,
     updateAccount,
     deleteAccount
 };

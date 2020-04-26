@@ -21,7 +21,7 @@ db.on("error", err => {
 });
 
 db.once("open", async () => {
- console.log("Mongo connection started on " + db.host + ":" +
+    console.log("Mongo connection started on " + db.host + ":" +
 db.port);
 });
 
@@ -31,3 +31,4 @@ require('./messageModels.js');
 require('./supportModels.js');
 require('./accountModels.js');
 require('./reportModels.js');
+require('./faqModels');

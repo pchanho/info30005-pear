@@ -1,30 +1,47 @@
-var accountModel = require('../models/accountModels');
+var user = require('../models/accountModels');
 
 //require encryption
-var bcrypt = require('bcrypt');
 
+var mongoose = require('mongoose');
+
+var Accounts = mongoose.model('accounts');
+
+const bcrypt = require('bcrypt');
+
+//function checks whether username and password is found within db
 var login = function(req, res, next) {
 
-    //gets the email and password
-    //const email = req.body.email;
-    //const password = req.body.password;
-
     //find the email
-    const user = await accountModel.findOne({email: email})
-    //if email not found
-    if (!user) {
-        throw new Error('Invalid login');
-    }
-    if (!user.confirmed) {
-        throw new Error('Please confirm your email');
-    }
-
-    const valid = await bcrypt.compare(password, user.password);
-    if (!valid) {
-        throw new Error('Invalid login');
-    }
+    Accounts.findOne({
+            email: req.body.email
+    }) .then(function (user) {
+        //checks if email found
+        if (!user) {
+            console.log("Email not found");
+            res.redirect('/');
+        }
+        //if found check correct password 
+        else {
+            bcrypt.compare(req.body.password, user.password, function(err, result) {
+                if (result == true) {
+                    console.log("Logged in");
+                    res.redirect('/');
+                }
+                else {
+                    console.log("Incorrect password");
+                    res.redirect('/');
+                }
+            });
+        }
+    });
 
 };
+
+
+//authenticate
+var authenticate = function(req, res, next) {
+
+}
 
 module.exports = {
     login,

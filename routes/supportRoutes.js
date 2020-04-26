@@ -11,7 +11,7 @@ supportRoutes.get('/', function(req, res, next) {
 //Create
 supportRoutes.post('/insert', supportController.createSupport);
 
-//Read
+//Read all support contents
 supportRoutes.get('/read',  supportController.getSupportContents);
 
 //Update
@@ -19,7 +19,6 @@ supportRoutes.post('/update', supportController.updateSupport);
 
 //Delete
 supportRoutes.post('/delete', supportController.deleteSupport);
-
 
 // export the router
 module.exports = supportRoutes;
