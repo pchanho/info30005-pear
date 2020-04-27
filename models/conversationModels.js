@@ -26,6 +26,10 @@ var conversationSchema = new Schema({
     startTime: {
     	type:Date
     },
+    participantCount: {
+        type: Number,
+        default: NOT_FULL
+    },
     status: {
         type: Number,
         default: NOT_FULL
