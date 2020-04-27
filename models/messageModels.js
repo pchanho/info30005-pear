@@ -1,10 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const NO_MEDIA = 0
-const IMAGE = 1
-const VIDEO = 2
-
 var messageSchema = new Schema({
     conversationId: {
         type: Object,
@@ -17,17 +13,15 @@ var messageSchema = new Schema({
     sentAt: {
         type: Date
     },
-    message: {
-    	type: [String]
+    text: {
+    	type: String
     },
-    mediaAttached: {
-        type: Number,
-        default: NO_MEDIA
-    },
-    media: {
+    image: {
         type: String
-    }
-
+    },
+    video: {
+        type: String
+    },
 
 }, 
 
