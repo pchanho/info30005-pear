@@ -110,30 +110,20 @@ var addParticipantsInConversation = function(req, res) {
     var id = req.body.id;
     var participantsId = req.body.participantsId;
 
-    Conversations.updateOne({ "_id" : id }, {$push: { "participantsId" : participantsId }, $inc: { participantCount: 1} }, function(err,doc){
-        if (err) {
-            console.log(err);
-          } 
-          
-    })
-    
-    Conversations.findById(id, function(err, doc) {
-        if (err) {
+    Conversations.findById(id, function(err, doc){
+        if(err){
             console.error('error, no conversation found');
-        } else {
-            if (doc.participantCount>1){
- 
-                Conversations.updateOne({ "_id" : id }, { "status" : 1}, function(err,doc){
-                    if (err) {
-                        console.log(err);
-                    } 
-                })
-            }
         }
+        doc.participantsId.addToSet(participantsId);
+        doc.participantCount += 1;
+        if (doc.participantCount > 1){
+            doc.status = 1
+        }
+        else{
+            doc.status  = 0
+        }
+        doc.save();
     });
-
-    
-            
     res.redirect('/');
 }; 
 
@@ -142,33 +132,26 @@ var removeParticipantsInConversation = async function(req, res, next) {
     var id = req.body.id;
     var participantsId = req.body.participantsId;
 
-    await Conversations.updateOne({ "_id" : id }, {$pull: { "participantsId" : participantsId }, $inc: { participantCount: -1} }, function(err,doc){
-        if (err) {
-            console.log(err);
-          } 
-          console.log("ss")
-    }).exec()
-
-    Conversations.findById(id, function(err, doc) {
-        if (err) {
+    Conversations.findById(id, function(err, doc){
+        if(err){
             console.error('error, no conversation found');
-        } else {
-            if (doc.participantCount<=1){
- 
-                Conversations.updateOne({ "_id" : id }, { "status" : 0}, function(err,doc){
-                    if (err) {
-                        console.log(err);
-                    } 
-                })
-            }
         }
+        console.log(participantsId)
+        doc.participantsId.pull(participantsId[0]);
+        doc.participantCount -= 1;
+
+        if (doc.participantCount > 1){
+            doc.status = 1
+        }
+        else{
+            doc.status  = 0
+        }
+        doc.save();
     });
-  
-
-
     res.redirect('/');
 };
 
+//updates a record of messageIds to keep track of
 var updateMessagesInConversation = async function(req, res, next) {
     var id = req.body.id;
     var messagesId = req.body.messagesId;
