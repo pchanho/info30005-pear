@@ -2,7 +2,7 @@
 // import libraries
 var mongoose = require('mongoose');
 var Conversations = mongoose.model('conversations');
-var conversationModel = require('../models/conversationModels.js');
+var constants = require('../constants.js');
 //var Messages = mongoose.model('messages');
 
 // create conversation
@@ -36,11 +36,8 @@ var readAllConversations = function(req, res, next) {
 
 // read all conversations where:
 // status = NOT_FULL = 0
-
-// TODO: fix constants
-
 var readNewConversations = function(req, res, next) {
-    Conversations.find({status:0}, function(err, doc) {
+    Conversations.find({status:constants.NOT_FULL}, function(err, doc) {
         if (err) {
           console.log(err);
         } else {
@@ -105,16 +102,80 @@ var updateConversation = function(req, res, next) {
 
 // * updating / changing image???
 
-var addParticipantsInConversation = function(req, res, next) {
+//adds recorded patient to the conversation when they join and increases the status count
+var addParticipantsInConversation = function(req, res) {
+    var id = req.body.id;
+    var participantsId = req.body.participantsId;
 
+    Conversations.updateOne({ "_id" : id }, {$push: { "participantsId" : participantsId }, $inc: { participantCount: 1} }, function(err,doc){
+        if (err) {
+            console.log(err);
+          } 
+          
+    })
+    
+    Conversations.findById(id, function(err, doc) {
+        if (err) {
+            console.error('error, no conversation found');
+        } else {
+            if (doc.participantCount>1){
+ 
+                Conversations.updateOne({ "_id" : id }, { "status" : 1}, function(err,doc){
+                    if (err) {
+                        console.log(err);
+                    } 
+                })
+            }
+        }
+    });
+
+    
+            
+    res.redirect('/');
+}; 
+
+//removes recorded patient from the conversation when they leave and decreases the status count
+var removeParticipantsInConversation = async function(req, res, next) {
+    var id = req.body.id;
+    var participantsId = req.body.participantsId;
+
+    await Conversations.updateOne({ "_id" : id }, {$pull: { "participantsId" : participantsId }, $inc: { participantCount: -1} }, function(err,doc){
+        if (err) {
+            console.log(err);
+          } 
+          console.log("ss")
+    }).exec()
+
+    Conversations.findById(id, function(err, doc) {
+        if (err) {
+            console.error('error, no conversation found');
+        } else {
+            if (doc.participantCount<=1){
+ 
+                Conversations.updateOne({ "_id" : id }, { "status" : 0}, function(err,doc){
+                    if (err) {
+                        console.log(err);
+                    } 
+                })
+            }
+        }
+    });
+  
+
+
+    res.redirect('/');
 };
 
-var removeParticipantsInConversation = function(req, res, next) {
+var updateMessagesInConversation = async function(req, res, next) {
+    var id = req.body.id;
+    var messagesId = req.body.messagesId;
 
-};
-
-var updateMessagesInConversation = function(req, res, next) {
-
+    await Conversations.updateOne({ "_id" : id }, {$push: { "messagesId" : messagesId } }, function(err,doc){
+        if (err) {
+            console.log(err);
+          } 
+    }).exec()
+    res.redirect('/');
 };
 
 // delete entire conversation by id
