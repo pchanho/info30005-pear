@@ -21,10 +21,27 @@ var accountSchema = new Schema({
     	type: String,
         required: true
     },
-    isValid: {
-        type: Boolean,
-        default: false
+    //status types
+        //1 not verified
+        //2 verified
+        //3 inactive
+        //4 bannned
+    status: {
+        type: Number,
+        default: 1
     },
+    //array of report ids
+    reportsHistoryId: {
+        type: [{type: Object}],
+    },
+    //array of friend ids
+    friendsId: {
+        type: [{type: Object}],
+    },
+    //array of conversation ids
+    conversationsId: {
+        type: [{type: Object}],
+    }
     /* other fields */
 },
 

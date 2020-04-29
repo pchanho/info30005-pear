@@ -52,7 +52,7 @@ var readOneAccount = function(req, res, next) {
             res.json(doc);
         }
     });
-}
+};
 
 // Update account
 var updateAccount = function(req, res, next) {
@@ -70,7 +70,7 @@ var updateAccount = function(req, res, next) {
         /* add other params */
         doc.save();
     });
-}
+};
 
 // Delete function
 var deleteAccount = function(req, res, next) {
@@ -79,11 +79,56 @@ var deleteAccount = function(req, res, next) {
     res.redirect('/');
 };
 
+//function checks whether username and password is found within db
+var login = function(req, res, next) {
+
+    //find the email
+    Accounts.findOne({
+            email: req.body.email
+    }) .then(function (user) {
+        //checks if email found
+        if (!user) {
+            console.log("Email not found");
+            res.redirect('/');
+        }
+        //if found check correct password
+        else {
+            bcrypt.compare(req.body.password, user.password, function(err, result) {
+                if (result == true) {
+                    console.log("Logged in");
+                    res.redirect('/');
+                }
+                else {
+                    console.log("Incorrect password");
+                    res.redirect('/');
+                }
+            });
+        }
+    });
+
+};
+
+var addFriend = function(req, res, next) {
+    var id = req.body.id;
+    var friendId = req.body.friendId;
+
+    Accounts.friendsId.update({ "_id" : id }, {$push: { "friendId" : friendId }}, function(err, doc) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(doc);
+        }
+    })
+};
+
 //export the callbacks
 module.exports = {
     createAccount,
     readOneAccount,
     readAllAccounts,
     updateAccount,
-    deleteAccount
+    deleteAccount,
+    login,
+    addFriend,
 };

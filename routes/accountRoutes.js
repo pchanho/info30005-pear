@@ -21,6 +21,11 @@ accountRoutes.put('/update', accountController.updateAccount);
 //delete
 accountRoutes.delete('/delete', accountController.deleteAccount);
 
+//login
+accountRoutes.post('/login', accountController.login);
+
+accountRoutes.post('/addFriend', accountController.addFriend);
+
 
 //export the router
 module.exports = accountRoutes;
