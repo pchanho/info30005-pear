@@ -9,17 +9,20 @@ const accountController = require('../controllers/accountControllers');
 //handle the GET request on root of account-management path
 
 //create
-accountRoutes.post('/create', accountController.createAccount);
+accountRoutes.post('/createAccount', accountController.createAccount);
 
 //read
-accountRoutes.get('/readAll', accountController.readAllAccounts);
-accountRoutes.get('/readOne', accountController.readOneAccount);
+accountRoutes.get('/readAllAccounts', accountController.readAllAccounts);
+accountRoutes.get('/readOneAccount', accountController.readOneAccount);
+accountRoutes.get('/readFriends', accountController.readFriends);
 
 //update
-accountRoutes.put('/update', accountController.updateAccount);
+accountRoutes.put('/updateAccount', accountController.updateAccount);
+accountRoutes.put('/deactivate', accountController.deactivate);
 
 //delete
-accountRoutes.delete('/delete', accountController.deleteAccount);
+accountRoutes.delete('/deleteAccount', accountController.deleteAccount);
+accountRoutes.post('/deleteFriend', accountController.deleteFriend);
 
 //login
 accountRoutes.post('/login', accountController.login);
