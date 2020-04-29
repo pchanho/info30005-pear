@@ -16,7 +16,7 @@ var createAccount = function(req, res, next) {
             lastName:req.body.lastName,
             email:req.body.email,
             password:hash,
-            isValid:req.body.isValid,
+            birthday:req.body.birthday,
         };
 
         var data = new Accounts(newAccount);
@@ -33,10 +33,11 @@ var readAllAccounts = function(req, res, next) {
     Accounts.find({}, function(err, doc) {
         if (err) {
           console.log(err);
-        } else {
+        }
+        else {
           res.json(doc);
         }
-      });
+    });
 };
 
 
@@ -66,10 +67,11 @@ var updateAccount = function(req, res, next) {
         doc.lastName = req.body.lastName;
         doc.email = req.body.email;
         doc.password = req.body.password;
-        doc.isValid = req.body.isValid;
+        doc.birthday = req.body.birthday;
         /* add other params */
         doc.save();
     });
+    res.redirect('/');
 };
 
 // Delete function
@@ -77,6 +79,21 @@ var deleteAccount = function(req, res, next) {
     var id = req.body.id;
     Accounts.findByIdAndRemove(id).exec();
     res.redirect('/');
+};
+
+var deactivate = function(req, res, next) {
+    var id = req.body.id;
+
+    Accounts.findById(id, function(err, doc) {
+        if (err) {
+            console.error('error, no account found');
+        }
+        //status 2 is deactivated
+        doc.status = 2;
+        doc.save();
+    });
+    res.redirect('/');
+
 };
 
 //function checks whether username and password is found within db
@@ -94,9 +111,33 @@ var login = function(req, res, next) {
         //if found check correct password
         else {
             bcrypt.compare(req.body.password, user.password, function(err, result) {
+                //1 not verified
+                //2 inactive
+                //3 active
+                //4 bannned
                 if (result == true) {
-                    console.log("Logged in");
-                    res.redirect('/');
+                    //don't log in if banned account
+                    if (user.status == 1) {
+                        console.log("Account hasn't been verified");
+                        res.redirect('/');
+                    }
+                    //if account deactive, activate
+                    else if (user.status == 2) {
+                        var newStatus = 3;
+                        user.status = newStatus;
+                        console.log("Account is active");
+                        res.redirect('/');
+                    }
+                    //log in
+                    else if (user.status == 3) {
+                        console.log("Logged in");
+                        res.redirect('/');
+                    }
+                    //status is 4 account is banned
+                    else {
+                        console.log("Account is banned");
+                        res.redirect('/');
+                    }
                 }
                 else {
                     console.log("Incorrect password");
@@ -110,16 +151,50 @@ var login = function(req, res, next) {
 
 var addFriend = function(req, res, next) {
     var id = req.body.id;
-    var friendId = req.body.friendId;
+    var friendsId = req.body.friendsId;
 
-    Accounts.friendsId.update({ "_id" : id }, {$push: { "friendId" : friendId }}, function(err, doc) {
+    Accounts.updateOne(
+        { "_id" : id },
+        { $addToSet: { "friendsId" : friendsId }}, function(err, doc) {
         if (err) {
-            console.log(err);
+            console.log("error adding");
         }
         else {
-            console.log(doc);
+            console.log("add successful");
         }
     })
+    res.redirect('/');
+};
+
+// read friends
+var readFriends = function(req, res, next) {
+    var id = req.body.id;
+
+    Accounts.findById(id, 'friendsId', { lean: true }, function (err, doc) {
+        if (err) {
+            console.error('error, no friends found');
+        } else {
+            console.log("friends found");
+            res.json(doc);
+        }
+    });
+};
+
+var deleteFriend = function(req, res, next) {
+    var id = req.body.id;
+    var friendsId = req.body.friendsId;
+
+    Accounts.updateOne(
+        { "_id" : id },
+        { $pull: { "friendsId" : friendsId }}, function(err, doc) {
+        if (err) {
+            console.log("error removing");
+        }
+        else {
+            console.log("remove successful");
+        }
+    })
+    res.redirect('/');
 };
 
 //export the callbacks
@@ -129,6 +204,9 @@ module.exports = {
     readAllAccounts,
     updateAccount,
     deleteAccount,
+    deactivate,
     login,
     addFriend,
+    readFriends,
+    deleteFriend,
 };

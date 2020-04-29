@@ -21,14 +21,18 @@ var accountSchema = new Schema({
     	type: String,
         required: true
     },
+    birthday: {
+    	type: Date,
+        required: true
+    },
     //status types
         //1 not verified
-        //2 verified
-        //3 inactive
+        //2 inactive
+        //3 active
         //4 bannned
     status: {
         type: Number,
-        default: 1
+        default: 2
     },
     //array of report ids
     reportsHistoryId: {
