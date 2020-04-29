@@ -2,14 +2,11 @@ var mongoose = require('mongoose');
 
 var Reports = mongoose.model('reports');
 
-// C R U D
-
 // Create Reports
 
 var createReport = function(req, res, next) {
     var item = {
-        offendee:req.body.offendee,
-        offendee_id:req.body.offendee_id,
+        accountId:req.body.accountId,
         reason:req.body.reason
     };
 
@@ -37,8 +34,7 @@ var updateReport = function(req, res, next) {
         if (err) {
             console.error('error, no report found');
         }
-        doc.offendee = req.body.offendee;
-        doc.offendee_id = req.body.offendee_id;
+        doc.accountId = req.body.accountId;
         doc.reason = req.body.reason;
         doc.save();
     });

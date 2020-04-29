@@ -2,11 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var reportSchema = new Schema({
-    offendee: {
-        type: String, 
-    	required: true
-    },
-    offendee_id:{
+    
+    account_id:{
         type: String,
         required: true
     },
