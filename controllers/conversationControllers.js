@@ -2,7 +2,7 @@
 // import libraries
 var mongoose = require('mongoose');
 var Conversations = mongoose.model('conversations');
-var conversationModel = require('../models/conversationModels.js');
+var constants = require('../constants.js');
 //var Messages = mongoose.model('messages');
 
 // create conversation
@@ -36,11 +36,8 @@ var readAllConversations = function(req, res, next) {
 
 // read all conversations where:
 // status = NOT_FULL = 0
-
-// TODO: fix constants
-
 var readNewConversations = function(req, res, next) {
-    Conversations.find({status:0}, function(err, doc) {
+    Conversations.find({status:constants.NOT_FULL}, function(err, doc) {
         if (err) {
           console.log(err);
         } else {
