@@ -1,12 +1,7 @@
 // import required libraries
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
-
-// @@@@@@ move constants ?????
-const NOT_FULL = 0
-const FULL = 1
-const ENDED = 2
+var constants = require('../constants.js');
 
 // create the conversation schema
 var conversationSchema = new Schema({
@@ -26,9 +21,13 @@ var conversationSchema = new Schema({
     startTime: {
     	type:Date
     },
+    participantCount: {
+        type: Number,
+        default: constants.NOT_FULL
+    },
     status: {
         type: Number,
-        default: NOT_FULL
+        default: constants.NOT_FULL
     },
     messagesId: {
         type: [{type: Object}]
@@ -37,6 +36,7 @@ var conversationSchema = new Schema({
 // specify a specific name for the collection that the schema will appear in
 {collection: 'Conversations'});
 
-// store schema
+// store conversation schema in mongoose
 mongoose.model('conversations', conversationSchema);
+
 

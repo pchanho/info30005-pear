@@ -1,6 +1,7 @@
 // import libraries
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var constants = require('../constants.js')
 
 //creating schema for database
 var accountSchema = new Schema({
@@ -32,7 +33,7 @@ var accountSchema = new Schema({
         //4 bannned
     status: {
         type: Number,
-        default: 2
+        default: constants.NOT_VERIFIED
     },
     //array of report ids
     reportsHistoryId: {

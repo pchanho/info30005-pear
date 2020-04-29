@@ -35,6 +35,18 @@ var readAllMessages = function(req, res, next) {
 // read all messages from a particular conversation 
 // (for user history and admin purposes)
 var readSpecificMessages = function(req, res, next) {
+    var conversationId = req.body.conversationId;
+
+    Messages.find({ "conversationId" : conversationId }, function(err,doc){
+        if (err) {
+            console.log(err);
+          } 
+          else{
+            res.json(doc);
+          }
+    })
+  
+    res.redirect('/');
 
 // provide conversationId
 // returns all messages associated with praticular conversationId
