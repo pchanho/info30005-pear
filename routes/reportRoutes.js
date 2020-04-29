@@ -17,11 +17,17 @@ const reportController = require('../controllers/reportControllers.js');
 //create
 reportRoutes.post('/create', reportController.createReport);
 
-//read
+//read all
 reportRoutes.get('/readAll', reportController.readAllReports);
+
+// read one
+
+// read by status
 
 //update
 reportRoutes.put('/update',reportController.updateReport);
+
+// update reportsHistory
 
 //delete
 reportRoutes.delete('/delete', reportController.deleteReport);
