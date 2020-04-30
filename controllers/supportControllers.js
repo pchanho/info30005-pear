@@ -17,12 +17,25 @@ var createSupport = function(req, res, next){
 };
 
 //Read
-var getSupportContents = function(req, res, next){
+var readAllSupports = function(req, res, next){
     Support.find()
         .lean()
         .then(function(doc) {
             res.send(doc);
         });
+};
+
+//Read one support content
+var readOneSupport = function(req, res, next) {
+    var id = req.body.id;
+
+    Support.findById(id, function(err, doc) {
+        if (err) {
+            console.error('error, no content found');
+        } else {
+            res.json(doc);
+        }
+    });
 };
 
 //Update
@@ -50,8 +63,9 @@ var deleteSupport = function(req, res, next){
 };
 
 module.exports = {
-    getSupportContents,
+    readAllSupports,
+    readOneSupport,
     createSupport,
     updateSupport,
-    deleteSupport
+    deleteSupport,
 };
