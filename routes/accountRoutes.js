@@ -22,7 +22,7 @@ accountRoutes.put('/deactivate', accountController.deactivate);
 
 //delete
 accountRoutes.delete('/deleteAccount', accountController.deleteAccount);
-accountRoutes.post('/deleteFriend', accountController.deleteFriend);
+accountRoutes.delete('/deleteFriend', accountController.deleteFriend);
 
 //login
 accountRoutes.post('/login', accountController.login);
