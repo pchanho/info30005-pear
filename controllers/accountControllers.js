@@ -5,6 +5,8 @@ var Accounts = mongoose.model('accounts');
 
 const bcrypt = require('bcrypt');
 
+var constants = require('../constants/accountConstants.js')
+
 
 //function to handle a request - CRUD
 

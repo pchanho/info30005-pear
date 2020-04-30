@@ -2,6 +2,8 @@ var mongoose = require('mongoose');
 
 var Reports = mongoose.model('reports');
 
+var constants = require('../constants/reportConstants.js');
+
 // Create Reports
 
 var createReport = function(req, res, next) {
@@ -26,6 +28,10 @@ var readAllReports = function(req, res, next) {
         });
 };
 
+// read one report
+
+// read by status
+
 // update a single report's items
 var updateReport = function(req, res, next) {
     var id = req.body.id;
@@ -40,6 +46,9 @@ var updateReport = function(req, res, next) {
     });
     res.redirect('/');
 };
+
+// update reportsHistory
+
 
 //Delete report by id
 var deleteReport = function(req, res, next) {
