@@ -1,6 +1,8 @@
+// Import libraries
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+//Creating schema for database
 var supportSchema = new Schema({
         title: {
             type:String,
@@ -20,6 +22,8 @@ var supportSchema = new Schema({
             type:String
         },
     },
+    // Specify a name for the collection
     {collection: 'Supports'});
 
+// Store Support schema in mongoose
 mongoose.model('supports', supportSchema);

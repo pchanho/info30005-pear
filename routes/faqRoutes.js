@@ -1,6 +1,8 @@
+// Import libraries
 var express = require('express');
 var faqRoutes = express.Router();
 
+// Require the FAQ controller
 var faqController = require('../controllers/faqControllers');
 
 

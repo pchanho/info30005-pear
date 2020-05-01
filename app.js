@@ -32,11 +32,11 @@ const faqRoutes = require('./routes/faqRoutes');
 app.use("/conversation", conversationRoutes);
 app.use("/message", messageRoutes);
 app.use("/support", supportRoutes);
+app.use("/faq", faqRoutes);
 app.use("/account", accountRoutes);
 app.use("/report", reportRoutes);
 
 // ADD ANY OTHER ROUTES HERE
-app.use("/faq", faqRoutes);
 
 // start app and listen for incoming requests on port 3000
 app.listen(process.env.PORT || 3000, () => {

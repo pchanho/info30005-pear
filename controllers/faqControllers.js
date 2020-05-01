@@ -1,7 +1,8 @@
+// Import libraries
 var mongoose = require('mongoose');
 var Faq = mongoose.model('faqs');
 
-//Create
+//Create FAQ
 var createFaq = function(req, res, next) {
     var item = {
         title:req.body.title,
@@ -14,7 +15,6 @@ var createFaq = function(req, res, next) {
 
     res.redirect('/');
 };
-
 
 //Read all registered FAQs
 var readAllFaqs = function(req, res, next){
@@ -43,7 +43,7 @@ var readNext5Faqs = function(req, res, next){
         })
 };
 
-//Update
+//Update FAQ
 var updateFaq = function(req, res, next) {
     var id = req.body.id;
 
@@ -59,7 +59,7 @@ var updateFaq = function(req, res, next) {
     res.redirect('/');
 };
 
-//Delete
+//Delete FAQ
 var deleteFaq = function(req, res, next){
     var id = req.body.id;
     Faq.findByIdAndRemove(id).exec();

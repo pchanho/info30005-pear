@@ -1,9 +1,11 @@
+//Import libraries
 var express = require('express');
 var supportRoutes = express.Router();
 
+//Require the support controller
 var supportController = require('../controllers/supportControllers');
 
-//This is a temporary home page as we don't create html yet.
+//This is a temporary home page for support system for deliverable 2.
 supportRoutes.get('/', function(req, res, next) {
     res.send('<h1>Pear Support System</h1>');
 });
@@ -23,5 +25,5 @@ supportRoutes.post('/update', supportController.updateSupport);
 //Delete
 supportRoutes.post('/delete', supportController.deleteSupport);
 
-// export the router
+//Export the router
 module.exports = supportRoutes;
