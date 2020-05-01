@@ -1,7 +1,7 @@
 // import libraries
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var constants = require('../constants.js')
+var constants = require('../constants/accountConstants.js')
 
 //creating schema for database
 var accountSchema = new Schema({

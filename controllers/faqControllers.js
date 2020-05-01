@@ -17,12 +17,30 @@ var createFaq = function(req, res, next) {
 
 
 //Read all registered FAQs
-var getFaq = function(req, res, next){
+var readAllFaqs = function(req, res, next){
     Faq.find()
         .lean()
         .then(function(doc){
         res.send(doc);
     })
+};
+
+//Real up to 5 FAQs
+var read5Faqs = function(req, res, next){
+    Faq.find().limit(5)
+        .lean()
+        .then(function(doc){
+            res.send(doc);
+        })
+};
+
+//Read up to next 5 FAQs
+var readNext5Faqs = function(req, res, next){
+    Faq.find().skip(5).limit(5)
+        .lean()
+        .then(function(doc){
+            res.send(doc);
+        })
 };
 
 //Update
@@ -63,7 +81,9 @@ var searchFaq = function(req, res, next) {
 //Export the controllers
 module.exports = {
     createFaq,
-    getFaq,
+    readAllFaqs,
+    read5Faqs,
+    readNext5Faqs,
     updateFaq,
     deleteFaq,
     searchFaq

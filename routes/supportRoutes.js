@@ -12,7 +12,10 @@ supportRoutes.get('/', function(req, res, next) {
 supportRoutes.post('/insert', supportController.createSupport);
 
 //Read all support contents
-supportRoutes.get('/read',  supportController.getSupportContents);
+supportRoutes.get('/readAll',  supportController.readAllSupports);
+
+//Read one support content
+supportRoutes.get('/readOne', supportController.readOneSupport);
 
 //Update
 supportRoutes.post('/update', supportController.updateSupport);

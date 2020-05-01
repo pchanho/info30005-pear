@@ -2,7 +2,7 @@
 // import libraries
 var mongoose = require('mongoose');
 var Conversations = mongoose.model('conversations');
-var constants = require('../constants.js');
+var constants = require('../constants/conversationConstants.js');
 //var Messages = mongoose.model('messages');
 
 // create conversation

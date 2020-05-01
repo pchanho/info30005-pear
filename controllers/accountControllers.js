@@ -5,6 +5,8 @@ var Accounts = mongoose.model('accounts');
 
 const bcrypt = require('bcrypt');
 
+var constants = require('../constants/accountConstants.js')
+
 
 //function to handle a request - CRUD
 
@@ -102,7 +104,7 @@ var login = function(req, res, next) {
     //find the email
     Accounts.findOne({
             email: req.body.email
-    }) .then(function (user) {
+    }, function(err, user) {
         //checks if email found
         if (!user) {
             console.log("Email not found");
@@ -123,9 +125,11 @@ var login = function(req, res, next) {
                     }
                     //if account deactive, activate
                     else if (user.status == 2) {
+                        console.log(user);
                         var newStatus = 3;
                         user.status = newStatus;
-                        console.log("Account is active");
+                        console.log(user);
+                        //console.log("Account is active");
                         res.redirect('/');
                     }
                     //log in
@@ -143,6 +147,7 @@ var login = function(req, res, next) {
                     console.log("Incorrect password");
                     res.redirect('/');
                 }
+                user.save();
             });
         }
     });

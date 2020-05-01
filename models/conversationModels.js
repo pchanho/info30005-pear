@@ -1,7 +1,7 @@
 // import required libraries
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var constants = require('../constants.js');
+var constants = require('../constants/conversationConstants.js');
 
 // create the conversation schema
 var conversationSchema = new Schema({
