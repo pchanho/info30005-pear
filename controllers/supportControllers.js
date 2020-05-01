@@ -1,7 +1,8 @@
+// Import libraries
 var mongoose = require('mongoose');
 var Support = mongoose.model('supports');
 
-//Create
+//Create support content
 var createSupport = function(req, res, next){
     var content ={
         title:req.body.title,
@@ -16,8 +17,8 @@ var createSupport = function(req, res, next){
     res.redirect('/support');
 };
 
-//Read
-var getSupportContents = function(req, res, next){
+//Read all support contents
+var readAllSupports = function(req, res, next){
     Support.find()
         .lean()
         .then(function(doc) {
@@ -25,7 +26,20 @@ var getSupportContents = function(req, res, next){
         });
 };
 
-//Update
+//Read one support content
+var readOneSupport = function(req, res, next) {
+    var id = req.body.id;
+
+    Support.findById(id, function(err, doc) {
+        if (err) {
+            console.error('error, no content found');
+        } else {
+            res.json(doc);
+        }
+    });
+};
+
+//Update support content by given id
 var updateSupport = function(req, res, next) {
     var id = req.body.id;
 
@@ -42,16 +56,18 @@ var updateSupport = function(req, res, next) {
     res.redirect('/support');
 };
 
-//Delete
+//Delete support content
 var deleteSupport = function(req, res, next){
     var id = req.body.id;
     Support.findByIdAndRemove(id).exec();
     res.redirect('/support');
 };
 
+// Export controllers
 module.exports = {
-    getSupportContents,
+    readAllSupports,
+    readOneSupport,
     createSupport,
     updateSupport,
-    deleteSupport
+    deleteSupport,
 };

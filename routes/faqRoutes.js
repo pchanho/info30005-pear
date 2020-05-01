@@ -1,6 +1,8 @@
+// Import libraries
 var express = require('express');
 var faqRoutes = express.Router();
 
+// Require the FAQ controller
 var faqController = require('../controllers/faqControllers');
 
 
@@ -8,7 +10,13 @@ var faqController = require('../controllers/faqControllers');
 faqRoutes.post('/create', faqController.createFaq);
 
 //Read all FAQs
-faqRoutes.get('/read', faqController.getFaq);
+faqRoutes.get('/readAll', faqController.readAllFaqs);
+
+//Real up to 5 FAQs
+faqRoutes.get('/read5', faqController.read5Faqs);
+
+//Read up to next 5 FAQs
+faqRoutes.get('/readNext5', faqController.readNext5Faqs);
 
 //Update
 faqRoutes.post('/update', faqController.updateFaq);

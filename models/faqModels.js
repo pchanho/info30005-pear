@@ -19,7 +19,8 @@ var faqSchema = new Schema({
             required:true
         },
     },
+    // Specify a name for the collection
     {collection: 'Faqs'});
 
-// Store schema
+// Store FAQ schema in mongoose
 mongoose.model('faqs', faqSchema);

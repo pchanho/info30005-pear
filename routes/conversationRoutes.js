@@ -1,7 +1,7 @@
 /*
 INFO30005 Group Assignment
 
-Authors: Glenn Deevesh Aiden Gemma Dimitri
+Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 const express = require('express');
@@ -39,9 +39,6 @@ conversationRoutes.get('/readOne', conversationController.readOneConversation);
 
 // read participants
 conversationRoutes.get('/readParticipants', conversationController.readParticipants);
-
-// update a single conversation's items
-conversationRoutes.put('/update', conversationController.updateConversation);
 
 // should we add " In " to our routes, i.e addParticipantsIn ?
 

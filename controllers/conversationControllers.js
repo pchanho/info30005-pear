@@ -72,22 +72,6 @@ var readParticipants = function(req, res, next) {
     });
 }
 
-// update a single conversation's items (for admin)
-var updateConversation = function(req, res, next) {
-    var id = req.body.id;
-    var participantsId = req.body.participantsId;
-
-    Conversations.updateOne({ "_id" : id }, {$push: { "participantsId" : participantsId } }, function(err,doc){
-        if (err) {
-            console.log(err);
-          } else {
-              console.log(doc) // remove later
-          } 
-    })
-            
-    res.redirect('/');
-};  
-
 // *** Currently this overrides, 
 // *** look into having a function (Or multiple functions) that only edit the required fields
 
@@ -175,7 +159,6 @@ module.exports = {
     readNewConversations,
     readOneConversation,
     readParticipants,
-    updateConversation,
     addParticipantsInConversation,
     removeParticipantsInConversation,
     updateMessagesInConversation,
