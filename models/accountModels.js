@@ -33,7 +33,7 @@ var accountSchema = new Schema({
         //4 bannned
     status: {
         type: Number,
-        default: constants.NOT_VERIFIED
+        default: constants.ACTIVE
     },
     //array of report ids
     reportsHistoryId: {
