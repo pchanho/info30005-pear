@@ -12,7 +12,7 @@ const messageController = require('../controllers/messageControllers.js');
 //CREATE
 
 /*	
-	route creates a new message expecting: conversationId, senderId and timeSent
+	route creates a new message expecting: conversationId, and senderId
 	Optionally, it can take the parameters: text, image, video
 	url: ../message/create
 */

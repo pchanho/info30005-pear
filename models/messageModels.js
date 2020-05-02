@@ -20,7 +20,7 @@ var messageSchema = new Schema({
     },
     timeSent: {
         type: Date,
-        required: true
+        default: Date.now
     },
     text: {
     	type: String

@@ -15,7 +15,6 @@ var createMessage = function(req, res, next) {
     var item = {
         conversationId:req.body.conversationId,
         senderId:req.body.senderId,
-        timeSent:req.body.timeSent,
         text:req.body.text,
         image:req.body.image,
         video:req.body.video,
@@ -93,7 +92,6 @@ var updateMessage = function(req, res, next) {
         }
         doc.conversationId = req.body.conversationId;
         doc.senderId = req.body.senderId;
-        doc.timeSent = req.body.timeSent;
         doc.text = req.body.text;
         doc.image = req.body.image;
         doc.video = req.body.video;
