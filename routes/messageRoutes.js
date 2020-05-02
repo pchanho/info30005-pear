@@ -51,7 +51,7 @@ messageRoutes.get('/readOne', messageController.readOneMessage);
 	this route is included for admin purposes and completeness
 	url: ../message/update
 */
-messageRoutes.put('/update', messageController.updateMessage);
+messageRoutes.put('/update', messageController.updateMedia);
 
 //DELETE
 

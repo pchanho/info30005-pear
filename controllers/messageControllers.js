@@ -30,8 +30,6 @@ var createMessage = function(req, res, next) {
                 console.error('error, no conversation found');
             }
             else{
-                console.log(message)
-                //console.log(doc)
                 doc.messagesId.addToSet(message._id);
                 doc.save();
             }
@@ -56,16 +54,17 @@ var readAllMessages = function(req, res, next) {
 // (for user history and admin purposes)
 var readSpecificMessages = function(req, res, next) {
     var conversationId = req.body.conversationId;
-
+    
     Messages.find({ "conversationId" : conversationId }, function(err,doc){
         if (err) {
-            console.log(err);
-          } 
-          else{
+            
+            console.log("error, no messages found");
+        } 
+        else{
             res.json(doc);
-          }
+        }
     });
-    res.redirect('/');
+   
 };
 
 // read one message
@@ -83,18 +82,25 @@ var readOneMessage = function(req, res, next) {
 
 // update message
 // not accessible to user (admin use only i.e. censoring)
-var updateMessage = function(req, res, next) {
+var updateMedia = function(req, res, next) {
     var id = req.body.id;
 
     Messages.findById(id, function(err, doc) {
         if (err) {
             console.error('error, no conversation found');
         }
-        doc.conversationId = req.body.conversationId;
-        doc.senderId = req.body.senderId;
-        doc.text = req.body.text;
-        doc.image = req.body.image;
-        doc.video = req.body.video;
+
+        if (typeof(req.body.text) != "undefined"){
+            doc.text = req.body.text;
+        }
+        if (typeof(req.body.text) != "undefined"){
+            doc.image = req.body.image;
+        }
+        if (typeof(req.body.text) != "undefined"){
+            doc.video = req.body.video;
+        }
+
+        
         doc.save();
     });
     res.redirect('/');
@@ -114,6 +120,6 @@ module.exports = {
     readAllMessages,
     readSpecificMessages,
     readOneMessage,
-    updateMessage,
+    updateMedia,
     deleteMessage
 };
