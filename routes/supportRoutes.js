@@ -31,9 +31,11 @@ supportRoutes.post('/create', supportController.createSupport);
  */
 supportRoutes.get('/readAll',  supportController.readAllSupports);
 
-/*  route returns one support content specified by a queried support id
+/*  route returns one support content specified by a queried support id.
+    expecting parameters; id
     url: ../support/readOne
  */
+
 supportRoutes.get('/readOne', supportController.readOneSupport);
 
 //Update
