@@ -14,7 +14,7 @@ const accountController = require('../controllers/accountControllers');
 /*  route creates an account expecting parameters; firstName, lastName,
     email, password and birthday, with password stored as a hash
     for security purposes
-    url: ../account/createAccount
+    url: ../account/create
 */
 accountRoutes.post('/create', accountController.createAccount);
 
@@ -22,13 +22,13 @@ accountRoutes.post('/create', accountController.createAccount);
 
 /*  route returns all accounts and account information and prints it to the
     console (takes no parameters)
-    url: ../account/readAllAccounts
+    url: ../account/readAll
 */
 accountRoutes.get('/readAll', accountController.readAllAccounts);
 
 /*  route returns one account and its account information specified by a
     queried account id, if applicable
-    url: ../account/readOneAccount
+    url: ../account/readOne
 */
 accountRoutes.get('/readOne', accountController.readOneAccount);
 
@@ -85,7 +85,7 @@ accountRoutes.put('/addFriend', accountController.addFriend);
 
 /*  route deletes an account specified by a queried account id from the
     database
-    url: ../account/deleteAccount
+    url: ../account/delete
 */
 accountRoutes.delete('/delete', accountController.deleteAccount);
 
