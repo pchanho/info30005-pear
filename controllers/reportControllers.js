@@ -1,12 +1,14 @@
+/*
+INFO30005 Group Assignment - Pear: Accounts Controller
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
+
+//import required libraries
 var mongoose = require('mongoose');
-
 var Reports = mongoose.model('reports');
-
-// var AccountControllers = require('../controllers/accountControllers.js');
 var Accounts = mongoose.model('accounts');
 var Messages = mongoose.model('messages');
-// var Messages = require('../controllers/messageControllers.js');
-
 var reportConstants = require('../constants/reportConstants.js');
 var accountConstants = require('../constants/accountConstants.js');
 
@@ -24,12 +26,15 @@ var createReport = function(req, res, next) {
     res.redirect('/');
 };
 
+//read functions
 
 // read all reports and their items
 var readAllReports = function(req, res, next) {
+
+    //find all reports and prints on screen
     Reports.find({}, function(err, doc) {
         if (err) {
-          console.log(err);
+          console.log('error, no report found');
         } else {
           res.json(doc);
         }
@@ -40,6 +45,7 @@ var readAllReports = function(req, res, next) {
 var readOneReport = function(req, res, next) {
     var id = req.body.id;
 
+    //find report by Id and prints on screen
     Reports.findById(id, function(err, doc) {
         if (err) {
             console.error('error, no report found');
@@ -49,10 +55,12 @@ var readOneReport = function(req, res, next) {
     });
 };
 
-// read by status, find all the pending reports
-// status = PENDING = 0
+// read by status, find all the PENDING or PROCESSED reports
+// all possible values of status listed in reportConstants
 var readByStatusReports = function(req, res, next) {
     status_to_find = req.body.status;
+
+    //find report based on status value
     Reports.find({status:status_to_find}, function(err, doc) {
         if (err) {
           console.log('error, status not found');
@@ -62,10 +70,12 @@ var readByStatusReports = function(req, res, next) {
       });
 };
 
-// read by status, find all the processed reports
-// status = PROCESSED = 1
+// read by outcome, find either PENDING, BANNED, DELETED, IGNORED reports
+// all possible values of outcome listed in reportConstants
 var readByOutcomeReports = function(req, res, next) {
     outcome_to_find = req.body.outcome;
+
+    //find report based on outcome value
     Reports.find({outcome:outcome_to_find}, function(err, doc) {
         if (err) {
           console.log('error, outcome not found');
@@ -75,9 +85,13 @@ var readByOutcomeReports = function(req, res, next) {
       });
 };
 
+//update functions
+
 // update a single report's items
 var updateReport = function(req, res, next) {
     var id = req.body.id;
+
+    //find report by Id and change accountId, reason and messageId
     Reports.findById(id, function(err, doc) {
         if (err) {
             console.error('error, no report found');
@@ -90,10 +104,11 @@ var updateReport = function(req, res, next) {
     res.redirect('/');
 };
 
-//change reports status
+//updating reports status
 var updateStatusinReport = function(req, res, next) {
     var id = req.body.id;
 
+    //find report by Id and change status of said report to PROCESSED (1)
     Reports.findById(id, function(err, doc) {
         if (err) {
             console.error('error, no report found');
@@ -107,24 +122,22 @@ var updateStatusinReport = function(req, res, next) {
 };
 
 //update outcome of report, 
-//if outcome gives BANNED constant, proceed to ban account 
-// if outcome gives DELETED constant, proceed to delete said message
 var updateOutcomeinReport = function(req, res, next) {
     var id = req.body.id;
-    
-    console.log(req.body);
-    console.log("reached updateOutcome");
+
+    //using inputed id, search the appropriate report
     Reports.findById(id, function(err, doc) {
-        
-        var accountId = doc.accountId;
-        var messageId = doc.messageId;
 
         if (err) {
             console.error('error, no report found');
         }
+        var accountId = doc.accountId;
+        var messageId = doc.messageId;
         doc.outcome = req.body.outcome;
         
+        //if outcome gives BANNED constant, proceed to ban account 
         if (doc.outcome == reportConstants.BANNED){
+            //find account based on report's accountId
             Accounts.findById(accountId, function(err,doc){
                 if (err){
                     console.log('error in ban');
@@ -133,7 +146,9 @@ var updateOutcomeinReport = function(req, res, next) {
                 }
                 doc.save();
             });
+            // if outcome gives DELETED constant, proceed to delete said message
         } else if (doc.outcome == reportConstants.DELETED){
+            //find message based on the report's messageId 
             Messages.findByIdAndRemove(messageId, function(err,doc){
                 if(err){
                     console.log('error in delete message')
@@ -147,21 +162,12 @@ var updateOutcomeinReport = function(req, res, next) {
     res.redirect('/');
 };
 
-//Delete report by id
-var deleteReport = function(req, res, next) {
-    var id = req.body.id;
-    Reports.findByIdAndRemove(id).exec();
-    res.redirect('/');
-};
-
-
-//reportsHistory handlings below
 //add report to it's assign account by using accountId
-
 var addReportToHistory = function(req, res, next) {
     var id = req.body.id;
     var accountId = req.body.accountId;
-
+    
+    //add report to an account's attribute, an array called reportHistoryId
     Accounts.updateOne(
         { "_id" : accountId },
         { $addToSet: { "reportsHistoryId" : id }}, function(err, doc) {
@@ -175,6 +181,15 @@ var addReportToHistory = function(req, res, next) {
     res.redirect('/');
 };
 
+//Delete report by id
+var deleteReport = function(req, res, next) {
+    var id = req.body.id;
+    //find report by id and remove said report
+    Reports.findByIdAndRemove(id).exec();
+    res.redirect('/');
+};
+
+//export the callbacks
 module.exports = {
     createReport,
     readAllReports,

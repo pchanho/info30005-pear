@@ -1,13 +1,23 @@
+/*
+INFO30005 Group Assignment - Pear: Conversation Model
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
+
+//import required libraries
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var constants = require('../constants/reportConstants.js');
 
-
+//create report schema
 var reportSchema = new Schema({
     
     accountId: {
         type: Object,
         required: true
+    },
+    messageId: {
+        type: Object,
     },
     reason: {
         type: String, 
@@ -20,15 +30,11 @@ var reportSchema = new Schema({
     outcome: {
         type: Number,
         default: constants.PENDING,
-    },
-
-    //message ids
-    messageId: {
-        type: Object,
     }
-
 }, 
 
+// specify a specific name for the collection that the schema will appear in
 {collection: 'Reports'}); 
 
+// store conversation schema in mongoose
 mongoose.model('reports', reportSchema);
