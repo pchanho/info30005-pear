@@ -14,6 +14,8 @@ const messageController = require('../controllers/messageControllers.js');
 /*	
 	route creates a new message expecting: conversationId, and senderId
 	Optionally, it can take the parameters: text, image, video
+	also updates the corresponding conversation with information of the newly created
+	message
 	url: ../message/create
 */
 messageRoutes.post('/create', messageController.createMessage);
@@ -29,7 +31,7 @@ messageRoutes.get('/readAll', messageController.readAllMessages);
 
 /*	
 	route gets all messages and their contents from a specific conversation
-	this requires an input parameter of conversationID
+	this requires an input parameter of conversationId
 	included for user history and admin purposes
 	url: ../message/readSpecific
 */
@@ -37,7 +39,7 @@ messageRoutes.get('/readSpecific', messageController.readSpecificMessages);
 
 /*	
 	route gets one message its contents
-	this requires an input parameter of messageID
+	this requires an input parameter of id (messageId)
 	url: ../message/readOne
 */
 messageRoutes.get('/readOne', messageController.readOneMessage);
@@ -46,9 +48,8 @@ messageRoutes.get('/readOne', messageController.readOneMessage);
 
 /*	
 	route updates a message expecting the parameters: 
-	conversationId, senderId, timeSent, text, image, video
+	text, image, video
 	text image and video can be null
-	this route is included for admin purposes and completeness
 	url: ../message/update
 */
 messageRoutes.put('/update', messageController.updateMedia);

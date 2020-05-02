@@ -8,10 +8,10 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 var mongoose = require('mongoose');
 var Messages = mongoose.model('messages');
 var Conversations = mongoose.model('conversations');
-//var Messages = mongoose.model('messages');
 
 // create message
 var createMessage = function(req, res, next) {
+    //creates an item with the appropriate fields for a message
     var item = {
         conversationId:req.body.conversationId,
         senderId:req.body.senderId,
@@ -19,7 +19,7 @@ var createMessage = function(req, res, next) {
         image:req.body.image,
         video:req.body.video,
     };
-
+    //saves the item as a message in the database
     var data = new Messages(item);
     data.save((err, message) => {   
         
