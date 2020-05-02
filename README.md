@@ -161,8 +161,9 @@ Support system suggests user guide contents for users depending on a certain con
 Create a support content
 >url: ../support/create
 >
->Parameters: title, body, video(optional), image(optional)
-
+>Parameters: title, body
+>Optional: video, image
+>
 #### READ
 Read all support contents
 >url: ../support/readAll
@@ -178,7 +179,8 @@ Read one support content
 Update a support content
 >url: ../support/update
 >
->Parameters: id, title, body, video(optional), image(optional)
+>Parameters: id, title, body 
+>Optional: video, image
 
 #### DELETE
 Delete a support content
@@ -235,4 +237,5 @@ Delete a FAQ
 Search a FAQ in our database with the user inputs
 >url: ../faq/search/[:query]
 >
->Parameters: url query ex) "Conversation" or "Con", "Free" or "Fr"
+>Parameters: url query 
+>Parameter example: "Conversation" or "Con", "Free" or "Fr"
