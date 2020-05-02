@@ -8,6 +8,7 @@ var constants = require('../constants/conversationConstants.js');
 
 // create conversation
 var createConversation = function(req, res, next) {
+    //appends relevant fields to item
     var item = {
         topic:req.body.topic,
         category:req.body.category,
@@ -18,9 +19,10 @@ var createConversation = function(req, res, next) {
         messagesId:req.body.messagesId,
     };
 
+    //creates a new conversation entry based on item
     var data = new Conversations(item);
+    //saves entry to the database
     data.save();
-
     res.redirect('/');
 };
 
@@ -50,7 +52,7 @@ var readNewConversations = function(req, res, next) {
 // read one conversation and it's items
 var readOneConversation = function(req, res, next) {
     var id = req.body.id;
-
+    //returns a conversation entry based on a specified Id
     Conversations.findById(id, function(err, doc) {
         if (err) {
             console.error('error, no conversation found');
@@ -63,7 +65,7 @@ var readOneConversation = function(req, res, next) {
 // read participants
 var readParticipants = function(req, res, next) {
     var id = req.body.id;
-
+    //finds a list of participants who were involved in a conversation, specified by conversation Id
     Conversations.findById(id, 'participantsId', { lean: true }, function (err, doc) {
         if (err) {
             console.error('error, no conversation found');
@@ -73,21 +75,10 @@ var readParticipants = function(req, res, next) {
     });
 }
 
-// *** Currently this overrides, 
-// *** look into having a function (Or multiple functions) that only edit the required fields
 
-// key events which occur:
-
-// * person joins / leaves
-// updateParticipantsInConversation
-// (potentially a separate function for add and remove) 
-
-// * message sent
-// updateMessagesInConversation
-
-// * updating / changing image???
-
-//adds recorded patient to the conversation when they join and increases the status count
+//tracks participants that enter a covnersation
+//and changes the status of the conversation to active if there
+//are 2 or more people in the chat
 var addParticipantsInConversation = function(req, res) {
     var id = req.body.id;
     var participantsId = req.body.participantsId;
@@ -96,17 +87,28 @@ var addParticipantsInConversation = function(req, res) {
         if(err){
             console.error('error, no conversation found');
         }
+        //tracks the arrival of a new participant to the conversation
         doc.participantsId.addToSet(participantsId);
         doc.participantCount += 1;
+        //if there are 2 or more participants in the conversation, 
+        //the status is set to full
         if (doc.participantCount > 1){
-            doc.status = 1
+            doc.status = constants.FULL
         }
-        else{
-            doc.status  = 0
+        //status set to NOT_FULL if these is only 1 person
+        //in the conversation
+        else if (doc.participantCount == 1){
+            doc.status = constants.NOT_FULL
+        }
+        //conversation ends when all participants leave
+        else if (doc.participantCount < 1){
+            doc.status = constants.ENDED
         }
         doc.save();
     });
 
+    //updates the user account record to keep track of the covnersation
+    //they have joined
     Accounts.findById(participantsId, function (err, doc){
         if(err){
             console.error('error, no account found');
@@ -119,7 +121,8 @@ var addParticipantsInConversation = function(req, res) {
     res.redirect('/');
 }; 
 
-//removes recorded patient from the conversation when they leave and decreases the status count
+//removes recorded patient from the conversation when they leave 
+//and determines the status of the conversation
 var removeParticipantsInConversation = async function(req, res, next) {
     var id = req.body.id;
     var participantsId = req.body.participantsId;
@@ -129,33 +132,28 @@ var removeParticipantsInConversation = async function(req, res, next) {
             console.error('error, no conversation found');
         }
         console.log(participantsId)
+        //removes a participant from the list of 
+        //recorded participants in a conversation
         doc.participantsId.pull(participantsId);
         doc.participantCount -= 1;
 
+        //if there are 2 or more participants in the conversation, 
+        //the status is set to full
         if (doc.participantCount > 1){
-            doc.status = 1
+            doc.status = constants.FULL
         }
-        else{
-            doc.status  = 0
+        //status set to NOT_FULL if these is only 1 person
+        //in the conversation
+        else if (doc.participantCount == 1){
+            doc.status = constants.NOT_FULL
+        }
+        //conversation ends when all participants leave
+        else if (doc.participantCount < 1){
+            doc.status = constants.ENDED
         }
         doc.save();
     });
 
-    res.redirect('/');
-};
-
-//updates a record of messageIds to keep track of
-
-//depreciated
-var updateMessagesInConversation = async function(req, res, next) {
-    var id = req.body.id;
-    var messagesId = req.body.messagesId;
-
-    await Conversations.updateOne({ "_id" : id }, {$push: { "messagesId" : messagesId } }, function(err,doc){
-        if (err) {
-            console.log(err);
-          } 
-    }).exec()
     res.redirect('/');
 };
 
@@ -175,7 +173,6 @@ module.exports = {
     readParticipants,
     addParticipantsInConversation,
     removeParticipantsInConversation,
-    updateMessagesInConversation,
     deleteConversation
 };
 
