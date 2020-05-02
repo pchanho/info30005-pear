@@ -16,6 +16,9 @@ var reportSchema = new Schema({
         type: Object,
         required: true
     },
+    messageId: {
+        type: Object,
+    },
     reason: {
         type: String, 
         required: true
@@ -27,11 +30,7 @@ var reportSchema = new Schema({
     outcome: {
         type: Number,
         default: constants.PENDING,
-    },
-    messageId: {
-        type: Object,
     }
-
 }, 
 
 // specify a specific name for the collection that the schema will appear in

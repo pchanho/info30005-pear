@@ -162,16 +162,6 @@ var updateOutcomeinReport = function(req, res, next) {
     res.redirect('/');
 };
 
-//Delete report by id
-var deleteReport = function(req, res, next) {
-    var id = req.body.id;
-    //find report by id and remove said report
-    Reports.findByIdAndRemove(id).exec();
-    res.redirect('/');
-};
-
-
-//reportsHistory handlings below
 //add report to it's assign account by using accountId
 var addReportToHistory = function(req, res, next) {
     var id = req.body.id;
@@ -188,6 +178,14 @@ var addReportToHistory = function(req, res, next) {
             console.log("add successful");
         }
     })
+    res.redirect('/');
+};
+
+//Delete report by id
+var deleteReport = function(req, res, next) {
+    var id = req.body.id;
+    //find report by id and remove said report
+    Reports.findByIdAndRemove(id).exec();
     res.redirect('/');
 };
 
