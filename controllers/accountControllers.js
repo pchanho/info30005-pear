@@ -1,13 +1,16 @@
-//import libraries
-var mongoose = require('mongoose');
+/*
+INFO30005 Group Assignment - Pear: Accounts Controller
 
-var Accounts = mongoose.model('accounts');
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
 
+// import required libraries
+const mongoose = require('mongoose');
+const Accounts = mongoose.model('accounts');
 const bcrypt = require('bcrypt');
+const constants = require('../constants/accountConstants.js')
 
-var constants = require('../constants/accountConstants.js')
-
-//create account
+// create account
 var createAccount = function(req, res, next) {
     bcrypt.hash(req.body.password, 10, function (err, hash) {
 
@@ -22,14 +25,15 @@ var createAccount = function(req, res, next) {
 
         var data = new Accounts(newAccount);
         data.save();
+        console.log("account created");
 
         res.redirect('/');
     });
 };
 
-// Read functions
+// read functions
 
-// Read all accounts
+// read all accounts
 var readAllAccounts = function(req, res, next) {
 
     //finds all accounts and prints to screen
@@ -43,7 +47,7 @@ var readAllAccounts = function(req, res, next) {
     });
 };
 
-// Read one account
+// read one account
 var readOneAccount = function(req, res, next) {
     var id = req.body.id;
 
@@ -57,9 +61,9 @@ var readOneAccount = function(req, res, next) {
     });
 };
 
-//update functions
+// update functions
 
-//update email
+// update email
 var updateEmail = function(req, res, next) {
     var id = req.body.id;
 
@@ -77,7 +81,7 @@ var updateEmail = function(req, res, next) {
     });
 };
 
-//update name
+// update names (first and last name)
 var updateName = function(req, res, next) {
     var id = req.body.id;
 
@@ -96,7 +100,7 @@ var updateName = function(req, res, next) {
     });
 };
 
-//update password
+// update password
 var updatePassword = function(req, res, next) {
     var id = req.body.id;
 
@@ -112,6 +116,7 @@ var updatePassword = function(req, res, next) {
                     //update new password
                     bcrypt.hash(req.body.newPassword, 10, function (err, hash) {
                         doc.password = hash;
+                        console.log("password updated");
 
                         doc.save();
                         res.redirect('/');
@@ -125,16 +130,18 @@ var updatePassword = function(req, res, next) {
     });
 };
 
-// Delete account function
+// delete account function
 var deleteAccount = function(req, res, next) {
     var id = req.body.id;
 
-    //find account by id and delete
+    //find account by id and deletes
     Accounts.findByIdAndRemove(id).exec();
+    console.log("account removed");
+
     res.redirect('/');
 };
 
-//Deactivate an account
+// deactivate an account
 var deactivate = function(req, res, next) {
     var id = req.body.id;
 
@@ -151,7 +158,8 @@ var deactivate = function(req, res, next) {
 
 };
 
-//function checks whether username and password is found within db
+// function checks whether username and password is found within database
+// and provides access to the user if not banned
 var login = function(req, res, next) {
 
     //find the email

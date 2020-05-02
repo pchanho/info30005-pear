@@ -1,7 +1,13 @@
+/*
+INFO30005 Group Assignment - Pear: Account Model
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
+
 // import libraries
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var constants = require('../constants/accountConstants.js')
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const constants = require('../constants/accountConstants.js')
 
 //creating schema for database
 var accountSchema = new Schema({
