@@ -251,8 +251,9 @@ Support system suggests user guide contents for users depending on a certain con
 >url: ../support/create
 >
 >Parameters: title, body
->Optional: video, image
 >
+>Optional: video, image
+
 #### READ
 * Read all support contents
 >url: ../support/readAll
@@ -269,6 +270,7 @@ Support system suggests user guide contents for users depending on a certain con
 >url: ../support/update
 >
 >Parameters: id, title, body 
+>
 >Optional: video, image
 
 #### DELETE
