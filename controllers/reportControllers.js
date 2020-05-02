@@ -7,27 +7,10 @@ var Accounts = mongoose.model('accounts');
 var Messages = mongoose.model('messages');
 // var Messages = require('../controllers/messageControllers.js');
 
-
-
 var reportConstants = require('../constants/reportConstants.js');
 var accountConstants = require('../constants/accountConstants.js');
 
-// var ban = function(req, res, next) {
-//     var id = req.body.id;
-
-//     Accounts.findById(id, function(err, doc) {
-//         if (err) {
-//             console.error('error, no account found');
-//         }
-//         //status 4 is banned
-//         doc.status = 4;
-//         doc.save();
-//     });
-//     res.redirect('/');
-// };
-
 // Create Reports
-
 var createReport = function(req, res, next) {
     var item = {
         accountId:req.body.accountId,
@@ -68,10 +51,11 @@ var readOneReport = function(req, res, next) {
 
 // read by status, find all the pending reports
 // status = PENDING = 0
-var readPendingReports = function(req, res, next) {
-    Reports.find({status:reportConstants.PENDING}, function(err, doc) {
+var readByStatusReports = function(req, res, next) {
+    status_to_find = req.body.status;
+    Reports.find({status:status_to_find}, function(err, doc) {
         if (err) {
-          console.log(err);
+          console.log('error, status not found');
         } else {
           res.json(doc);
         }
@@ -80,10 +64,11 @@ var readPendingReports = function(req, res, next) {
 
 // read by status, find all the processed reports
 // status = PROCESSED = 1
-var readProcessedReports = function(req, res, next) {
-    Reports.find({status:reportConstants.PROCESSED}, function(err, doc) {
+var readByOutcomeReports = function(req, res, next) {
+    outcome_to_find = req.body.outcome;
+    Reports.find({outcome:outcome_to_find}, function(err, doc) {
         if (err) {
-          console.log(err);
+          console.log('error, outcome not found');
         } else {
           res.json(doc);
         }
@@ -146,13 +131,14 @@ var updateOutcomeinReport = function(req, res, next) {
                 } else{
                     doc.status = accountConstants.BANNED;
                 }
-                
+                doc.save();
             });
         } else if (doc.outcome == reportConstants.DELETED){
             Messages.findByIdAndRemove(messageId, function(err,doc){
                 if(err){
                     console.log('error in delete message')
                 }
+                doc.save();
             });
         }
 
@@ -167,6 +153,7 @@ var deleteReport = function(req, res, next) {
     Reports.findByIdAndRemove(id).exec();
     res.redirect('/');
 };
+
 
 //reportsHistory handlings below
 //add report to it's assign account by using accountId
@@ -192,8 +179,8 @@ module.exports = {
     createReport,
     readAllReports,
     readOneReport,
-    readPendingReports,
-    readProcessedReports,
+    readByStatusReports,
+    readByOutcomeReports,
     updateReport,
     updateStatusinReport,
     updateOutcomeinReport,

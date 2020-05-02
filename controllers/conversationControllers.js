@@ -2,6 +2,7 @@
 // import libraries
 var mongoose = require('mongoose');
 var Conversations = mongoose.model('conversations');
+var Accounts = mongoose.model('accounts');
 var constants = require('../constants/conversationConstants.js');
 //var Messages = mongoose.model('messages');
 
@@ -105,6 +106,16 @@ var addParticipantsInConversation = function(req, res) {
         }
         doc.save();
     });
+
+    Accounts.findById(participantsId, function (err, doc){
+        if(err){
+            console.error('error, no account found');
+        }
+        console.log(doc)
+        doc.conversationsId.addToSet(id);
+        doc.save();
+    });
+
     res.redirect('/');
 }; 
 
@@ -118,7 +129,7 @@ var removeParticipantsInConversation = async function(req, res, next) {
             console.error('error, no conversation found');
         }
         console.log(participantsId)
-        doc.participantsId.pull(participantsId[0]);
+        doc.participantsId.pull(participantsId);
         doc.participantCount -= 1;
 
         if (doc.participantCount > 1){
@@ -129,10 +140,13 @@ var removeParticipantsInConversation = async function(req, res, next) {
         }
         doc.save();
     });
+
     res.redirect('/');
 };
 
 //updates a record of messageIds to keep track of
+
+//depreciated
 var updateMessagesInConversation = async function(req, res, next) {
     var id = req.body.id;
     var messagesId = req.body.messagesId;

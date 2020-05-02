@@ -1,6 +1,7 @@
 // import libraries
 var mongoose = require('mongoose');
 var Messages = mongoose.model('messages');
+var Conversations = mongoose.model('conversations');
 //var Messages = mongoose.model('messages');
 
 // create message
@@ -12,12 +13,26 @@ var createMessage = function(req, res, next) {
         text:req.body.text,
         image:req.body.image,
         video:req.body.video,
-
     };
 
     var data = new Messages(item);
-    data.save();
-
+    data.save((err, message) => {   
+        
+        //updates conversation with a record of the newly created messageId
+        var conversationId = req.body.conversationId
+        Conversations.findById(conversationId, function (err, doc){
+            if(err){
+                console.error('error, no conversation found');
+            }
+            else{
+                console.log(message)
+                //console.log(doc)
+                doc.messagesId.addToSet(message._id);
+                doc.save();
+            }
+        });
+      
+    });
     res.redirect('/');
 };
 
