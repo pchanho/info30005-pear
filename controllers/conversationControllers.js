@@ -1,3 +1,8 @@
+/*
+INFO30005 Group Assignment - Pear: Conversation Controller
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
 
 // import libraries
 const mongoose = require('mongoose');
