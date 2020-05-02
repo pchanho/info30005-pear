@@ -15,8 +15,8 @@ const conversationController = require('../controllers/conversationControllers.j
 //CREATE
 
 /*	
-	route creates a new conversation expecting: topic, category
-	Optionally, it can take the parameter: topicImage
+	route creates a new conversation expecting: topic
+	Optionally, it can take the parameter: category, topicImage
 	url: ../conversation/create
 */
 conversationRoutes.post('/create', conversationController.createConversation);
@@ -44,9 +44,8 @@ conversationRoutes.get('/readNew', conversationController.readNewConversations);
 
 /*	
     route gets a single conversation that is specified by the ID
-    (used to display a sinle conversation to the front end once a user
-    has selected it)
-	and prints it to the console (no parameters required)
+    (used to display a single conversation to the front end once a user
+    has selected it) This expects the parameter: id
 	url: ../message/readOne
 */
 // read all conversations new conversations that are not filled (readNewConversations) 
@@ -56,7 +55,7 @@ conversationRoutes.get('/readOne', conversationController.readOneConversation);
 
 /*	
     route gets the participants in a conversation (specified by conversation id)
-    has selected it)
+    This expects the parameter: id
 	url: ../message/readParticipants
 */
 // read all conversations new conversations that are not filled (readNewConversations) 
@@ -67,7 +66,11 @@ conversationRoutes.get('/readParticipants', conversationController.readParticipa
 //READ
 
 /*	
-    route updates the record of participants who join a converstion
+    route updates the record of current participants in a conversation
+    when a participant joins, they are added to an array which tracks this
+    This route expects the parameters: id (conversation_id) and
+    participantsId (id of the person joining)
+    This route also updates a record of conversations that a user has been in
 	url: ../message/addParticipants
 */
 
@@ -78,7 +81,10 @@ conversationRoutes.put('/addParticipants', conversationController.addParticipant
 //READ
 
 /*	
-    route updates the record of participants who leave a conversation
+    route updates the record of current participants in a conversation
+    when a participant leaves, they are removed from an array which tracks this
+	This route expects the parameters: id (conversation_id) and
+    participantsId (id of the person joining)
 	url: ../message/removeParticipants
 */
 
@@ -89,8 +95,7 @@ conversationRoutes.put('/removeParticipants', conversationController.removeParti
 //DELETE
 
 /*	
-	route deletes a specific conversation
-	this requires an inpute parameter of id (messageId)
+	deletes a conversation from the database, given the parameter id
 	url: ../conversation/delete
 */
 
