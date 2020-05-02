@@ -11,7 +11,7 @@ https://info30005-pear.herokuapp.com/
 
 For the core functionalities that your group has chosen, please write 2-3 sentences describing each functionality. You can describe what functions each feature achieves, inputs, and outputs.
 
-Accounts
+Q5. Accounts
 Allows users to create and manage their account utilising password encryption for account security. Accounts are then securely checked for email and password verification before access is granted to the user into the application. Users can also manage their accounts changing password and email addresses where necessary, meanwhile managing and viewing their friends list.
 
 Please provide the details to access the first core functionality. The details can include the URL that the marker can use to access the functionality via the web browser. If you implement any authentication, then please setup a demo account and provide the details here as well. Your marker will inspect the code and test the functionality via a web browser.
@@ -62,3 +62,14 @@ DELETE
 	- Delete a friend from a user's friends id array
 		url: ../account/deleteFriend
 		Parameters: id, friendsId
+
+Q6. Conversation
+
+
+Q7. Supports
+
+1)Report
+
+2)Support
+
+3)Frequently Asked Questions(FAQ)
