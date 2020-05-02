@@ -11,9 +11,9 @@ https://info30005-pear.herokuapp.com/
 
 For the core functionalities that your group has chosen, please write 2-3 sentences describing each functionality. You can describe what functions each feature achieves, inputs, and outputs.
 
-Q5. Account
+Q5. Accounts
 
-Account functionality allows users to create and manage their account utilising password encryption for account security. Accounts are then securely checked for email and password verification before access is granted to the user into the application. Users can also manage their accounts changing password and email addresses where necessary, meanwhile managing and viewing their friends list.
+Account system allows users to create and manage their account utilising password encryption for account security. Accounts are then securely checked for email and password verification before access is granted to the user into the application. Users can also manage their accounts changing password and email addresses where necessary, meanwhile managing and viewing their friends list.
 
 	- All controllers within the account functionality can be accessed via ../account/<nameOfRouter> and then tested using relevant parameters
 	- Note: all parameters require a key value pair
