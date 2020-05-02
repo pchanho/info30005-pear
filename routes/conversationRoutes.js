@@ -15,8 +15,8 @@ const conversationController = require('../controllers/conversationControllers.j
 //CREATE
 
 /*	
-	route creates a new conversation expecting: topic
-	Optionally, it can take the parameters: category, topicImage, participantsId
+	route creates a new conversation expecting: topic, category
+	Optionally, it can take the parameter: topicImage
 	url: ../conversation/create
 */
 conversationRoutes.post('/create', conversationController.createConversation);
@@ -99,3 +99,5 @@ conversationRoutes.delete('/delete', conversationController.deleteConversation);
 
 // export the router
 module.exports = conversationRoutes;
+
+

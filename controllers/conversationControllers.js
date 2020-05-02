@@ -13,10 +13,6 @@ var createConversation = function(req, res, next) {
         topic:req.body.topic,
         category:req.body.category,
         topicImage:req.body.topicImage,
-        participantsId:req.body.participantsId,
-        startTime:req.body.startTime,
-        status:req.body.status,
-        messagesId:req.body.messagesId,
     };
 
     //creates a new conversation entry based on item
@@ -51,12 +47,14 @@ var readNewConversations = function(req, res, next) {
 
 // read one conversation and it's items
 var readOneConversation = function(req, res, next) {
+    console.log(req.body)
     var id = req.body.id;
     //returns a conversation entry based on a specified Id
     Conversations.findById(id, function(err, doc) {
         if (err) {
             console.error('error, no conversation found');
         } else {
+            console.log(doc)
             res.json(doc);
         }
     });
@@ -113,7 +111,6 @@ var addParticipantsInConversation = function(req, res) {
         if(err){
             console.error('error, no account found');
         }
-        console.log(doc)
         doc.conversationsId.addToSet(id);
         doc.save();
     });

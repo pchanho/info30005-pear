@@ -25,7 +25,8 @@ var conversationSchema = new Schema({
     	type: [{type: Object}]
     },
     startTime: {
-    	type:Date
+        type:Date,
+        default: Date.now
     },
     participantCount: {
         type: Number,
