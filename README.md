@@ -67,8 +67,11 @@ Q6. Conversation
 
 
 Q7. Supports
+	This functionality comprises a system that has many different features to support the user. This includes:
 
 1)Report
+	The report feature allows users to report other users who post inappropriate content in messages. When this happens, a record is submitted, which can then be reviewed by an admin.
+	Also, when reporting users can choose to include the message to be reported or not. Where admin will assume that without a specific message, user wishes to ban the other user entirely.
 
 	- All controllers within the report functionality can be accessed via ../report/<nameOfRouter> and then tested using relevant parameters
 	- Note: all parameters require a key value pair
