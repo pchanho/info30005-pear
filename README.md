@@ -237,5 +237,6 @@ Delete a FAQ
 Search a FAQ in our database with the user inputs
 >url: ../faq/search/[:query]
 >
->Parameters: url query 
+>Parameters: url query
+> 
 >Parameter example: "Conversation" or "Con", "Free" or "Fr"
