@@ -1,5 +1,5 @@
 /*
-INFO30005 Group Assignment - Pear: Conversation Model
+INFO30005 Group Assignment - Pear: Report Model
 
 Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
