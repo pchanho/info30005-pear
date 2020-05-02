@@ -1,5 +1,5 @@
 /*
-INFO30005 Group Assignment - Pear: Conversation Constants
+INFO30005 Group Assignment - Pear: Report Constants
 
 Authors: Glenn Deevesh Chanho Gemma Dimitri
 */

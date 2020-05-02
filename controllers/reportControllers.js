@@ -1,5 +1,5 @@
 /*
-INFO30005 Group Assignment - Pear: Accounts Controller
+INFO30005 Group Assignment - Pear: Report Controller
 
 Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
@@ -97,8 +97,8 @@ var updateReport = function(req, res, next) {
             console.error('error, no report found');
         }
         doc.accountId = req.body.accountId;
-        doc.reason = req.body.reason;
         doc.messageId = req.body.messageId;
+        doc.reason = req.body.reason;
         doc.save();
     });
     res.redirect('/');
@@ -174,10 +174,7 @@ var addReportToHistory = function(req, res, next) {
         if (err) {
             console.log("error adding");
         }
-        else {
-            console.log("add successful");
-        }
-    })
+    });
     res.redirect('/');
 };
 
