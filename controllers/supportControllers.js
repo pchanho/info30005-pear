@@ -1,5 +1,5 @@
 /*
-INFO30005 Group Assignment
+INFO30005 Group Assignment - Pear: Support Controller
 
 Authors: Glenn Deevesh Chanho Gemma Dimitri
 */

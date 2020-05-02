@@ -1,5 +1,5 @@
 /*
-INFO30005 Group Assignment
+INFO30005 Group Assignment - Pear: FAQ Router
 
 Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
