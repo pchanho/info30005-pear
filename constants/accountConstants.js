@@ -1,13 +1,11 @@
 // define account constants
-const NOT_VERIFIED = 1
-const VERIFIED = 2
-const INACTIVE = 3
-const BANNED = 4
+const ACTIVE = 1
+const INACTIVE = 2
+const BANNED = 3
 
 //export all constants
 module.exports = {
-	NOT_VERIFIED,
-	VERIFIED,
+	ACTIVE,
 	INACTIVE,
 	BANNED
 }

@@ -1,7 +1,7 @@
 /*
 INFO30005 Group Assignment
 
-Authors: Glenn Deevesh Aiden Gemma Dimitri
+Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 const express = require('express');

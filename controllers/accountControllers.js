@@ -7,12 +7,11 @@ const bcrypt = require('bcrypt');
 
 var constants = require('../constants/accountConstants.js')
 
-
-//function to handle a request - CRUD
-
 //create account
 var createAccount = function(req, res, next) {
-    bcrypt.hash(req.body.password, 10, function (err,   hash) {
+    bcrypt.hash(req.body.password, 10, function (err, hash) {
+
+        //parameters required to create an account
         var newAccount = {
             firstName:req.body.firstName,
             lastName:req.body.lastName,
@@ -28,13 +27,15 @@ var createAccount = function(req, res, next) {
     });
 };
 
-// Read function
+// Read functions
 
 // Read all accounts
 var readAllAccounts = function(req, res, next) {
+
+    //finds all accounts and prints to screen
     Accounts.find({}, function(err, doc) {
         if (err) {
-          console.log(err);
+          console.error('error, no accounts found');
         }
         else {
           res.json(doc);
@@ -42,12 +43,11 @@ var readAllAccounts = function(req, res, next) {
     });
 };
 
-
-
-// Update function
+// Read one account
 var readOneAccount = function(req, res, next) {
     var id = req.body.id;
 
+    //finds account by an id and prints to screen
     Accounts.findById(id, function(err, doc) {
         if (err) {
             console.error('error, no account found');
@@ -57,41 +57,94 @@ var readOneAccount = function(req, res, next) {
     });
 };
 
-// Update account
-var updateAccount = function(req, res, next) {
+//update functions
+
+//update email
+var updateEmail = function(req, res, next) {
     var id = req.body.id;
 
+    //finds account by an id and updates email
     Accounts.findById(id, function(err, doc) {
         if (err) {
             console.error('error, no account found');
+        } else {
+            doc.email = req.body.email;
+            console.log('email updated');
+
+            doc.save();
+            res.redirect('/');
         }
-        doc.firstName = req.body.firstName;
-        doc.lastName = req.body.lastName;
-        doc.email = req.body.email;
-        doc.password = req.body.password;
-        doc.birthday = req.body.birthday;
-        /* add other params */
-        doc.save();
     });
-    res.redirect('/');
 };
 
-// Delete function
+//update name
+var updateName = function(req, res, next) {
+    var id = req.body.id;
+
+    //finds account by an id and updates name
+    Accounts.findById(id, function(err, doc) {
+        if (err) {
+            console.error('error, no account found');
+        } else {
+            doc.firstName = req.body.firstName;
+            doc.lastName = req.body.lastName;
+            console.log('name updated');
+
+            doc.save();
+            res.redirect('/');
+        }
+    });
+};
+
+//update password
+var updatePassword = function(req, res, next) {
+    var id = req.body.id;
+
+    //finds account by an id and updates email
+    Accounts.findById(id, function(err, doc) {
+        if (err) {
+            console.error('error, no account found');
+        } else {
+            //check previous password
+            bcrypt.compare(req.body.password, doc.password, function(err, result) {
+                //passwords match
+                if (result == true) {
+                    //update new password
+                    bcrypt.hash(req.body.newPassword, 10, function (err, hash) {
+                        doc.password = hash;
+
+                        doc.save();
+                        res.redirect('/');
+                    });
+                }
+                else {
+                    console.log("Incorrect password");
+                }
+            });
+        }
+    });
+};
+
+// Delete account function
 var deleteAccount = function(req, res, next) {
     var id = req.body.id;
+
+    //find account by id and delete
     Accounts.findByIdAndRemove(id).exec();
     res.redirect('/');
 };
 
+//Deactivate an account
 var deactivate = function(req, res, next) {
     var id = req.body.id;
 
+    //finds account by id and updates the status to INACTIVE
     Accounts.findById(id, function(err, doc) {
         if (err) {
             console.error('error, no account found');
         }
-        //status 2 is deactivated
-        doc.status = 2;
+
+        doc.status = constants.INACTIVE;
         doc.save();
     });
     res.redirect('/');
@@ -102,9 +155,8 @@ var deactivate = function(req, res, next) {
 var login = function(req, res, next) {
 
     //find the email
-    Accounts.findOne({
-            email: req.body.email
-    }, function(err, user) {
+    Accounts.findOne({ email: req.body.email }, function(err, user) {
+
         //checks if email found
         if (!user) {
             console.log("Email not found");
@@ -113,31 +165,21 @@ var login = function(req, res, next) {
         //if found check correct password
         else {
             bcrypt.compare(req.body.password, user.password, function(err, result) {
-                //1 not verified
-                //2 inactive
-                //3 active
-                //4 bannned
+
+                //if password matches email
                 if (result == true) {
-                    //don't log in if banned account
-                    if (user.status == 1) {
-                        console.log("Account hasn't been verified");
-                        res.redirect('/');
-                    }
                     //if account deactive, activate
-                    else if (user.status == 2) {
-                        console.log(user);
-                        var newStatus = 3;
-                        user.status = newStatus;
-                        console.log(user);
-                        //console.log("Account is active");
+                    if (user.status == constants.INACTIVE) {
+                        user.status = constants.ACTIVE;
+                        console.log("Account is active");
                         res.redirect('/');
                     }
                     //log in
-                    else if (user.status == 3) {
+                    else if (user.status == constants.ACTIVE) {
                         console.log("Logged in");
                         res.redirect('/');
                     }
-                    //status is 4 account is banned
+                    //don't log in if banned account
                     else {
                         console.log("Account is banned");
                         res.redirect('/');
@@ -154,10 +196,12 @@ var login = function(req, res, next) {
 
 };
 
+//add a friend to the friends id array
 var addFriend = function(req, res, next) {
     var id = req.body.id;
     var friendsId = req.body.friendsId;
 
+    //update (add element) the friends id array of id (user) with a friends id
     Accounts.updateOne(
         { "_id" : id },
         { $addToSet: { "friendsId" : friendsId }}, function(err, doc) {
@@ -171,10 +215,11 @@ var addFriend = function(req, res, next) {
     res.redirect('/');
 };
 
-// read friends
+// read all friends from the friends id array
 var readFriends = function(req, res, next) {
     var id = req.body.id;
 
+    //find account by id and print all elements from the array
     Accounts.findById(id, 'friendsId', { lean: true }, function (err, doc) {
         if (err) {
             console.error('error, no friends found');
@@ -185,10 +230,12 @@ var readFriends = function(req, res, next) {
     });
 };
 
+// delete a friend from the friends id array
 var deleteFriend = function(req, res, next) {
     var id = req.body.id;
     var friendsId = req.body.friendsId;
 
+    //find user by id and remove friends id from array if found
     Accounts.updateOne(
         { "_id" : id },
         { $pull: { "friendsId" : friendsId }}, function(err, doc) {
@@ -207,7 +254,9 @@ module.exports = {
     createAccount,
     readOneAccount,
     readAllAccounts,
-    updateAccount,
+    updateEmail,
+    updatePassword,
+    updateName,
     deleteAccount,
     deactivate,
     login,

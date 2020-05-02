@@ -17,8 +17,11 @@ accountRoutes.get('/readOneAccount', accountController.readOneAccount);
 accountRoutes.get('/readFriends', accountController.readFriends);
 
 //update
-accountRoutes.put('/updateAccount', accountController.updateAccount);
+accountRoutes.put('/updateEmail', accountController.updateEmail);
+accountRoutes.put('/updatePassword', accountController.updatePassword);
+accountRoutes.put('/updateName', accountController.updateName);
 accountRoutes.put('/deactivate', accountController.deactivate);
+accountRoutes.put('/addFriend', accountController.addFriend);
 
 //delete
 accountRoutes.delete('/deleteAccount', accountController.deleteAccount);
@@ -26,9 +29,6 @@ accountRoutes.delete('/deleteFriend', accountController.deleteFriend);
 
 //login
 accountRoutes.post('/login', accountController.login);
-
-accountRoutes.post('/addFriend', accountController.addFriend);
-
 
 //export the router
 module.exports = accountRoutes;
