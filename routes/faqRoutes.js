@@ -1,3 +1,4 @@
+//Write paragraph how it works
 // Import libraries
 var express = require('express');
 var faqRoutes = express.Router();
@@ -22,7 +23,7 @@ faqRoutes.get('/readNext5', faqController.readNext5Faqs);
 faqRoutes.post('/update', faqController.updateFaq);
 
 //Delete
-faqRoutes.post('/delete', faqController.deleteFaq);
+faqRoutes.delete('/delete', faqController.deleteFaq);
 
 //Search contents in FAQ
 faqRoutes.get('/search/:query', faqController.searchFaq);
