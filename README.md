@@ -1,19 +1,10 @@
 # info30005-pear
 
-Please do no revert commits without consulting team :)
+INFO30005 Group Assignment - Pear
 
-Make sure we include friends list
-
-TODO:
-
-
-
-update conversationsId - Glenn + Deevesh
-
-report attributes - Dimitri
-
-report functions - Dimitri
-
+Authors: Glenn Deevesh Chanho Gemma Dimitri
 
 Link to heroku:
 https://info30005-pear.herokuapp.com/
+
+@@@include questions 5 - 7

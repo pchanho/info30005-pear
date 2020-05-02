@@ -1,3 +1,9 @@
+/*
+INFO30005 Group Assignment - Pear: Support Controller
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
+
 // Import libraries
 var mongoose = require('mongoose');
 var Support = mongoose.model('supports');

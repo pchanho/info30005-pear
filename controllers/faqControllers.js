@@ -1,3 +1,9 @@
+/*
+INFO30005 Group Assignment - Pear: FAQ Controller
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
+
 // Import libraries
 var mongoose = require('mongoose');
 var Faq = mongoose.model('faqs');
@@ -69,6 +75,8 @@ var deleteFaq = function(req, res, next){
 
 //Search FAQ matching with the user input
 var searchFaq = function(req, res, next) {
+    //RegExp enables partial search
+    //Users don't need to type full text
     var query = new RegExp(req.params.query, 'i');
 
     Faq.find()
