@@ -33,8 +33,7 @@ var readAllConversations = function(req, res, next) {
       });
 };
 
-// read all conversations where:
-// status = NOT_FULL = 0
+// Read new conversations that are not full yet
 var readNewConversations = function(req, res, next) {
     Conversations.find({status:constants.NOT_FULL}, function(err, doc) {
         if (err) {

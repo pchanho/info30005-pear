@@ -14,18 +14,17 @@ For the core functionalities that your group has chosen, please write 2-3 senten
 Q5. Accounts
 
 Account system allows users to create and manage their account utilising password encryption for account security. Accounts are then securely checked for email and password verification before access is granted to the user into the application. Users can also manage their accounts changing password and email addresses where necessary, meanwhile managing and viewing their friends list.
-
-	- All controllers within the account functionality can be accessed via ../account/<nameOfRouter> and then tested using relevant parameters
+	- All controllers within the account functionality can be accessed via ../account/nameOfRouter and then tested using relevant parameters
 	- Note: all parameters require a key value pair
 
 CREATE
 	- Create account
-		URL ../account/create
+		url ../account/create
 		Parameters: firstName, lastName, email, password and birthday
 
 READ
 	- Read all accounts
-		URL: ../account/readAll
+		url: ../account/readAll
 		Parameters: NULL
 	- Read one account
 		url: ../account/readOne
@@ -64,6 +63,83 @@ DELETE
 
 Q6. Conversation
 
+The Conversation system handles the storing of instanced conversations between two users regarding a particular topic. Conversations and messages form a parent-child relationship, with each conversation storing the ids of the messages it contains and each message storing the id of its parent conversation. 
+
+1) Conversation
+The conversation functionality handles the creation of a new conversation between two users regarding a particular topic. More importantly it handles updating the participants array whenever a user leaves or joins the conversation, as well as providing access to all messages within the conversation. This ensures that there are no idiosyncracies between the separate database collections. It also manages the deletion of specific records.
+	- All controllers within the account functionality can be accessed via ../conversation/nameOfRouter and then tested using relevant parameters
+	- Note: all parameters require a key value pair
+
+CREATE
+	- Create conversation
+		url: ../conversation/create
+		Parameters: topic, category
+		Optional: topicImage
+
+READ
+	- Read all conversations and their items
+		url: ../message/readAll
+		Parameters: NULL
+
+	- Read new conversations that are not full yet
+		url: ../message/readNew
+		Parameters: NULL
+
+	- Read one conversation and it's items
+		url: ../message/readOne
+		Parameters: NULL
+
+	- Read the participants of a particular conversation
+		url: ../message/readParticipants
+		Parameters: id
+
+UPDATE
+	- Add a new participant to a conversation
+		url: ../message/addParticipants
+		Parameters: id, participantsId
+
+	- Remove an existing participant from a conversation
+		url: ../message/removeParticipants
+		Parameters: id, participantsId
+
+DELETE
+	- Delete an entire conversation by id
+		url: ../conversation/delete
+		Parameters: id
+
+2) Message
+The message functionality handles the creation of a new message and ensuring the message can be tracked and stored by its respective conversation. It also offers a wide range of admin tools that will enable the editing and censoring of messages if needed along with displaying conversation history. It also manages the deletion of specific records.
+	- All controllers within the account functionality can be accessed via ../message/nameOfRouter and then tested using relevant parameters
+	- Note: all parameters require a key value pair
+
+CREATE
+	- Create message
+		url: ../message/create
+		Parameters: conversationId, senderId
+		Optional: text, image, video
+
+READ
+	- Read all messages and their items
+		url: ../message/readAll
+		Parameters: NULL
+
+	- Read specific messages from specified conversation
+		url: ../message/readSpecific
+		Parameters: conversationId
+
+	- Read one message and it's items
+		url: ../message/readOne
+		Parameters: id
+
+UPDATE
+	- Update a single message with new items
+		url: ../message/update
+		Parameters: id, conversationId, senderId, text, image, video
+
+DELETE
+	- Delete a message by id
+		url: ../message/delete
+		Parameters: id
 
 Q7. Supports
 
