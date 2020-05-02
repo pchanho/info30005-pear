@@ -16,7 +16,7 @@ const accountController = require('../controllers/accountControllers');
     for security purposes
     url: ../account/createAccount
 */
-accountRoutes.post('/createAccount', accountController.createAccount);
+accountRoutes.post('/create', accountController.createAccount);
 
 //READ
 
@@ -24,13 +24,13 @@ accountRoutes.post('/createAccount', accountController.createAccount);
     console (takes no parameters)
     url: ../account/readAllAccounts
 */
-accountRoutes.get('/readAllAccounts', accountController.readAllAccounts);
+accountRoutes.get('/readAll', accountController.readAllAccounts);
 
 /*  route returns one account and its account information specified by a
     queried account id, if applicable
     url: ../account/readOneAccount
 */
-accountRoutes.get('/readOneAccount', accountController.readOneAccount);
+accountRoutes.get('/readOne', accountController.readOneAccount);
 
 /*  route returns an array of friend ids specified by queried account id,
     if applicable
@@ -87,7 +87,7 @@ accountRoutes.put('/addFriend', accountController.addFriend);
     database
     url: ../account/deleteAccount
 */
-accountRoutes.delete('/deleteAccount', accountController.deleteAccount);
+accountRoutes.delete('/delete', accountController.deleteAccount);
 
 /*  route returns an account specified by a queried account id and removes
     that friends id from the friends id array in the database
