@@ -25,7 +25,7 @@ var createAccount = function(req, res, next) {
 
         var data = new Accounts(newAccount);
         data.save();
-        console.log("account created");
+        //console.log("account created");
 
         res.redirect('/');
     });
@@ -69,7 +69,7 @@ var updateEmail = function(req, res, next) {
             console.error('error, no account found');
         } else {
             doc.email = req.body.email;
-            console.log('email updated');
+            //console.log('email updated');
 
             doc.save();
             res.redirect('/');
@@ -88,7 +88,7 @@ var updateName = function(req, res, next) {
         } else {
             doc.firstName = req.body.firstName;
             doc.lastName = req.body.lastName;
-            console.log('name updated');
+            //console.log('name updated');
 
             doc.save();
             res.redirect('/');
@@ -112,14 +112,14 @@ var updatePassword = function(req, res, next) {
                     //update new password
                     bcrypt.hash(req.body.newPassword, 10, function (err, hash) {
                         doc.password = hash;
-                        console.log("password updated");
+                        //console.log("password updated");
 
                         doc.save();
                         res.redirect('/');
                     });
                 }
                 else {
-                    console.log("Incorrect password");
+                    console.error("Incorrect password");
                 }
             });
         }
@@ -132,7 +132,7 @@ var deleteAccount = function(req, res, next) {
 
     //find account by id and deletes
     Accounts.findByIdAndRemove(id).exec();
-    console.log("account removed");
+    //console.log("account removed");
 
     res.redirect('/');
 };
@@ -163,7 +163,7 @@ var login = function(req, res, next) {
 
         //checks if email found
         if (!user) {
-            console.log("Email not found");
+            console.error("Email not found");
             res.redirect('/');
         }
         //if found check correct password
@@ -175,22 +175,22 @@ var login = function(req, res, next) {
                     //if account deactive, activate
                     if (user.status == constants.INACTIVE) {
                         user.status = constants.ACTIVE;
-                        console.log("Account is active");
+                        //console.log("Account is active");
                         res.redirect('/');
                     }
                     //log in
                     else if (user.status == constants.ACTIVE) {
-                        console.log("Logged in");
+                        //console.log("Logged in");
                         res.redirect('/');
                     }
                     //don't log in if banned account
                     else {
-                        console.log("Account is banned");
+                        //console.log("Account is banned");
                         res.redirect('/');
                     }
                 }
                 else {
-                    console.log("Incorrect password");
+                    console.error("Incorrect password");
                     res.redirect('/');
                 }
                 user.save();
@@ -210,10 +210,7 @@ var addFriend = function(req, res, next) {
         { "_id" : id },
         { $addToSet: { "friendsId" : friendsId }}, function(err, doc) {
         if (err) {
-            console.log("error adding");
-        }
-        else {
-            console.log("add successful");
+            console.error("error adding");
         }
     })
     res.redirect('/');
@@ -228,7 +225,7 @@ var readFriends = function(req, res, next) {
         if (err) {
             console.error('error, no friends found');
         } else {
-            console.log("friends found");
+            //console.log("friends found");
             res.json(doc);
         }
     });
@@ -244,10 +241,7 @@ var deleteFriend = function(req, res, next) {
         { "_id" : id },
         { $pull: { "friendsId" : friendsId }}, function(err, doc) {
         if (err) {
-            console.log("error removing");
-        }
-        else {
-            console.log("remove successful");
+            console.error("error removing");
         }
     })
     res.redirect('/');
