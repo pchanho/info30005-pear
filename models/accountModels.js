@@ -27,10 +27,9 @@ var accountSchema = new Schema({
         required: true
     },
     //status types
-        //1 not verified
+        //1 active
         //2 inactive
-        //3 active
-        //4 bannned
+        //3 banned
     status: {
         type: Number,
         default: constants.ACTIVE
@@ -47,7 +46,6 @@ var accountSchema = new Schema({
     conversationsId: {
         type: [{type: Object}],
     }
-    /* other fields */
 },
 
 //names the schema
