@@ -22,8 +22,8 @@ reportRoutes.get('/readAll', reportController.readAllReports);
 reportRoutes.get('/readOne', reportController.readOneReport);
 
 // read by status
-reportRoutes.get('/readPending', reportController.readPendingReports);
-reportRoutes.get('/readProcessed', reportController.readProcessedReports);
+reportRoutes.get('/readStatus', reportController.readByStatusReports);
+reportRoutes.get('/readOutcome', reportController.readByOutcomeReports);
 
 //update
 reportRoutes.put('/update',reportController.updateReport);
