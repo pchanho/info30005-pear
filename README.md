@@ -16,7 +16,7 @@ Allows users to create and manage their account utilising password encryption fo
 
 Please provide the details to access the first core functionality. The details can include the URL that the marker can use to access the functionality via the web browser. If you implement any authentication, then please setup a demo account and provide the details here as well. Your marker will inspect the code and test the functionality via a web browser.
 
-	- All controllers within the account functionality can be accessed via ../accounts/<nameOfRouter> and then tested using relevant parameters
+	- All controllers within the account functionality can be accessed via ../account/<nameOfRouter> and then tested using relevant parameters
 	- Note: all parameters require a key value pair
 
 CREATE
@@ -69,6 +69,46 @@ Q6. Conversation
 Q7. Supports
 
 1)Report
+
+	- All controllers within the report functionality can be accessed via ../report/<nameOfRouter> and then tested using relevant parameters
+	- Note: all parameters require a key value pair
+CREATE
+	- Create report
+		URL ../report/create
+		Parameters: accountId, messageId, reason
+
+READ
+	- Read all report
+		URL: ../report/readAll
+		Parameters: NULL
+	- Read one report
+		url: ../report/readOne
+		Parameters: id
+	- Read all reports based on specific status
+		url: ../report/readStatus  
+		Parameters: status
+	- Read all reports based on specific outcome
+		url: ../report/readOutcome
+		Parameters: outcome
+
+UPDATE
+	- Update a user’s report
+		url: ../report/update
+		Parameters: id, accountId, messageId, reason
+	- Update report’s status
+		url: ../report/updateStatus
+		Parameters: id
+	- Update report’s followed by more processing depending on outcome value
+		url: ../report/updateOutcome
+		Parameters: id, outcome
+	- Add report id to Account’s reportHistoryId array
+		url: ../report/addReportHistory
+		Parameters: id, accountId
+	
+DELETE
+	- Delete a report
+		url: ../report/delete
+		Parameters: id
 
 2)Support
 
