@@ -32,7 +32,7 @@ supportRoutes.post('/create', supportController.createSupport);
 supportRoutes.get('/readAll',  supportController.readAllSupports);
 
 /*  route returns one support content specified by a queried support id
-    url: ../support/readOneSupport
+    url: ../support/readOne
  */
 supportRoutes.get('/readOne', supportController.readOneSupport);
 
@@ -40,7 +40,7 @@ supportRoutes.get('/readOne', supportController.readOneSupport);
 
 /*  route updates title, body, video and image of support content
     specified by support id
-    url: ../support/updateSupport
+    url: ../support/update
  */
 supportRoutes.post('/update', supportController.updateSupport);
 
@@ -48,7 +48,7 @@ supportRoutes.post('/update', supportController.updateSupport);
 
 /*  route deletes a support content specified by a queried support id
     from the database
-    url: ../support/deleteSupport
+    url: ../support/delete
  */
 supportRoutes.delete('/delete', supportController.deleteSupport);
 
