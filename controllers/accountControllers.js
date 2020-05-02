@@ -1,5 +1,5 @@
 /*
-INFO30005 Group Assignment - Pear: Accounts Controller
+INFO30005 Group Assignment - Pear: Account Controller
 
 Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
@@ -31,8 +31,6 @@ var createAccount = function(req, res, next) {
     });
 };
 
-// read functions
-
 // read all accounts
 var readAllAccounts = function(req, res, next) {
 
@@ -60,8 +58,6 @@ var readOneAccount = function(req, res, next) {
         }
     });
 };
-
-// update functions
 
 // update email
 var updateEmail = function(req, res, next) {
