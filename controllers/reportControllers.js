@@ -16,8 +16,8 @@ var accountConstants = require('../constants/accountConstants.js');
 var createReport = function(req, res, next) {
     var item = {
         accountId:req.body.accountId,
-        reason:req.body.reason,
-        messageId: req.body.messageId
+        messageId: req.body.messageId,
+        reason:req.body.reason
     };
 
     var data = new Reports(item);

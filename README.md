@@ -16,17 +16,17 @@ Allows users to create and manage their account utilising password encryption fo
 
 Please provide the details to access the first core functionality. The details can include the URL that the marker can use to access the functionality via the web browser. If you implement any authentication, then please setup a demo account and provide the details here as well. Your marker will inspect the code and test the functionality via a web browser.
 
-	- All controllers within the account functionality can be accessed via ../accounts/<nameOfRouter> and then tested using relevant parameters
+	- All controllers within the account functionality can be accessed via ../account/<nameOfRouter> and then tested using relevant parameters
 	- Note: all parameters require a key value pair
 
 CREATE
 	- Create account
 		URL ../account/create
-		Parameters: firstName, lastName, email, password and data of birth
+		Parameters: firstName, lastName, email, password and birthday
 
 READ
 	- Read all accounts
-		URL: ../accounts/readAll
+		URL: ../account/readAll
 		Parameters: NULL
 	- Read one account
 		url: ../account/readOne
@@ -35,7 +35,7 @@ READ
 		url: ../account/readFriends
 		Parameters: id
 	- Login to the account
-		url: ../accounts/login
+		url: ../account/login
 		Parameters: email, password
 
 UPDATE
@@ -67,8 +67,51 @@ Q6. Conversation
 
 
 Q7. Supports
+	This functionality comprises a system that has many different features to support the user. This includes:
 
 1)Report
+	The report feature allows users to report other users who post inappropriate content in messages. When this happens, a record is submitted, which can then be reviewed by an admin.
+	Also, when reporting users can choose to include the message to be reported or not. Where admin will assume that without a specific message, user wishes to ban the other user entirely.
+
+	- All controllers within the report functionality can be accessed via ../report/<nameOfRouter> and then tested using relevant parameters
+	- Note: all parameters require a key value pair
+CREATE
+	- Create report
+		URL ../report/create
+		Parameters: accountId, messageId, reason
+
+READ
+	- Read all report
+		URL: ../report/readAll
+		Parameters: NULL
+	- Read one report
+		url: ../report/readOne
+		Parameters: id
+	- Read all reports based on specific status
+		url: ../report/readStatus  
+		Parameters: status
+	- Read all reports based on specific outcome
+		url: ../report/readOutcome
+		Parameters: outcome
+
+UPDATE
+	- Update a user’s report
+		url: ../report/update
+		Parameters: id, accountId, messageId, reason
+	- Update report’s status
+		url: ../report/updateStatus
+		Parameters: id
+	- Update report’s followed by more processing depending on outcome value
+		url: ../report/updateOutcome
+		Parameters: id, outcome
+	- Add report id to Account’s reportHistoryId array
+		url: ../report/addReportHistory
+		Parameters: id, accountId
+	
+DELETE
+	- Delete a report
+		url: ../report/delete
+		Parameters: id
 
 2)Support
 Suggest user guide contents for users depending on a certain context
