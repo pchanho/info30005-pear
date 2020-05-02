@@ -5,11 +5,11 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 //Import libraries
-var express = require('express');
-var supportRoutes = express.Router();
+const express = require('express');
+const supportRoutes = express.Router();
 
 //Require the support controller
-var supportController = require('../controllers/supportControllers');
+const supportController = require('../controllers/supportControllers');
 
 //This is a temporary home page for support system for deliverable 2.
 supportRoutes.get('/', function(req, res, next) {

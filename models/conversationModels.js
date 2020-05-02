@@ -5,9 +5,9 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 // import required libraries
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var constants = require('../constants/conversationConstants.js');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const constants = require('../constants/conversationConstants.js');
 
 // create the conversation schema
 var conversationSchema = new Schema({

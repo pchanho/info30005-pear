@@ -6,7 +6,7 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 
 // import libraries
 require('dotenv').config()
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // input username, password is stored in dotenv
 CONNECTION_STRING = "mongodb+srv://admin:<password>@pear-ox5gs.mongodb.net/test?retryWrites=true&w=majority";

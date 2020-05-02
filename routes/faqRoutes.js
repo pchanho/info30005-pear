@@ -5,11 +5,11 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 // Import libraries
-var express = require('express');
-var faqRoutes = express.Router();
+const express = require('express');
+const faqRoutes = express.Router();
 
 // Require the FAQ controller
-var faqController = require('../controllers/faqControllers');
+const faqController = require('../controllers/faqControllers');
 
 
 //CREATE

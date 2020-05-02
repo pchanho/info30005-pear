@@ -1,9 +1,9 @@
 
 // import libraries
-var mongoose = require('mongoose');
-var Conversations = mongoose.model('conversations');
-var Accounts = mongoose.model('accounts');
-var constants = require('../constants/conversationConstants.js');
+const mongoose = require('mongoose');
+const Conversations = mongoose.model('conversations');
+const Accounts = mongoose.model('accounts');
+const constants = require('../constants/conversationConstants.js');
 //var Messages = mongoose.model('messages');
 
 // create conversation

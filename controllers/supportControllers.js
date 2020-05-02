@@ -5,8 +5,8 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 // Import libraries
-var mongoose = require('mongoose');
-var Support = mongoose.model('supports');
+const mongoose = require('mongoose');
+const Support = mongoose.model('supports');
 
 //Create support content
 var createSupport = function(req, res, next){

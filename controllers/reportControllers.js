@@ -5,12 +5,12 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 //import required libraries
-var mongoose = require('mongoose');
-var Reports = mongoose.model('reports');
-var Accounts = mongoose.model('accounts');
-var Messages = mongoose.model('messages');
-var reportConstants = require('../constants/reportConstants.js');
-var accountConstants = require('../constants/accountConstants.js');
+const mongoose = require('mongoose');
+const Reports = mongoose.model('reports');
+const Accounts = mongoose.model('accounts');
+const Messages = mongoose.model('messages');
+const reportConstants = require('../constants/reportConstants.js');
+const accountConstants = require('../constants/accountConstants.js');
 
 // Create Reports
 var createReport = function(req, res, next) {
