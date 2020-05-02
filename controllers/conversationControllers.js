@@ -131,7 +131,6 @@ var removeParticipantsInConversation = async function(req, res, next) {
         if(err){
             console.error('error, no conversation found');
         }
-        console.log(participantsId)
         //removes a participant from the list of 
         //recorded participants in a conversation
         doc.participantsId.pull(participantsId);
