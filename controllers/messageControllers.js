@@ -1,3 +1,9 @@
+/*
+INFO30005 Group Assignment - Pear: Message Controllers
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
+
 // import libraries
 var mongoose = require('mongoose');
 var Messages = mongoose.model('messages');
@@ -8,8 +14,8 @@ var Conversations = mongoose.model('conversations');
 var createMessage = function(req, res, next) {
     var item = {
         conversationId:req.body.conversationId,
-        sender:req.body.sender,
-        sentAt:req.body.sentAt,
+        senderId:req.body.senderId,
+        timeSent:req.body.timeSent,
         text:req.body.text,
         image:req.body.image,
         video:req.body.video,
@@ -59,13 +65,8 @@ var readSpecificMessages = function(req, res, next) {
           else{
             res.json(doc);
           }
-    })
-  
+    });
     res.redirect('/');
-
-// provide conversationId
-// returns all messages associated with praticular conversationId
-
 };
 
 // read one message
@@ -83,7 +84,6 @@ var readOneMessage = function(req, res, next) {
 
 // update message
 // not accessible to user (admin use only i.e. censoring)
-
 var updateMessage = function(req, res, next) {
     var id = req.body.id;
 
@@ -92,8 +92,8 @@ var updateMessage = function(req, res, next) {
             console.error('error, no conversation found');
         }
         doc.conversationId = req.body.conversationId;
-        doc.sender = req.body.sender;
-        doc.sentAt = req.body.sentAt;
+        doc.senderId = req.body.senderId;
+        doc.timeSent = req.body.timeSent;
         doc.text = req.body.text;
         doc.image = req.body.image;
         doc.video = req.body.video;
@@ -119,4 +119,3 @@ module.exports = {
     updateMessage,
     deleteMessage
 };
-// ADD OTHER FUNCTIONS

@@ -1,3 +1,9 @@
+/*
+INFO30005 Group Assignment - Pear: Conversation Model
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
+
 // import required libraries
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;

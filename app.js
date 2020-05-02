@@ -1,3 +1,8 @@
+/*
+INFO30005 Group Assignment - Pear: App
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
 
 // import libraries
 const express = require('express');
@@ -26,7 +31,6 @@ const supportRoutes = require('./routes/supportRoutes');
 const accountRoutes = require('./routes/accountRoutes');
 const reportRoutes = require('./routes/reportRoutes');
 const faqRoutes = require('./routes/faqRoutes');
-// ADD ANY OTHER ROUTES HERE
 
 // then specify the path for each of the routes
 app.use("/conversation", conversationRoutes);
@@ -36,9 +40,8 @@ app.use("/faq", faqRoutes);
 app.use("/account", accountRoutes);
 app.use("/report", reportRoutes);
 
-// ADD ANY OTHER ROUTES HERE
-
 // start app and listen for incoming requests on port 3000
+// OR a different port assigned by Heroku
 app.listen(process.env.PORT || 3000, () => {
 	console.log("The pear app is running!");
 });

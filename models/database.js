@@ -1,9 +1,17 @@
+/*
+INFO30005 Group Assignment - Pear: Database
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
+
+// import libraries
 require('dotenv').config()
 var mongoose = require('mongoose');
 
+// input username, password is stored in dotenv
 CONNECTION_STRING = "mongodb+srv://Glenn:<password>@pear-ox5gs.mongodb.net/test?retryWrites=true&w=majority";
-/*need to put username, password*/
 
+// connect to the database
 MONGO_URL =
 CONNECTION_STRING.replace("<password>",process.env.MONGO_PASSWORD);
 mongoose.connect(MONGO_URL || "mongodb://localhost/info30005", {
@@ -25,7 +33,7 @@ db.once("open", async () => {
 db.port);
 });
 
-// INCLUDE YOUR MODELS HERE
+// import all the models
 require('./conversationModels.js');
 require('./messageModels.js');
 require('./supportModels.js');

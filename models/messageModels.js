@@ -1,17 +1,26 @@
+/*
+INFO30005 Group Assignment - Pear: Message Model
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
+
+// import libraries
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// create schema
 var messageSchema = new Schema({
     conversationId: {
         type: Object,
         required: true
     },
-    sender: {
+    senderId: {
     	type: Object, 
         required: true
     },
-    sentAt: {
+    timeSent: {
         type: Date
+        required: true
     },
     text: {
     	type: String
@@ -27,4 +36,5 @@ var messageSchema = new Schema({
 
 {collection: 'Messages'});
 
+// export schema to mongoose
 mongoose.model('messages', messageSchema);
