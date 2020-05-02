@@ -22,11 +22,11 @@ Please provide the details to access the first core functionality. The details c
 CREATE
 	- Create account
 		URL ../account/create
-		Parameters: firstName, lastName, email, password and data of birth
+		Parameters: firstName, lastName, email, password and birthday
 
 READ
 	- Read all accounts
-		URL: ../accounts/readAll
+		URL: ../account/readAll
 		Parameters: NULL
 	- Read one account
 		url: ../account/readOne
@@ -35,7 +35,7 @@ READ
 		url: ../account/readFriends
 		Parameters: id
 	- Login to the account
-		url: ../accounts/login
+		url: ../account/login
 		Parameters: email, password
 
 UPDATE
