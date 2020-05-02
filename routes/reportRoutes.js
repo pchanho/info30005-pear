@@ -9,8 +9,6 @@ const express = require('express');
 // add our router
 const reportRoutes = express.Router();
 
-
-
 // require the report controller
 const reportController = require('../controllers/reportControllers.js');
 
@@ -21,16 +19,22 @@ reportRoutes.post('/create', reportController.createReport);
 reportRoutes.get('/readAll', reportController.readAllReports);
 
 // read one
+reportRoutes.get('/readOne', reportController.readOneReport);
 
 // read by status
+reportRoutes.get('/readPending', reportController.readPendingReports);
+reportRoutes.get('/readProcessed', reportController.readProcessedReports);
 
 //update
 reportRoutes.put('/update',reportController.updateReport);
-
-// update reportsHistory
+reportRoutes.put('/updateStatus', reportController.updateStatusinReport);
+reportRoutes.put('/updateOutcome', reportController.updateOutcomeinReport);
 
 //delete
 reportRoutes.delete('/delete', reportController.deleteReport);
+
+// update reportsHistory
+reportRoutes.put('/addReportHistory', reportController.addReportToHistory);
 
 // export the router 
 module.exports = reportRoutes;

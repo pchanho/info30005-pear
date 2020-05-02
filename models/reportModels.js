@@ -5,20 +5,30 @@ var constants = require('../constants/reportConstants.js');
 
 var reportSchema = new Schema({
     
-    offendeeId: {
+    accountId: {
         type: Object,
         required: true
     },
     reason: {
-        type: String, //are there better alternative what can we use for a dropdown list that we provide?
+        type: String, 
         required: true
+    },
+    status: {
+        type: Number,
+        default: constants.PENDING,
+    },
+    outcome: {
+        type: Number,
+        default: constants.PENDING,
+    },
+
+    //message ids
+    messageId: {
+        type: Object,
     }
-    // status
 
-
-    // outcome
 }, 
 
-{collection: 'Reports'}); //flagged -- is this needed?
+{collection: 'Reports'}); 
 
 mongoose.model('reports', reportSchema);
