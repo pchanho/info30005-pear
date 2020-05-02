@@ -1,5 +1,5 @@
 /*
-INFO30005 Group Assignment - Pear: Account Model
+INFO30005 Group Assignment
 
 Authors: Glenn Deevesh Chanho Gemma Dimitri
 */

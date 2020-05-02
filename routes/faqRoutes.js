@@ -1,5 +1,5 @@
 /*
-INFO30005 Group Assignment - Pear: Accounts Router
+INFO30005 Group Assignment
 
 Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
