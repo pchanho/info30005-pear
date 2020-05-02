@@ -23,7 +23,7 @@ supportRoutes.get('/readOne', supportController.readOneSupport);
 supportRoutes.post('/update', supportController.updateSupport);
 
 //Delete
-supportRoutes.post('/delete', supportController.deleteSupport);
+supportRoutes.delete('/delete', supportController.deleteSupport);
 
 //Export the router
 module.exports = supportRoutes;
