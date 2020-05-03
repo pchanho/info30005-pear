@@ -298,11 +298,6 @@ FAQ functionality allows users to read and query for frequently asked questions 
 >Parameters: NULL
 
 * Read up to 5 FAQs
->url: ../faq/readAll
->
->Parameters: NULL
-
-* Read up to 5 FAQs
 >url: ../faq/read5
 >
 >Parameters: NULL
