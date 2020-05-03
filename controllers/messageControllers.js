@@ -27,7 +27,7 @@ var createMessage = function(req, res, next) {
         var conversationId = req.body.conversationId
         Conversations.findById(conversationId, function (err, doc){
             if(err){
-                console.error('error, no conversation found');
+                console.error('error, no message found');
             }
             else{
                 doc.messagesId.addToSet(message._id);
@@ -73,7 +73,7 @@ var readOneMessage = function(req, res, next) {
 
     Messages.findById(id, function(err, doc) {
         if (err || doc == undefined) {
-            console.error('error, no conversation found');
+            console.error('error, no message found');
         } else {
             res.json(doc);
         }
@@ -87,7 +87,7 @@ var updateMedia = function(req, res, next) {
 
     Messages.findById(id, function(err, doc) {
         if (err || doc == undefined) {
-            console.error('error, no conversation found');
+            console.error('error, no message found');
         }
         else{
             if (typeof(req.body.text) != "undefined"){

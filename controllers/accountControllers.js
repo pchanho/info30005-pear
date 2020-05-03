@@ -36,7 +36,7 @@ var readAllAccounts = function(req, res, next) {
 
     //finds all accounts and prints to screen
     Accounts.find({}, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
           console.error('error, no accounts found');
         }
         else {
@@ -51,7 +51,7 @@ var readOneAccount = function(req, res, next) {
 
     //finds account by an id and prints to screen
     Accounts.findById(id, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no account found');
         } else {
             res.json(doc);
@@ -65,7 +65,7 @@ var updateEmail = function(req, res, next) {
 
     //finds account by an id and updates email
     Accounts.findById(id, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no account found');
         } else {
             doc.email = req.body.email;
@@ -83,7 +83,7 @@ var updateName = function(req, res, next) {
 
     //finds account by an id and updates name
     Accounts.findById(id, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no account found');
         } else {
             doc.firstName = req.body.firstName;
@@ -102,7 +102,7 @@ var updatePassword = function(req, res, next) {
 
     //finds account by an id and updates email
     Accounts.findById(id, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no account found');
         } else {
             //check previous password
@@ -143,10 +143,12 @@ var deactivate = function(req, res, next) {
 
     //finds account by id and updates the status to INACTIVE
     Accounts.findById(id, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no account found');
+        } else {
+        	doc.status = constants.INACTIVE;
+        	doc.save();
         }
-
         doc.status = constants.INACTIVE;
         doc.save();
     });
@@ -209,7 +211,7 @@ var addFriend = function(req, res, next) {
     Accounts.updateOne(
         { "_id" : id },
         { $addToSet: { "friendsId" : friendsId }}, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error("error adding");
         }
     })
@@ -222,7 +224,7 @@ var readFriends = function(req, res, next) {
 
     //find account by id and print all elements from the array
     Accounts.findById(id, 'friendsId', { lean: true }, function (err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no friends found');
         } else {
             //console.log("friends found");
@@ -240,7 +242,7 @@ var deleteFriend = function(req, res, next) {
     Accounts.updateOne(
         { "_id" : id },
         { $pull: { "friendsId" : friendsId }}, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error("error removing");
         }
     })
