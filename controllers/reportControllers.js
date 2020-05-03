@@ -87,23 +87,6 @@ var readByOutcomeReports = function(req, res, next) {
 
 //update functions
 
-// update a single report's items
-var updateReport = function(req, res, next) {
-    var id = req.body.id;
-
-    //find report by Id and change accountId, reason and messageId
-    Reports.findById(id, function(err, doc) {
-        if (err) {
-            console.error('error, no report found');
-        }
-        doc.accountId = req.body.accountId;
-        doc.messageId = req.body.messageId;
-        doc.reason = req.body.reason;
-        doc.save();
-    });
-    res.redirect('/');
-};
-
 //updating reports status
 var updateStatusinReport = function(req, res, next) {
     var id = req.body.id;
@@ -112,10 +95,11 @@ var updateStatusinReport = function(req, res, next) {
     Reports.findById(id, function(err, doc) {
         if (err) {
             console.error('error, no report found');
+        } else{
+            //status = PROCESSED = 1
+            doc.status = reportConstants.PROCESSED;
+            doc.save();
         }
-        //status = PROCESSED = 1
-        doc.status = reportConstants.PROCESSED;
-        doc.save();
     });
     res.redirect('/');
 
@@ -130,34 +114,36 @@ var updateOutcomeinReport = function(req, res, next) {
 
         if (err) {
             console.error('error, no report found');
-        }
-        var accountId = doc.accountId;
-        var messageId = doc.messageId;
-        doc.outcome = req.body.outcome;
+        } else{
+            var accountId = doc.accountId;
+            var messageId = doc.messageId;
+            doc.outcome = req.body.outcome;
         
-        //if outcome gives BANNED constant, proceed to ban account 
-        if (doc.outcome == reportConstants.BANNED){
-            //find account based on report's accountId
-            Accounts.findById(accountId, function(err,doc){
-                if (err){
-                    console.log('error in ban');
-                } else{
-                    doc.status = accountConstants.BANNED;
-                }
-                doc.save();
-            });
+            //if outcome gives BANNED constant, proceed to ban account 
+            if (doc.outcome == reportConstants.BANNED){
+                //find account based on report's accountId
+                Accounts.findById(accountId, function(err,doc){
+                    if (err){
+                        console.log('error in ban');
+                    }else{
+                        doc.status = accountConstants.BANNED;
+                    }
+                    doc.save();
+                });
             // if outcome gives DELETED constant, proceed to delete said message
-        } else if (doc.outcome == reportConstants.DELETED){
-            //find message based on the report's messageId 
-            Messages.findByIdAndRemove(messageId, function(err,doc){
-                if(err){
-                    console.log('error in delete message')
-                }
-                doc.save();
-            });
-        }
+            } else if (doc.outcome == reportConstants.DELETED){
+                //find message based on the report's messageId 
+                Messages.findByIdAndRemove(messageId, function(err,doc){
+                    if(err){
+                        console.log('error in delete message');
+                    } else{
+                        doc.save();
+                    }
+                });
+            }
 
-        doc.save();
+            doc.save();
+        }
     });
     res.redirect('/');
 };
@@ -193,7 +179,6 @@ module.exports = {
     readOneReport,
     readByStatusReports,
     readByOutcomeReports,
-    updateReport,
     updateStatusinReport,
     updateOutcomeinReport,
     deleteReport,

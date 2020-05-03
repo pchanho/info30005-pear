@@ -7,12 +7,19 @@ Authors: Chanho Park, Deevesh Shanmuganathan, Dimitri Sadikin, Gemma Seeley, Gle
 Link to heroku:
 https://info30005-pear.herokuapp.com/
 
+IMPORTANT!
+Notes for testers:
+* All controllers within a [functionality] can be accessed via ../[functionality]/[nameOfRoute] and then tested using relevant parameters
+* All parameters require a key value pair
+* All parameters must be formated using "form url encoded"
+* Calling any delete function returns a front end error "404 Not Found" along with "Cannot DELETE /" 
+	HOWEVER the back end works perfectly fine and the record is deleted as required
+* Where "id" is taken as a parameter
+	it MUST link to an existing object id in the database for the function to work
 
-## Q5. Accounts
+## Q5. Account
 
 Account system allows users to create and manage their account utilising password encryption for account security. Accounts are then securely checked for email and password verification before access is granted to the user into the application. Users can also manage their accounts changing password and email addresses where necessary, meanwhile managing and viewing their friends list.
-* All controllers within the account functionality can be accessed via ../account/[nameOfRouter] and then tested using relevant parameters
-* Note: all parameters require a key value pair
 
 #### CREATE
 * Create account
@@ -84,8 +91,6 @@ The Conversation system handles the storing of instanced conversations between t
 
 ### 1) Conversation
 The conversation functionality handles the creation of a new conversation between two users regarding a particular topic. More importantly it handles updating the participants array whenever a user leaves or joins the conversation, as well as providing access to all messages within the conversation. This ensures that there are no idiosyncracies between the separate database collections. It also manages the deletion of specific records.
-* All controllers within the account functionality can be accessed via ../conversation/[nameOfRouter] and then tested using relevant parameters
-* Note: all parameters require a key value pair
 
 #### CREATE
 * Create conversation
@@ -109,7 +114,7 @@ The conversation functionality handles the creation of a new conversation betwee
 * Read one conversation and it's items
 >url: ../message/readOne
 >
->Parameters: NULL
+>Parameters: id
 
 * Read the participants of a particular conversation
 >url: ../message/readParticipants
@@ -135,8 +140,6 @@ The conversation functionality handles the creation of a new conversation betwee
 
 ### 2) Message
 The message functionality handles the creation of a new message and ensuring the message can be tracked and stored by its respective conversation. It also offers a wide range of admin tools that will enable the editing and censoring of messages if needed along with displaying conversation history. It also manages the deletion of specific records.
-* All controllers within the account functionality can be accessed via ../message/[nameOfRouter] and then tested using relevant parameters
-* Note: all parameters require a key value pair
 
 #### CREATE
 * Create message
@@ -163,10 +166,10 @@ The message functionality handles the creation of a new message and ensuring the
 >Parameters: id
 
 #### UPDATE
-* Update a single message with new items
+* Update a single message with new media
 >url: ../message/update
 >
->Parameters: id, conversationId, senderId, text, image, video
+>Parameters: id, text, image, video
 
 #### DELETE
 * Delete a message by id
@@ -181,10 +184,7 @@ Supports functionality comprises a system that has many different features to su
 ### 1)Report
 
 The report feature allows users to report other users who post inappropriate content in messages. When this happens, a record is submitted, which can then be reviewed by an admin.
-Also, when reporting users can choose to include the message to be reported or not. Where admin will assume that without a specific message, user wishes to ban the other user entirely.
-
-* All controllers within the report functionality can be accessed via ../report/[nameOfRouter] and then tested using relevant parameters
-* Note: all parameters require a key value pair
+If message is deemed to be mildly offensive, message will be deleted. But, in severe cases the user will be banned.
 
 #### CREATE
 * Create report
@@ -214,17 +214,12 @@ Also, when reporting users can choose to include the message to be reported or n
 >Parameters: outcome
 
 #### UPDATE
-* Update a user’s report
->url: ../report/update
->
->Parameters: id, accountId, messageId, reason
-
 * Update report’s status
 >url: ../report/updateStatus
 >
 >Parameters: id
 
-* Update report’s followed by more processing depending on outcome value
+* Update report’s outcome and then either updates account, updates message or does nothing based on the outcome value
 >url: ../report/updateOutcome
 >
 >Parameters: id, outcome
@@ -242,9 +237,6 @@ Also, when reporting users can choose to include the message to be reported or n
 
 ### 2)Support
 Support system suggests user guide contents for users depending on a certain context. This system guides users after they sign up, describing how to use Pear service. Also, it provides support contents to help users join the conversation and find conversation topics.
-
-* All controllers within the support functionality can be accessed via ../support/[nameOfRouter] and then tested using relevant parameters
-* Note: all parameters require a key value pair
 
 #### CREATE
 * Create a support content
@@ -282,9 +274,6 @@ Support system suggests user guide contents for users depending on a certain con
 ### 3)Frequently Asked Questions(FAQ)
 FAQ functionality allows users to read and query for frequently asked questions that we store in a database in case they need help.
 
-* All controllers within the FAQ functionality can be accessed via ../faq/[nameOfRouter] and then tested using relevant parameters
-* Note: all parameters require a key value pair
-
 #### CREATE
 * Create an FAQ expecting
 >url: ../faq/create
@@ -293,11 +282,6 @@ FAQ functionality allows users to read and query for frequently asked questions 
 
 #### READ
 * Read all FAQs
->url: ../faq/readAll
->
->Parameters: NULL
-
-* Read up to 5 FAQs
 >url: ../faq/readAll
 >
 >Parameters: NULL
@@ -316,7 +300,7 @@ FAQ functionality allows users to read and query for frequently asked questions 
 * Update a FAQ
 >url: ../faq/update
 >
->Parameters: title, body, updatedAt
+>Parameters: id, title, body, updatedAt
 
 #### DELETE
 * Delete a FAQ

@@ -7,7 +7,7 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 // import libraries
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const constants = require('../constants/accountConstants.js')
+const constants = require('../constants/accountConstants.js');
 
 //creating schema for database
 var accountSchema = new Schema({
