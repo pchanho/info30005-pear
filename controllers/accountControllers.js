@@ -8,7 +8,7 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 const mongoose = require('mongoose');
 const Accounts = mongoose.model('accounts');
 const bcrypt = require('bcrypt');
-const constants = require('../constants/accountConstants.js')
+const constants = require('../constants/accountConstants.js');
 
 // create account
 var createAccount = function(req, res, next) {
