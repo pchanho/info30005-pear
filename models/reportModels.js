@@ -18,6 +18,7 @@ var reportSchema = new Schema({
     },
     messageId: {
         type: Object,
+        required: true
     },
     reason: {
         type: String, 

@@ -87,23 +87,6 @@ var readByOutcomeReports = function(req, res, next) {
 
 //update functions
 
-// update a single report's items
-var updateReport = function(req, res, next) {
-    var id = req.body.id;
-    //find report by Id and change accountId, reason and messageId
-    Reports.findById(id, function(err, doc) {
-        if (err) {
-            console.error('error, no report found');
-        } else{
-            doc.accountId = req.body.accountId;
-            doc.messageId = req.body.messageId;
-            doc.reason = req.body.reason;
-            doc.save();
-        }      
-    });
-    res.redirect('/');
-};
-
 //updating reports status
 var updateStatusinReport = function(req, res, next) {
     var id = req.body.id;
@@ -147,7 +130,7 @@ var updateOutcomeinReport = function(req, res, next) {
                     }
                     doc.save();
                 });
-                // if outcome gives DELETED constant, proceed to delete said message
+            // if outcome gives DELETED constant, proceed to delete said message
             } else if (doc.outcome == reportConstants.DELETED){
                 //find message based on the report's messageId 
                 Messages.findByIdAndRemove(messageId, function(err,doc){
@@ -196,7 +179,6 @@ module.exports = {
     readOneReport,
     readByStatusReports,
     readByOutcomeReports,
-    updateReport,
     updateStatusinReport,
     updateOutcomeinReport,
     deleteReport,

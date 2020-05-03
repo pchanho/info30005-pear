@@ -12,8 +12,7 @@ const reportController = require('../controllers/reportControllers.js');
 //CREATE
 
 /*  route creates an account expecting parameters; accountId, 
-    messageId (not required) and reason. It can also take status and outcome but
-    both have a default value set for. 
+    messageId and reason. 
     url: ../report/create
 */
 reportRoutes.post('/create', reportController.createReport);
@@ -49,13 +48,7 @@ reportRoutes.get('/readOutcome', reportController.readByOutcomeReports);
 //UPDATE
 
 /*  route returns a report specified by a queired report id, and updates
-    its accountId, messageId and reason
-    url: ../report/update
-*/
-reportRoutes.put('/update',reportController.updateReport);
-
-/*  route returns a report specified by a queired report id, and updates
-    its status changing the value from 0 to 1m PENDING to PROCESSED
+    its status changing the value from 0 to 1 PENDING to PROCESSED
     url: ../report/updateStatus
 */
 reportRoutes.put('/updateStatus', reportController.updateStatusinReport);

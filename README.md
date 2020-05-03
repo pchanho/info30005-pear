@@ -184,7 +184,7 @@ Supports functionality comprises a system that has many different features to su
 ### 1)Report
 
 The report feature allows users to report other users who post inappropriate content in messages. When this happens, a record is submitted, which can then be reviewed by an admin.
-Also, when reporting users can choose to include the message to be reported or not. Where admin will assume that without a specific message, user wishes to ban the other user entirely.
+If message is deemed to be mildly offensive, message will be deleted. But, in severe cases the user will be banned
 
 #### CREATE
 * Create report
