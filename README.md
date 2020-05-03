@@ -184,7 +184,7 @@ Supports functionality comprises a system that has many different features to su
 ### 1)Report
 
 The report feature allows users to report other users who post inappropriate content in messages. When this happens, a record is submitted, which can then be reviewed by an admin.
-If message is deemed to be mildly offensive, message will be deleted. But, in severe cases the user will be banned
+If message is deemed to be mildly offensive, message will be deleted. But, in severe cases the user will be banned.
 
 #### CREATE
 * Create report
@@ -214,17 +214,12 @@ If message is deemed to be mildly offensive, message will be deleted. But, in se
 >Parameters: outcome
 
 #### UPDATE
-* Update a user’s report
->url: ../report/update
->
->Parameters: id, accountId, messageId, reason
-
 * Update report’s status
 >url: ../report/updateStatus
 >
 >Parameters: id
 
-* Update report’s followed by more processing depending on outcome value
+* Update report’s outcome and then either updates account, updates message or does nothing based on the outcome value
 >url: ../report/updateOutcome
 >
 >Parameters: id, outcome
