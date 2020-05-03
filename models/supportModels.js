@@ -5,8 +5,8 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 // Import libraries
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 //Creating schema for database
 var supportSchema = new Schema({

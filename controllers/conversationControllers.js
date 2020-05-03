@@ -1,9 +1,14 @@
+/*
+INFO30005 Group Assignment - Pear: Conversation Controller
+
+Authors: Glenn Deevesh Chanho Gemma Dimitri
+*/
 
 // import libraries
-var mongoose = require('mongoose');
-var Conversations = mongoose.model('conversations');
-var Accounts = mongoose.model('accounts');
-var constants = require('../constants/conversationConstants.js');
+const mongoose = require('mongoose');
+const Conversations = mongoose.model('conversations');
+const Accounts = mongoose.model('accounts');
+const constants = require('../constants/conversationConstants.js');
 //var Messages = mongoose.model('messages');
 
 // create conversation
@@ -33,8 +38,7 @@ var readAllConversations = function(req, res, next) {
       });
 };
 
-// read all conversations where:
-// status = NOT_FULL = 0
+// Read new conversations that are not full yet
 var readNewConversations = function(req, res, next) {
     Conversations.find({status:constants.NOT_FULL}, function(err, doc) {
         if (err) {

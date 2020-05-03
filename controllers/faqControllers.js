@@ -5,8 +5,8 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 // Import libraries
-var mongoose = require('mongoose');
-var Faq = mongoose.model('faqs');
+const mongoose = require('mongoose');
+const Faq = mongoose.model('faqs');
 
 //Create FAQ
 var createFaq = function(req, res, next) {

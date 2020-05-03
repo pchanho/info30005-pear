@@ -5,9 +5,9 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 // import libraries
-var mongoose = require('mongoose');
-var Messages = mongoose.model('messages');
-var Conversations = mongoose.model('conversations');
+const mongoose = require('mongoose');
+const Messages = mongoose.model('messages');
+const Conversations = mongoose.model('conversations');
 
 // create message
 var createMessage = function(req, res, next) {

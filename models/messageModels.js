@@ -5,8 +5,8 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 // import libraries
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 // create schema
 var messageSchema = new Schema({
