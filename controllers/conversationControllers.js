@@ -30,7 +30,7 @@ var createConversation = function(req, res, next) {
 // read all conversations and their items
 var readAllConversations = function(req, res, next) {
     Conversations.find({}, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
           console.log(err);
         } else {
           res.json(doc);
@@ -41,7 +41,7 @@ var readAllConversations = function(req, res, next) {
 // Read new conversations that are not full yet
 var readNewConversations = function(req, res, next) {
     Conversations.find({status:constants.NOT_FULL}, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
           console.log(err);
         } else {
           res.json(doc);
@@ -54,7 +54,7 @@ var readOneConversation = function(req, res, next) {
     var id = req.body.id;
     //returns a conversation entry based on a specified Id
     Conversations.findById(id, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no conversation found');
         } else {
             res.json(doc);
@@ -67,7 +67,7 @@ var readParticipants = function(req, res, next) {
     var id = req.body.id;
     //finds a list of participants who were involved in a conversation, specified by conversation Id
     Conversations.findById(id, 'participantsId', { lean: true }, function (err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no conversation found');
         } else {
             res.json(doc);
@@ -75,36 +75,38 @@ var readParticipants = function(req, res, next) {
     });
 }
 
-
 //tracks participants that enter a covnersation
 //and changes the status of the conversation to active if there
 //are 2 or more people in the chat
 var addParticipantsInConversation = function(req, res) {
     var id = req.body.id;
     var participantsId = req.body.participantsId;
-
     Conversations.findById(id, function(err, doc){
-        if(err){
+        if(err || doc == undefined ){
             console.error('error, no conversation found');
         }
-        //tracks the arrival of a new participant to the conversation
-        doc.participantsId.addToSet(participantsId);
-        doc.participantCount += 1;
-        //if there are 2 or more participants in the conversation, 
-        //the status is set to full
-        if (doc.participantCount > 1){
-            doc.status = constants.FULL
-        }
-        //status set to NOT_FULL if these is only 1 person
-        //in the conversation
-        else if (doc.participantCount == 1){
-            doc.status = constants.NOT_FULL
-        }
+        else{
+             //tracks the arrival of a new participant to the conversation
+            doc.participantsId.addToSet(participantsId);
+            doc.participantCount += 1;
+            //if there are 2 or more participants in the conversation, 
+            //the status is set to full
+            if (doc.participantCount > 1){
+                doc.status = constants.FULL
+            }
+            //status set to NOT_FULL if these is only 1 person
+            //in the conversation
+            else if (doc.participantCount == 1){
+                doc.status = constants.NOT_FULL
+            }
         //conversation ends when all participants leave
-        else if (doc.participantCount < 1){
+            else if (doc.participantCount < 1){
             doc.status = constants.ENDED
+            }
+            doc.save();
         }
-        doc.save();
+       
+        
     });
 
     //updates the user account record to keep track of the covnersation
@@ -130,28 +132,29 @@ var removeParticipantsInConversation = async function(req, res, next) {
         if(err){
             console.error('error, no conversation found');
         }
-        //removes a participant from the list of 
-        //recorded participants in a conversation
-        doc.participantsId.pull(participantsId);
-        doc.participantCount -= 1;
+        else{
+            //removes a participant from the list of 
+            //recorded participants in a conversation
+            doc.participantsId.pull(participantsId);
+            doc.participantCount -= 1;
 
-        //if there are 2 or more participants in the conversation, 
-        //the status is set to full
-        if (doc.participantCount > 1){
-            doc.status = constants.FULL
+            //if there are 2 or more participants in the conversation, 
+            //the status is set to full
+            if (doc.participantCount > 1){
+                doc.status = constants.FULL
+            }
+            //status set to NOT_FULL if these is only 1 person
+            //in the conversation
+            else if (doc.participantCount == 1){
+                doc.status = constants.NOT_FULL
+            }
+            //conversation ends when all participants leave
+            else if (doc.participantCount < 1){
+                doc.status = constants.ENDED
+            }
+            doc.save();
         }
-        //status set to NOT_FULL if these is only 1 person
-        //in the conversation
-        else if (doc.participantCount == 1){
-            doc.status = constants.NOT_FULL
-        }
-        //conversation ends when all participants leave
-        else if (doc.participantCount < 1){
-            doc.status = constants.ENDED
-        }
-        doc.save();
     });
-
     res.redirect('/');
 };
 

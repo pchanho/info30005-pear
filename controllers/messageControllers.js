@@ -56,7 +56,7 @@ var readSpecificMessages = function(req, res, next) {
     var conversationId = req.body.conversationId;
     
     Messages.find({ "conversationId" : conversationId }, function(err,doc){
-        if (err) {
+        if (err || doc == undefined) {
             
             console.log("error, no messages found");
         } 
@@ -72,7 +72,7 @@ var readOneMessage = function(req, res, next) {
     var id = req.body.id;
 
     Messages.findById(id, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no conversation found');
         } else {
             res.json(doc);
@@ -86,22 +86,21 @@ var updateMedia = function(req, res, next) {
     var id = req.body.id;
 
     Messages.findById(id, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no conversation found');
         }
-
-        if (typeof(req.body.text) != "undefined"){
-            doc.text = req.body.text;
-        }
-        if (typeof(req.body.text) != "undefined"){
-            doc.image = req.body.image;
-        }
-        if (typeof(req.body.text) != "undefined"){
-            doc.video = req.body.video;
-        }
-
-        
-        doc.save();
+        else{
+            if (typeof(req.body.text) != "undefined"){
+                doc.text = req.body.text;
+            }
+            if (typeof(req.body.text) != "undefined"){
+                doc.image = req.body.image;
+            }
+            if (typeof(req.body.text) != "undefined"){
+                doc.video = req.body.video;
+            }            
+            doc.save();
+        } 
     });
     res.redirect('/');
 };
