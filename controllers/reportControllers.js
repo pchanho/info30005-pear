@@ -90,7 +90,6 @@ var readByOutcomeReports = function(req, res, next) {
 // update a single report's items
 var updateReport = function(req, res, next) {
     var id = req.body.id;
-
     //find report by Id and change accountId, reason and messageId
     Reports.findById(id, function(err, doc) {
         if (err) {
