@@ -311,7 +311,7 @@ FAQ functionality allows users to read and query for frequently asked questions 
 * Update a FAQ
 >url: ../faq/update
 >
->Parameters: title, body, updatedAt
+>Parameters: id, title, body, updatedAt
 
 #### DELETE
 * Delete a FAQ
