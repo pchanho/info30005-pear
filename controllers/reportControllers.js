@@ -33,7 +33,7 @@ var readAllReports = function(req, res, next) {
 
     //find all reports and prints on screen
     Reports.find({}, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
           console.log('error, no report found');
         } else {
           res.json(doc);
@@ -47,7 +47,7 @@ var readOneReport = function(req, res, next) {
 
     //find report by Id and prints on screen
     Reports.findById(id, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no report found');
         } else {
             res.json(doc);
@@ -62,7 +62,7 @@ var readByStatusReports = function(req, res, next) {
 
     //find report based on status value
     Reports.find({status:status_to_find}, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
           console.log('error, status not found');
         } else {
           res.json(doc);
@@ -77,7 +77,7 @@ var readByOutcomeReports = function(req, res, next) {
 
     //find report based on outcome value
     Reports.find({outcome:outcome_to_find}, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
           console.log('error, outcome not found');
         } else {
           res.json(doc);
@@ -93,9 +93,9 @@ var updateStatusinReport = function(req, res, next) {
 
     //find report by Id and change status of said report to PROCESSED (1)
     Reports.findById(id, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no report found');
-        } else{
+        } else {
             //status = PROCESSED = 1
             doc.status = reportConstants.PROCESSED;
             doc.save();
@@ -112,9 +112,9 @@ var updateOutcomeinReport = function(req, res, next) {
     //using inputed id, search the appropriate report
     Reports.findById(id, function(err, doc) {
 
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no report found');
-        } else{
+        } else {
             var accountId = doc.accountId;
             var messageId = doc.messageId;
             doc.outcome = req.body.outcome;
@@ -123,9 +123,9 @@ var updateOutcomeinReport = function(req, res, next) {
             if (doc.outcome == reportConstants.BANNED){
                 //find account based on report's accountId
                 Accounts.findById(accountId, function(err,doc){
-                    if (err){
+                    if (err || doc == undefined){
                         console.log('error in ban');
-                    }else{
+                    } else {
                         doc.status = accountConstants.BANNED;
                     }
                     doc.save();
@@ -134,9 +134,9 @@ var updateOutcomeinReport = function(req, res, next) {
             } else if (doc.outcome == reportConstants.DELETED){
                 //find message based on the report's messageId 
                 Messages.findByIdAndRemove(messageId, function(err,doc){
-                    if(err){
+                    if (err || doc == undefined){
                         console.log('error in delete message');
-                    } else{
+                    } else {
                         doc.save();
                     }
                 });
@@ -157,7 +157,7 @@ var addReportToHistory = function(req, res, next) {
     Accounts.updateOne(
         { "_id" : accountId },
         { $addToSet: { "reportsHistoryId" : id }}, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.log("error adding");
         }
     });

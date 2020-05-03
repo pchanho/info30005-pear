@@ -37,7 +37,7 @@ var readOneSupport = function(req, res, next) {
     var id = req.body.id;
 
     Support.findById(id, function(err, doc) {
-        if (err) {
+        if (err || doc == undefined) {
             console.error('error, no content found');
         } else {
             res.json(doc);
@@ -50,14 +50,15 @@ var updateSupport = function(req, res, next) {
     var id = req.body.id;
 
     Support.findById(id, function(err, doc){
-        if(err){
+        if (err || doc == undefined){
             console.error('error, no support content found');
-        }
-        doc.title = req.body.title;
-        doc.body = req.body.body;
-        doc.image = req.body.image;
-        doc.video = req.body.video;
-        doc.save();
+        } else {
+            doc.title = req.body.title;
+            doc.body = req.body.body;
+            doc.image = req.body.image;
+            doc.video = req.body.video;
+            doc.save();
+        }    
     });
     res.redirect('/support');
 };

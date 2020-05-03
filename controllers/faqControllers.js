@@ -31,7 +31,7 @@ var readAllFaqs = function(req, res, next){
     })
 };
 
-//Real up to 5 FAQs
+//Read up to 5 FAQs
 var read5Faqs = function(req, res, next){
     Faq.find().limit(5)
         .lean()
@@ -54,13 +54,14 @@ var updateFaq = function(req, res, next) {
     var id = req.body.id;
 
     Faq.findById(id, function(err, doc){
-        if(err){
+        if (err || doc == undefined){
             console.error('error, no faq found');
+        } else {
+            doc.title = req.body.title;
+            doc.body = req.body.body;
+            doc.updatedAt = req.body.updatedAt;
+            doc.save();
         }
-        doc.title = req.body.title;
-        doc.body = req.body.body;
-        doc.updatedAt = req.body.updatedAt;
-        doc.save();
     });
     res.redirect('/');
 };
