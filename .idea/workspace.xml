@@ -27,14 +27,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.app.js (1)">
+    <configuration name="app.js (1)" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/info30005-pear-master/app.js" working-dir="$PROJECT_DIR$/info30005-pear-master">
+      <method v="2" />
+    </configuration>
     <configuration name="app.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/app.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.app.js (1)" />
         <item itemvalue="Node.js.app.js" />
       </list>
     </recent_temporary>
@@ -63,25 +68,29 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="415" y="124" key="#app.js" timestamp="1588827278467">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="415" y="124" key="#app.js/0.0.1440.900@0.0.1440.900" timestamp="1588827278467" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1588411997308">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.23.1440.877@0.23.1440.877" timestamp="1588411997308" />
-    <state width="1419" height="176" key="GridCell.Tab.0.bottom" timestamp="1588474217487">
+    <state width="1419" height="176" key="GridCell.Tab.0.bottom" timestamp="1588827319790">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="176" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1588474217487" />
-    <state width="1419" height="176" key="GridCell.Tab.0.center" timestamp="1588474217486">
+    <state width="1419" height="176" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1588827319790" />
+    <state width="1419" height="176" key="GridCell.Tab.0.center" timestamp="1588827319787">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="176" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1588474217486" />
-    <state width="1419" height="176" key="GridCell.Tab.0.left" timestamp="1588474217485">
+    <state width="1419" height="176" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1588827319787" />
+    <state width="1419" height="176" key="GridCell.Tab.0.left" timestamp="1588827319786">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="176" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1588474217485" />
-    <state width="1419" height="176" key="GridCell.Tab.0.right" timestamp="1588474217486">
+    <state width="1419" height="176" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1588827319786" />
+    <state width="1419" height="176" key="GridCell.Tab.0.right" timestamp="1588827319788">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="176" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1588474217486" />
+    <state width="1419" height="176" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1588827319788" />
   </component>
 </project>
