@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+	color: #777;
+	background-color: #FFEBCD;
+	margin: 0;
+	padding: 10px;
+}
+
+.header {
+	top: 0;
+	width: 100%;
+}
+
+.header img {
+	width: 100px;
+	float: left;
+}
+
+.header h2 {
+	padding: 30px;
+	font-size: 30px;
+}
+
+.account {
+	padding-top: 20px;
+	padding-left: 150px;
+	padding-right: 150px;
+
+}
+
+.account h1 {
+	text-align: center;
+	color: #905A2A;
+
+}
+
+.create {
+	width: 42%;
+	float: left;
+	border-style: solid;
+}
+
+.login {
+    width: 42%;
+	float: right;
+	border-style: solid;
+}
+
+input, select {
+ 	width: 100%;
+ 	padding: 10px 10px;
+ 	margin: 5px 5px;
+ 	margin-bottom: 10px;
+ 	border: 1px solid #905A2A;
+ 	border-radius: 4px;
+}
+
+input[type=submit] {
+	width: 50%;
+	background-color: #D2B48C;
+	color: white;
+	float: right;
+}
+
+input[type=submit]:hover {
+ 	background-color: #905A2A;
+}
+
+input:focus {
+	outline: none;
+	border-width: 3px;
+}
+
+.footer {
+	position: fixed;
+ 	bottom: 0;
+ 	width: 100%;
+}
+
+.footer button {
+	float: right;
+	margin-right: 50px;
+	margin-bottom: 30px;
+	border: 1px solid #905A2A;
+ 	border-radius: 4px;
+	color: white;
+	font-size: 20px;
+	background-color: #D2B48C;
+}
+
+.footer button:focus {
+	outline: none;
+	border-width: 3px;
+
+}
+
+.footer button:hover {
+ 	background-color: #905A2A;
+}
