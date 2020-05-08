@@ -3,6 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="b5423b69-9ebc-4663-a62f-4f0cf0962a9e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-pear/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-pear/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-pear/src/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-pear/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-pear/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/src/serviceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend-pear/src/setupTests.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,6 +28,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -30,7 +46,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend-pear/src/pages" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend-pear/src" />
+    </key>
   </component>
   <component name="RunManager" selected="Node.js.app.js (1)">
     <configuration name="app.js (1)" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/info30005-pear-master/app.js" working-dir="$PROJECT_DIR$/info30005-pear-master">
@@ -64,7 +89,8 @@
       <workItem from="1588421749002" duration="4822000" />
       <workItem from="1588478425470" duration="525000" />
       <workItem from="1588827203874" duration="381000" />
-      <workItem from="1588828341097" duration="1054000" />
+      <workItem from="1588828341097" duration="1644000" />
+      <workItem from="1588857971858" duration="5678000" />
     </task>
     <servers />
   </component>
@@ -76,25 +102,29 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="415" y="124" key="#app.js/0.0.1440.900@0.0.1440.900" timestamp="1588827278467" />
+    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1588858514983">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1588858514983" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1588411997308">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.23.1440.877@0.23.1440.877" timestamp="1588411997308" />
-    <state width="1419" height="176" key="GridCell.Tab.0.bottom" timestamp="1588829064505">
+    <state width="1419" height="176" key="GridCell.Tab.0.bottom" timestamp="1588837333934">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="176" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1588829064505" />
-    <state width="1419" height="176" key="GridCell.Tab.0.center" timestamp="1588829064501">
+    <state width="1419" height="176" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1588837333934" />
+    <state width="1419" height="176" key="GridCell.Tab.0.center" timestamp="1588837333933">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="176" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1588829064501" />
-    <state width="1419" height="176" key="GridCell.Tab.0.left" timestamp="1588829064499">
+    <state width="1419" height="176" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1588837333933" />
+    <state width="1419" height="176" key="GridCell.Tab.0.left" timestamp="1588837333930">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="176" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1588829064499" />
-    <state width="1419" height="176" key="GridCell.Tab.0.right" timestamp="1588829064503">
+    <state width="1419" height="176" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1588837333930" />
+    <state width="1419" height="176" key="GridCell.Tab.0.right" timestamp="1588837333933">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="176" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1588829064503" />
+    <state width="1419" height="176" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1588837333933" />
   </component>
 </project>

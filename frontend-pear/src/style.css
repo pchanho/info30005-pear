@@ -1,0 +1,46 @@
+.App {
+    font-family: lato, sans-serif;
+    text-align: center;
+}
+
+nav {
+    background-color: #268bc6;
+    float: right;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+}
+
+nav a:hover {
+    color: #2da2db;
+}
+
+nav a.active {
+    padding-bottom: 8px;
+    border-bottom: 2px solid #fff;
+}
+
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 1rem;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    user-select: none;
+    margin: 5px 5px;
+
+    color: #eceff1;
+    border-color: transparent;
+    background: peachpuff;
+    box-shadow: none;
+}
