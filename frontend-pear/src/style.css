@@ -1,46 +1,190 @@
-.App {
-    font-family: lato, sans-serif;
+/*-------------
+ 	General
+-------------*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*header .logo{*/
+/*    height: 4%;*/
+/*    width: 4%;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 170px 100px;
+}
+
+section h3.title{
+    color: #414a4f;
+    font: bold 32px 'Open Sans', sans-serif;
+    margin-bottom: 35px;
     text-align: center;
 }
 
-nav {
-    background-color: #268bc6;
-    float: right;
+section p{
+    max-width: 800px;
+    text-align: center;
+    margin-bottom: 35px;
+    padding: 0 20px;
+    line-height: 2;
 }
 
-nav a {
+/*-------------
+ 	Landing Page
+-------------*/
+
+/*.landing{*/
+/*    */
+/*    */
+/*    position: relative;*/
+/*    margin-top: 150px;*/
+/*    justify-content: center;*/
+/*    min-height: 100vh;*/
+/*    color: #000;*/
+/*    text-align: center;*/
+/*}*/
+
+.landing .landing_logo {
+    height: 20%;
+    width: 20%;
+    margin: 0;
+    padding: 0;
+}
+
+.landing h1{
+    font: bold 60px 'lato', sans-serif;
+    margin-bottom: 15px;
+    color: #414a4f;
+}
+
+.landing h3{
+    font: normal 28px 'lato', sans-serif;
+    margin-bottom: 40px;
+    color: #414a4f;
+
+}
+
+.landing a.btn{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 15px 30px;
+    border-radius: 20px;
+    background-color: #D2B48C;
     color: #fff;
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+    transition:  transform 0.3s ease-in-out;
+
+}
+
+.landing a.btn:hover{
+    background-color: #789D4A;
+    transform: scale(1.1);
+    color: #fff;
+}
+
+.bgImg {
+    background-image:url("./img/Img3.jpeg");
+    position: relative;
+    background-attachment: fixed;
+    margin: auto;
+    overflow: hidden;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 500px;
+}
+
+
+/*-------------
+ 	Nav
+-------------*/
+
+.Nav-bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #777777;
+    padding: 35px 100px 0;
+}
+
+nav{
+    list-style: none;
+    display: flex;
+}
+
+nav a{
+    font-size: 20px;
     text-decoration: none;
-    padding: 10px;
-    display: inline-block;
-}
-
-nav a:hover {
-    color: #2da2db;
-}
-
-nav a.active {
-    padding-bottom: 8px;
-    border-bottom: 2px solid #fff;
-}
-
-.btn {
-    display: inline-block;
-    margin-bottom: 0;
-    text-align: center;
-    vertical-align: middle;
+    color: inherit;
     cursor: pointer;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 1rem;
-    border-radius: 3px;
-    border: 1px solid transparent;
-    text-decoration: none;
-    user-select: none;
-    margin: 5px 5px;
+    margin: 0 10px;
+}
 
-    color: #eceff1;
-    border-color: transparent;
-    background: peachpuff;
-    box-shadow: none;
+nav a:first-child{
+    margin-left:0;
+}
+
+nav a:last-child{
+    margin-right: 0;
+}
+
+nav a:hover{
+    color: #905A2A;
+}
+
+nav a:after{
+    content: '';
+    display:block;
+    width: 0;
+    height: 4px;
+    background: #905A2A;
+    transition: width .4s;
+}
+
+nav a:hover:after {
+    width: 100%;
+    color: lightgray;
+}
+
+#nav-logo-text{
+    color: #D2B48C;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+/*-------------
+ 	Footer
+-------------*/
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    background-color: #414a4f;
+    padding: 60px 0;
+}
+
+footer p{
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+footer #member{
+    font-size: 14px;
 }

@@ -1,35 +1,37 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LandinPage from "./pages/LandinPage";
+import LandingPage from "./pages/LandingPage";
 import Account from "./pages/Accounts";
 import Conversation from "./pages/Conversation";
 import Nav from "./components/Nav";
 import "./style.css";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
       <Router>
         <div className="App">
-          <Nav />
-
+            <Nav />
           {/* the content */}
           {/* A <Switch> looks through its children <Route>s and
           renders the first one that matches the current URL. */}
           <Switch>
 
             <Route exact path="/">
-              <LandinPage />
+              <LandingPage />
             </Route>
 
             <Route path="/account">
               <Account />
             </Route>
 
-            <Route path="/account">
+            <Route path="/conversation">
                 <Conversation />
             </Route>
 
           </Switch>
+
+            <Footer/>
         </div>
       </Router>
   );
