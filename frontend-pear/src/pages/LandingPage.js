@@ -1,6 +1,8 @@
 import React from 'react';
 import "../style.css";
 import logo from "../img/Pear_logo.png";
+import { NavLink } from "react-router-dom";
+
 
 export default function LandingPage() {
     return (
@@ -9,7 +11,7 @@ export default function LandingPage() {
                 <img src={logo} className="landing_logo" alt="logo"/>
                 <h1>Welcome to Pear</h1>
                 <h3>Connect with Pear</h3>
-                <a href="/conversation" className="btn">Join Conversation</a>
+                <NavLink to="/conversation" className="btn">Join Conversation</NavLink>
             </section>
 
             <div className="bgImg" alt="bgImg"></div>

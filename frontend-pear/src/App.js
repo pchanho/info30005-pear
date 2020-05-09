@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import Account from "./pages/Accounts";
+import Account from "./pages/Account";
 import Conversation from "./pages/Conversation";
 import Nav from "./components/Nav";
 import "./style.css";
