@@ -1,11 +1,10 @@
-/*TODO*/
 import React from 'react';
 
-export default function Conversation() {
+export default function Chat() {
     return (
         <div>
             <section className="conversation">
-                    <h1>This is Pear Conversation</h1>
+                <h1>This is chat page</h1>
             </section>
         </div>
     )

@@ -85,11 +85,11 @@ Account system allows users to create and manage their account utilising passwor
 >
 >Parameters: id, friendsId
 
-## Q6. Conversation
+## Q6. ConversationLanding
 
-The Conversation system handles the storing of instanced conversations between two users regarding a particular topic. Conversations and messages form a parent-child relationship, with each conversation storing the ids of the messages it contains and each message storing the id of its parent conversation. 
+The ConversationLanding system handles the storing of instanced conversations between two users regarding a particular topic. Conversations and messages form a parent-child relationship, with each conversation storing the ids of the messages it contains and each message storing the id of its parent conversation. 
 
-### 1) Conversation
+### 1) ConversationLanding
 The conversation functionality handles the creation of a new conversation between two users regarding a particular topic. More importantly it handles updating the participants array whenever a user leaves or joins the conversation, as well as providing access to all messages within the conversation. This ensures that there are no idiosyncracies between the separate database collections. It also manages the deletion of specific records.
 
 #### CREATE
@@ -314,5 +314,5 @@ FAQ functionality allows users to read and query for frequently asked questions 
 >
 >Parameters: url query
 > 
->Parameter example: "Conversation" or "Con", "Free" or "Fr"
+>Parameter example: "ConversationLanding" or "Con", "Free" or "Fr"
 

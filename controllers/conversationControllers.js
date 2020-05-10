@@ -1,5 +1,5 @@
 /*
-INFO30005 Group Assignment - Pear: Conversation Controller
+INFO30005 Group Assignment - Pear: ConversationLanding Controller
 
 Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
