@@ -8,6 +8,8 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const cors = require('cors');
+
 
 // connect to the database and register each schema
 // this must occur before importing each of the routes (line 22)
@@ -18,6 +20,8 @@ require('./models/database.js');
 app.use(bodyParser.json());
 // support parsing of urlencoded bodies (e.g. for forms)
 app.use(bodyParser.urlencoded({ extended: true }));
+// deal with connection error between React and mongoDB
+app.use(cors());
 
 // GET home page
 app.get("/", (req, res) => {
