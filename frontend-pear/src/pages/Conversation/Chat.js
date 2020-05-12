@@ -1,11 +1,16 @@
-import React from 'react';
+import React from "react";
+import Messages from '../../components/chat/Messages';
+import "../../chatStyles.css";
 
 export default function Chat() {
     return (
-        <div>
-            <section className="conversation">
-                <h1>This is chat page</h1>
-            </section>
+        <div class="container">
+            <div class="chatBox scrollable">
+                <h1>list</h1>
+            </div>
+            <div class="chatList scrollable">
+                <Messages />
+            </div>
         </div>
-    )
+    );
 }
