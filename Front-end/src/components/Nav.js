@@ -12,9 +12,9 @@ export default function Nav() {
           Home
         </NavLink>
 
-        <NavLink to="/conversation">Conversation</NavLink>
+        <NavLink to="/join">Conversation</NavLink>
 
-        <NavLink to="/chat">Chat</NavLink>
+        {/*<NavLink to="/chat">Chat</NavLink>*/}
 
         <NavLink to="/account">Sign In</NavLink>
       </nav>

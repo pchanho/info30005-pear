@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Account from "./pages/Account";
 import Conversation from "./pages/Conversation/ConversationLanding";
+import Join from "./pages/Conversation/Join";
+import Create from "./pages/Conversation/Create";
 import Chat from "./pages/Conversation/Chat";
 import Nav from "./components/Nav";
 import "./styles.css";
@@ -25,12 +27,16 @@ export default function App() {
             <Account />
           </Route>
 
-          <Route path="/conversation">
-            <Conversation />
+          <Route path="/join">
+            <Join />
           </Route>
 
           <Route path="/chat">
             <Chat />
+          </Route>
+
+          <Route path="/create">
+            <Create />
           </Route>
         </Switch>
 

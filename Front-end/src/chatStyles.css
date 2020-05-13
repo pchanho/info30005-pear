@@ -1,48 +1,48 @@
-.container {
-  display: grid;
-  width: 100%;
-  height: 100vh;
-  background: #d2b48c;
-  margin-top: 100px;
-  margin-bottom: 50px;
+/*.container {*/
+/*  display: grid;*/
+/*  width: 100%;*/
+/*  height: 100vh;*/
+/*  background: #d2b48c;*/
+/*  margin-top: 100px;*/
+/*  margin-bottom: 50px;*/
 
-  grid-template-columns: 300px auto;
-  grid-template-rows: 60px auto 60px;
-  grid-row-gap: 10px;
-}
+/*  grid-template-columns: 300px auto;*/
+/*  grid-template-rows: 60px auto 60px;*/
+/*  grid-row-gap: 10px;*/
+/*}*/
 
-.scrollable {
-  position: relative;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-}
+/*.scrollable {*/
+/*  position: relative;*/
+/*  overflow-y: scroll;*/
+/*  -webkit-overflow-scrolling: touch;*/
+/*}*/
 
-.chatList {
-  background: grey;
-  grid-row-start: 1;
-  grid-row-end: span 3;
-  padding: 0;
-}
+/*.chatList {*/
+/*  background: grey;*/
+/*  grid-row-start: 1;*/
+/*  grid-row-end: span 3;*/
+/*  padding: 0;*/
+/*}*/
 
-.chatBox {
-  background: lightgrey;
-  grid-row-start: 1;
-  grid-row-end: span 3;
-}
+/*.chatBox {*/
+/*  background: lightgrey;*/
+/*  grid-row-start: 1;*/
+/*  grid-row-end: span 3;*/
+/*}*/
 
-.toolbar {
-  display: inline;
-  position: sticky;
-  font-size: 10px;
-  top: 0;
-  margin: 0;
-  padding: 0;
-}
-.toolbar-title {
-  text-align: center;
-}
+/*.toolbar {*/
+/*  display: inline;*/
+/*  position: sticky;*/
+/*  font-size: 10px;*/
+/*  top: 0;*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*}*/
+/*.toolbar-title {*/
+/*  text-align: center;*/
+/*}*/
 
-.footer {
-  bottom: 0;
-  width: 100%;
-}
+/*!*.footer {*!*/
+/*!*  bottom: 0;*!*/
+/*!*  width: 100%;*!*/
+/*!*}*!*/
