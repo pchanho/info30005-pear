@@ -5,7 +5,13 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 // import libraries
-const cloudinary = require('../config/cloudinary.js');
+//config required for cloudinary
+var cloudinary = require("cloudinary");
+cloudinary.config({
+    cloud_name: 'drvfo389c',
+    api_key: '313182327497513',
+    api_secret: 'mXEiPcfHOlFtlB8eRQSAH6h6j18'
+});
 const mongoose = require('mongoose');
 const Conversations = mongoose.model('conversations');
 const Accounts = mongoose.model('accounts');
@@ -14,26 +20,23 @@ const constants = require('../constants/conversationConstants.js');
 
 // create conversation
 var createConversation =  async function(req, res, next) {
-    //appends relevant fields to item
-   //console.log(req.files.topicImage)
-    console.log("EEEEE")
-    //console.log(req.files.topicImage)
+
+    //uploads a conversation image if it exists
     if (req.files.topicImage) {
-        console.log(await cloudinary.upload(req.files.topicImage))
-        topicImage = "ede"
-        
+        await cloudinary.v2.uploader.upload(req.files.topicImage.tempFilePath, (error, result) => {
+            if(result)
+            {
+                topicImage = result.url
+            } else if(error) {
+                topicImage = null
+            }
+        })
     }
-    else{
-        topicImage = null
-    }
-    console.log(topicImage)
-    console.log("EEEEE")
-    //console.log(req.files.topicImage)
-    console.log("#########")
+    //appends relevant fields to item
     var item = {
         topic:req.body.topic,
         category:req.body.category,
-        topicImage:req.body.topicImage,
+        topicImage:topicImage,
     };
 
     //creates a new conversation entry based on item
