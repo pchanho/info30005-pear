@@ -179,25 +179,21 @@ var login = function(req, res, next) {
                         user.status = constants.ACTIVE;
                         //console.log("Account is active");
                         res.redirect('/');
-                        return true;
                     }
                     //log in
                     else if (user.status == constants.ACTIVE) {
                         //console.log("Logged in");
                         res.redirect('/');
-                        return true;
                     }
                     //don't log in if banned account
                     else {
                         //console.log("Account is banned");
                         res.redirect('/');
-                        return false;
                     }
                 }
                 else {
                     console.error("Incorrect password");
                     res.redirect('/');
-                    return false;
                 }
                 user.save();
             });
