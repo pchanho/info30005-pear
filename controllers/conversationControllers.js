@@ -16,13 +16,15 @@ const mongoose = require('mongoose');
 const Conversations = mongoose.model('conversations');
 const Accounts = mongoose.model('accounts');
 const constants = require('../constants/conversationConstants.js');
+const defaultImage = "https://res.cloudinary.com/drvfo389c/image/upload/v1589655859/download_iz4jop.png"
 //var Messages = mongoose.model('messages');
 
 // create conversation
 var createConversation =  async function(req, res, next) {
-
+    console.log(req.body)
+    console.log(req.files)
     //uploads a conversation image if it exists
-    if (req.files.topicImage) {
+    if (req.files.topicImage!= null) {
         await cloudinary.v2.uploader.upload(req.files.topicImage.tempFilePath, (error, result) => {
             if(result)
             {
@@ -31,6 +33,9 @@ var createConversation =  async function(req, res, next) {
                 topicImage = null
             }
         })
+    }
+    else{
+        topicImage = defaultImage
     }
     //appends relevant fields to item
     var item = {
