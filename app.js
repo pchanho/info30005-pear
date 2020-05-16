@@ -53,6 +53,6 @@ app.use("/report", reportRoutes);
 
 // start app and listen for incoming requests on port 3000
 // OR a different port assigned by Heroku
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 3001, () => {
 	console.log("The pear app is running!");
 });
