@@ -35,7 +35,7 @@ messageRoutes.get('/readAll', messageController.readAllMessages);
 	included for user history and admin purposes
 	url: ../message/readSpecific
 */
-messageRoutes.get('/readSpecific', messageController.readSpecificMessages);
+messageRoutes.post('/readSpecific', messageController.readSpecificMessages);
 
 /*	
 	route gets one message its contents
