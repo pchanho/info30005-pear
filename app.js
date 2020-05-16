@@ -5,9 +5,11 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 // import libraries
+const fileupload = require("express-fileupload");
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
 
 
@@ -15,6 +17,11 @@ const cors = require('cors');
 // this must occur before importing each of the routes (line 22)
 require('./models/database.js');
 
+//used for sending images
+app.use(fileupload({
+  useTempFiles: true
+}
+));
 // use the body-parser middleware, which parses request bodies into req.body
 // support parsing of json
 app.use(bodyParser.json());

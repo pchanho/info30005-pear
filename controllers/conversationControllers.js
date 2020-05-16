@@ -5,6 +5,7 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 // import libraries
+const cloudinary = require('../config/cloudinary.js');
 const mongoose = require('mongoose');
 const Conversations = mongoose.model('conversations');
 const Accounts = mongoose.model('accounts');
@@ -12,8 +13,23 @@ const constants = require('../constants/conversationConstants.js');
 //var Messages = mongoose.model('messages');
 
 // create conversation
-var createConversation = function(req, res, next) {
+var createConversation =  async function(req, res, next) {
     //appends relevant fields to item
+   //console.log(req.files.topicImage)
+    console.log("EEEEE")
+    //console.log(req.files.topicImage)
+    if (req.files.topicImage) {
+        console.log(await cloudinary.upload(req.files.topicImage))
+        topicImage = "ede"
+        
+    }
+    else{
+        topicImage = null
+    }
+    console.log(topicImage)
+    console.log("EEEEE")
+    //console.log(req.files.topicImage)
+    console.log("#########")
     var item = {
         topic:req.body.topic,
         category:req.body.category,
