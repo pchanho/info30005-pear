@@ -16,13 +16,11 @@ const mongoose = require('mongoose');
 const Conversations = mongoose.model('conversations');
 const Accounts = mongoose.model('accounts');
 const constants = require('../constants/conversationConstants.js');
-const defaultImage = "https://res.cloudinary.com/drvfo389c/image/upload/v1589693117/livechat-online-chat-computer-icons-emoticon-smiley-png-favpng-qTQUYTHqXzXSNqSFX7ukiQnu5_u3xyug.jpg"
+const defaultImage = "https://res.cloudinary.com/drvfo389c/image/upload/c_thumb,w_200,g_face/v1589694896/54236710_2313134585582783_3449818818497478656_n_htvwad.png"
 //var Messages = mongoose.model('messages');
 
 // create conversation
 var createConversation =  async function(req, res, next) {
-    console.log(req.body)
-    console.log(req.files)
     //uploads a conversation image if it exists
     if (req.body.topicImage!= 'undefined') {
         await cloudinary.v2.uploader.upload(req.files.topicImage.tempFilePath, (error, result) => {
