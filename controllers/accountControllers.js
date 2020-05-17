@@ -203,6 +203,7 @@ var login = function(req, res, next) {
             });
         }
     });
+    return false;
 
 };
 
