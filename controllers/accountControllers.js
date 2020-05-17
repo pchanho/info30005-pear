@@ -167,6 +167,7 @@ var login = function(req, res, next) {
         if (!user) {
             console.error("Email not found");
             res.redirect('/');
+            return false;
         }
         //if found check correct password
         else {
