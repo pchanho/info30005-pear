@@ -16,7 +16,7 @@ const mongoose = require('mongoose');
 const Conversations = mongoose.model('conversations');
 const Accounts = mongoose.model('accounts');
 const constants = require('../constants/conversationConstants.js');
-const defaultImage = "https://res.cloudinary.com/drvfo389c/image/upload/v1589655859/download_iz4jop.png"
+const defaultImage = "https://res.cloudinary.com/drvfo389c/image/upload/v1589693117/livechat-online-chat-computer-icons-emoticon-smiley-png-favpng-qTQUYTHqXzXSNqSFX7ukiQnu5_u3xyug.jpg"
 //var Messages = mongoose.model('messages');
 
 // create conversation
