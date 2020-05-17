@@ -24,7 +24,7 @@ var createConversation =  async function(req, res, next) {
     console.log(req.body)
     console.log(req.files)
     //uploads a conversation image if it exists
-    if (req.files.topicImage!= null) {
+    if (req.body.topicImage!= 'undefined') {
         await cloudinary.v2.uploader.upload(req.files.topicImage.tempFilePath, (error, result) => {
             if(result)
             {
