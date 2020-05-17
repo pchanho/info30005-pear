@@ -44,7 +44,7 @@ accountRoutes.get('/readFriends', accountController.readFriends);
     of the account and responds accordingly (i.e. access granted or denied)
     url: ../account/login
 */
-accountRoutes.get('/login', accountController.login);
+accountRoutes.post('/login', accountController.login);
 
 //UPDATE
 

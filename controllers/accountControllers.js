@@ -27,7 +27,7 @@ var createAccount = function(req, res, next) {
         data.save();
         //console.log("account created");
 
-        res.redirect('/');
+        res.send('True');
     });
 };
 
@@ -159,14 +159,14 @@ var deactivate = function(req, res, next) {
 // function checks whether username and password is found within database
 // and provides access to the user if not banned
 var login = function(req, res, next) {
-
+    console.log(req.body) 
     //find the email
     Accounts.findOne({ email: req.body.email }, function(err, user) {
 
         //checks if email found
         if (!user) {
             console.error("Email not found");
-            res.redirect('/');
+            res.json("False");
             return false;
         }
         //if found check correct password
@@ -179,25 +179,25 @@ var login = function(req, res, next) {
                     if (user.status == constants.INACTIVE) {
                         user.status = constants.ACTIVE;
                         //console.log("Account is active");
-                        res.redirect('/');
+                        res.send("True");
                         return true;
                     }
                     //log in
                     else if (user.status == constants.ACTIVE) {
                         //console.log("Logged in");
-                        res.redirect('/');
+                        res.send("True");
                         return true;
                     }
                     //don't log in if banned account
                     else {
                         //console.log("Account is banned");
-                        res.redirect('/');
+                        res.send("False");
                         return false;
                     }
                 }
                 else {
                     console.error("Incorrect password");
-                    res.redirect('/');
+                    res.send("False");
                     return false;
                 }
                 user.save();
@@ -205,6 +205,7 @@ var login = function(req, res, next) {
         }
     });
     return false;
+    
 
 };
 
