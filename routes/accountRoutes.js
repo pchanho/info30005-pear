@@ -30,7 +30,7 @@ accountRoutes.get('/readAll', accountController.readAllAccounts);
     queried account id, if applicable
     url: ../account/readOne
 */
-accountRoutes.get('/readOne', accountController.readOneAccount);
+accountRoutes.post('/readOne', accountController.readOneAccount);
 
 /*  route returns an array of friend ids specified by queried account id,
     if applicable
