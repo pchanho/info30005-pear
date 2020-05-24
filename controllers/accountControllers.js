@@ -179,13 +179,13 @@ var login = function(req, res, next) {
                     if (user.status == constants.INACTIVE) {
                         user.status = constants.ACTIVE;
                         //console.log("Account is active");
-                        res.send("True");
+                        res.send(user._id);
                         return true;
                     }
                     //log in
                     else if (user.status == constants.ACTIVE) {
                         //console.log("Logged in");
-                        res.send("True");
+                        res.send(user._id);
                         return true;
                     }
                     //don't log in if banned account
