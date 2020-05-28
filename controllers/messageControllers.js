@@ -12,6 +12,7 @@ const Conversations = mongoose.model('conversations');
 // create message
 var createMessage = function(req, res, next) {
     //creates an item with the appropriate fields for a message
+    console.log(req.body)
     var item = {
         conversationId:req.body.conversationId,
         senderId:req.body.senderId,

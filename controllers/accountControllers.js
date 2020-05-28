@@ -5,13 +5,37 @@ Authors: Glenn Deevesh Chanho Gemma Dimitri
 */
 
 // import required libraries
+//config required for cloudinary
+var cloudinary = require("cloudinary");
+cloudinary.config({
+    cloud_name: 'drvfo389c',
+    api_key: '313182327497513',
+    api_secret: 'mXEiPcfHOlFtlB8eRQSAH6h6j18'
+});
 const mongoose = require('mongoose');
 const Accounts = mongoose.model('accounts');
 const bcrypt = require('bcrypt');
 const constants = require('../constants/accountConstants.js');
+const defaultImage = "https://res.cloudinary.com/drvfo389c/image/upload/v1589694061/pear/profile_hdtz1k.png"
 
 // create account
-var createAccount = function(req, res, next) {
+var createAccount = async function(req, res, next) {
+    //creates account profile image if available
+    console.log(req.body)
+    if (req.body.userImage!= 'undefined') {
+        await cloudinary.v2.uploader.upload(req.files.userImage.tempFilePath, (error, result) => {
+            if(result)
+            {
+                userImage = result.url
+            } else if(error) {
+                userImage = defaultImage
+            }
+        })
+    }
+    else{
+        userImage = defaultImage
+    }
+
     bcrypt.hash(req.body.password, 10, function (err, hash) {
 
         //parameters required to create an account
@@ -21,6 +45,7 @@ var createAccount = function(req, res, next) {
             email:req.body.email,
             password:hash,
             birthday:req.body.birthday,
+            userImage:userImage
         };
 
         var data = new Accounts(newAccount);
@@ -47,14 +72,15 @@ var readAllAccounts = function(req, res, next) {
 
 // read one account
 var readOneAccount = function(req, res, next) {
-    var id = req.body.id;
-
+    var accountId = req.body.accountId;
+    console.log(req.body)
+    console.log(accountId)
     //finds account by an id and prints to screen
-    Accounts.findById(id, function(err, doc) {
+    Accounts.findById(accountId, function(err, doc) {
         if (err || doc == undefined) {
             console.error('error, no account found');
         } else {
-            res.json(doc);
+            res.send(doc);
         }
     });
 };

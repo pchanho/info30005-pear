@@ -28,7 +28,7 @@ var createConversation =  async function(req, res, next) {
             {
                 topicImage = result.url
             } else if(error) {
-                topicImage = null
+                topicImage = defaultImage
             }
         })
     }

@@ -36,6 +36,9 @@ var accountSchema = new Schema({
         //1 active
         //2 inactive
         //3 banned
+    userImage: {
+        type: String
+    },
     status: {
         type: Number,
         default: constants.ACTIVE
