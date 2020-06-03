@@ -21,7 +21,6 @@ const defaultImage = "https://res.cloudinary.com/drvfo389c/image/upload/v1589694
 // create account
 var createAccount = async function(req, res, next) {
     //creates account profile image if available
-    console.log(req.body)
     if (req.body.userImage!= 'undefined') {
         await cloudinary.v2.uploader.upload(req.files.userImage.tempFilePath, (error, result) => {
             if(result)
@@ -73,8 +72,6 @@ var readAllAccounts = function(req, res, next) {
 // read one account
 var readOneAccount = function(req, res, next) {
     var accountId = req.body.accountId;
-    console.log(req.body)
-    console.log(accountId)
     //finds account by an id and prints to screen
     Accounts.findById(accountId, function(err, doc) {
         if (err || doc == undefined) {
@@ -185,7 +182,6 @@ var deactivate = function(req, res, next) {
 // function checks whether username and password is found within database
 // and provides access to the user if not banned
 var login = function(req, res, next) {
-    console.log(req.body) 
     //find the email
     Accounts.findOne({ email: req.body.email }, function(err, user) {
 

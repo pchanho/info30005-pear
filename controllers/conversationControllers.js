@@ -73,13 +73,14 @@ var readNewConversations = function(req, res, next) {
 
 // read one conversation and it's items
 var readOneConversation = function(req, res, next) {
-    var id = req.body.id;
+    console.log(req.body)
+    var conversationId = req.body.conversationId;
     //returns a conversation entry based on a specified Id
-    Conversations.findById(id, function(err, doc) {
+    Conversations.findById(conversationId, function(err, doc) {
         if (err || doc == undefined) {
             console.error('error, no conversation found');
         } else {
-            res.json(doc);
+            res.send(doc);
         }
     });
 };
@@ -200,3 +201,4 @@ module.exports = {
 };
 
 
+    

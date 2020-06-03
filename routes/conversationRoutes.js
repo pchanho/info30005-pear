@@ -49,7 +49,7 @@ conversationRoutes.get('/readNew', conversationController.readNewConversations);
 	url: ../message/readOne
 */
 // read all conversations new conversations that are not filled (readNewConversations) 
-conversationRoutes.get('/readOne', conversationController.readOneConversation);
+conversationRoutes.post('/readOne', conversationController.readOneConversation);
 
 //READ
 
