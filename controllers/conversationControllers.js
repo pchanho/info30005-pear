@@ -21,6 +21,7 @@ const defaultImage = "https://res.cloudinary.com/drvfo389c/image/upload/c_thumb,
 
 // create conversation
 var createConversation =  async function(req, res, next) {
+    
     //uploads a conversation image if it exists
     if (req.body.topicImage!= 'undefined') {
         await cloudinary.v2.uploader.upload(req.files.topicImage.tempFilePath, (error, result) => {
@@ -45,8 +46,14 @@ var createConversation =  async function(req, res, next) {
     //creates a new conversation entry based on item
     var data = new Conversations(item);
     //saves entry to the database
-    data.save();
-    res.redirect('/');
+    data.save((function(err, doc) {
+        if (err || doc == undefined) {
+            res.json(err);
+          } else {
+            console.log(doc._id)
+            res.json(doc);
+          }
+      }))
 };
 
 // read all conversations and their items
