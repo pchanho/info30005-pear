@@ -4,8 +4,9 @@ var sinon = require('sinon');
 var expect = require('chai').expect;
 var assert = require('chai').assert;
 var should = require('chai').should();
-var supportController = require('../../controllers/supportControllers');
 const supports = require('../../models/supportModels');
+var supportController = require('../../controllers/supportControllers');
+
 
 
 describe('supportController', function () {
