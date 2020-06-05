@@ -119,16 +119,16 @@ var addParticipantsInConversation = function(req, res) {
             console.log(doc.participantsId.length)
             //if there are 2 or more participants in the conversation, 
             //the status is set to full
-            if (doc.participantCount.length > 1){
+            if (doc.participantsId.length > 1){
                 doc.status = constants.FULL
             }
             //status set to NOT_FULL if these is only 1 person
             //in the conversation
-            else if (doc.participantCount.length == 1){
+            else if (doc.participantsId.length == 1){
                 doc.status = constants.NOT_FULL
             }
         //conversation ends when all participants leave
-            else if (doc.participantCount.length < 1){
+            else if (doc.participantsId.length < 1){
             doc.status = constants.ENDED
             }
             doc.save();
@@ -155,6 +155,7 @@ var addParticipantsInConversation = function(req, res) {
 var removeParticipantsInConversation = async function(req, res, next) {
     var conversationId = req.body.conversationId;
     var participantsId = req.body.participantsId;
+    
 
     Conversations.findById(conversationId, function(err, doc){
         if(err){
@@ -167,16 +168,16 @@ var removeParticipantsInConversation = async function(req, res, next) {
 
             //if there are 2 or more participants in the conversation, 
             //the status is set to full
-            if (doc.participantCount.length > 1){
+            if (doc.participantsId.length > 1){
                 doc.status = constants.FULL
             }
             //status set to NOT_FULL if these is only 1 person
             //in the conversation
-            else if (doc.participantCount.length == 1){
+            else if (doc.participantsId.length == 1){
                 doc.status = constants.NOT_FULL
             }
             //conversation ends when all participants leave
-            else if (doc.participantCount.length < 1){
+            else if (doc.participantsId.length < 1){
                 doc.status = constants.ENDED
             }
             doc.save();
