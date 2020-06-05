@@ -25,22 +25,45 @@ describe('supportController', function () {
         body,
     });
 
+    describe('createSupport', function() {
+
+        it("", function(){
+
+        });
+
+        it("", function(){
+
+        });
+
+        it("", function(){
+
+        });
+
+    });
+
     // I just want to remind that using chai is easier to read
     describe('readAllSupports', function() {
         //Checking length with style~, isntead of assert.equal(res.json.length, 2)
         it("should have length of 2", function(){
-            const fake = sinon.fake();
+
+
+
+
+            /*const fake = sinon.fake();
             const req = mockRequest({},{});
             const res = mockResponse(fake);
             supportController.readAllSupports(req, res);
             const result = fake.lastArg;
             expect(result).to.have.lengthOf(2);
             // result.should.have.lengthOf(2); //different way of checking
-            // assert.equal(result.length, 2); //different way of checking
-        })
+            // assert.equal(result.length, 2); //different way of checking*/
+        });
 
-        it("Support should have title, body", function(){
-            const fake = sinon.fake();
+        it("should have title, body", function(){
+
+
+
+            /* const fake = sinon.fake();
             const req = mockRequest({},{});
             const res = mockResponse(fake);
 
@@ -51,11 +74,13 @@ describe('supportController', function () {
                 // expect(element).to.have.property('title');//check one with chai
                 expect(element).to.have.keys(['title', 'body']); //check everything with chai
                 // element.should.have.property('id'); // different way of checking using should
-            });
-        })
+            });*/
+        });
 
         it('should return all supports', function(){
-            // const mongoose = require('mongoose');
+
+
+            /*// const mongoose = require('mongoose');
             // const Support = mongoose.model('supports', supportSchema);
             const fake = sinon.fake();
             const req = mockRequest({},{});
@@ -65,7 +90,56 @@ describe('supportController', function () {
             // let result = supportController.getAllAuthors(req,res);
             supportController.readAllSupports(req,res);
             const result = fake.lastArg;
-            expect(result).to.deep.equal(supports); // Don't forget to use deep, you don't want to compare object id, you want to compare contents!
+            expect(result).to.deep.equal(supports); // Don't forget to use deep, you don't want to compare object id, you want to compare contents!*/
         });
     });
+
+    describe('readOneSupport', function() {
+
+        it("", function(){
+
+        });
+
+        it("", function(){
+
+        });
+
+        it("should return one support", function(){
+
+        });
+
+    });
+
+    describe('updateSupport', function() {
+
+        it("", function(){
+
+        });
+
+        it("", function(){
+
+        });
+
+        it("should update one support", function(){
+
+        });
+
+    });
+
+    describe('deleteSupport', function() {
+
+        it("", function(){
+
+        });
+
+        it("", function(){
+
+        });
+
+        it("should delete one support", function(){
+
+        });
+
+    });
+
 });
