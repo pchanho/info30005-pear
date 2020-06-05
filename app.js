@@ -56,3 +56,5 @@ app.use("/report", reportRoutes);
 app.listen(process.env.PORT || 3001, () => {
 	console.log("The pear app is running!");
 });
+
+module.exports = app;

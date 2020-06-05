@@ -32,4 +32,4 @@ var supportSchema = new Schema({
     {collection: 'Supports'});
 
 // Store Support schema in mongoose
-mongoose.model('supports', supportSchema);
+module.exports = mongoose.model('supports', supportSchema);
