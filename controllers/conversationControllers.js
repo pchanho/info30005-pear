@@ -50,7 +50,6 @@ var createConversation =  async function(req, res, next) {
         if (err || doc == undefined) {
             res.json(err);
           } else {
-            console.log(doc._id)
             res.json(doc);
           }
       }))
@@ -80,7 +79,6 @@ var readNewConversations = function(req, res, next) {
 
 // read one conversation and it's items
 var readOneConversation = function(req, res, next) {
-    console.log(req.body)
     var conversationId = req.body.conversationId;
     //returns a conversation entry based on a specified Id
     Conversations.findById(conversationId, function(err, doc) {
@@ -109,28 +107,28 @@ var readParticipants = function(req, res, next) {
 //and changes the status of the conversation to active if there
 //are 2 or more people in the chat
 var addParticipantsInConversation = function(req, res) {
-    var id = req.body.id;
+    var conversationId = req.body.conversationId;
     var participantsId = req.body.participantsId;
-    Conversations.findById(id, function(err, doc){
+    Conversations.findById(conversationId, function(err, doc){
         if(err || doc == undefined ){
             console.error('error, no conversation found');
         }
         else{
              //tracks the arrival of a new participant to the conversation
             doc.participantsId.addToSet(participantsId);
-            doc.participantCount += 1;
+            console.log(doc.participantsId.length)
             //if there are 2 or more participants in the conversation, 
             //the status is set to full
-            if (doc.participantCount > 1){
+            if (doc.participantCount.length > 1){
                 doc.status = constants.FULL
             }
             //status set to NOT_FULL if these is only 1 person
             //in the conversation
-            else if (doc.participantCount == 1){
+            else if (doc.participantCount.length == 1){
                 doc.status = constants.NOT_FULL
             }
         //conversation ends when all participants leave
-            else if (doc.participantCount < 1){
+            else if (doc.participantCount.length < 1){
             doc.status = constants.ENDED
             }
             doc.save();
@@ -145,7 +143,7 @@ var addParticipantsInConversation = function(req, res) {
         if(err){
             console.error('error, no account found');
         }
-        doc.conversationsId.addToSet(id);
+        doc.conversationsId.addToSet(conversationId);
         doc.save();
     });
 
@@ -155,10 +153,10 @@ var addParticipantsInConversation = function(req, res) {
 //removes recorded patient from the conversation when they leave 
 //and determines the status of the conversation
 var removeParticipantsInConversation = async function(req, res, next) {
-    var id = req.body.id;
+    var conversationId = req.body.conversationId;
     var participantsId = req.body.participantsId;
 
-    Conversations.findById(id, function(err, doc){
+    Conversations.findById(conversationId, function(err, doc){
         if(err){
             console.error('error, no conversation found');
         }
@@ -166,20 +164,19 @@ var removeParticipantsInConversation = async function(req, res, next) {
             //removes a participant from the list of 
             //recorded participants in a conversation
             doc.participantsId.pull(participantsId);
-            doc.participantCount -= 1;
 
             //if there are 2 or more participants in the conversation, 
             //the status is set to full
-            if (doc.participantCount > 1){
+            if (doc.participantCount.length > 1){
                 doc.status = constants.FULL
             }
             //status set to NOT_FULL if these is only 1 person
             //in the conversation
-            else if (doc.participantCount == 1){
+            else if (doc.participantCount.length == 1){
                 doc.status = constants.NOT_FULL
             }
             //conversation ends when all participants leave
-            else if (doc.participantCount < 1){
+            else if (doc.participantCount.length < 1){
                 doc.status = constants.ENDED
             }
             doc.save();
