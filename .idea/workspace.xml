@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:heroku" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b5423b69-9ebc-4663-a62f-4f0cf0962a9e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/controllers/support.controller.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/controllers/support.controller.spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/controllers/support.controller.spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/supportUnitTests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/supportTest.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,24 +63,25 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/frontend-pear/src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test" />
       <recent name="$PROJECT_DIR$/Back-end" />
       <recent name="$PROJECT_DIR$/frontend-pear/src/pages/Conversation" />
       <recent name="$PROJECT_DIR$/frontend-pear/src" />
       <recent name="$PROJECT_DIR$/frontend-pear/src/pages" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend-pear/src" />
+    </key>
   </component>
-  <component name="RunManager" selected="Mocha.test/controllers/support.controller.spec.js">
+  <component name="RunManager" selected="Mocha.test/supportUnitTests.js">
     <configuration name="app.js (1)" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/info30005-pear-master/app.js" working-dir="$PROJECT_DIR$/info30005-pear-master">
       <method v="2" />
     </configuration>
     <configuration name="app.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/Back-end/app.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
-    <configuration name="test/controllers/support.controller.spec.js" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+    <configuration name="test/supportUnitTests" type="mocha-javascript-test-runner" temporary="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
@@ -67,9 +93,22 @@
       <test-file>$PROJECT_DIR$/test/controllers/support.controller.spec.js</test-file>
       <method v="2" />
     </configuration>
+    <configuration name="test/supportUnitTests.js" type="mocha-javascript-test-runner" temporary="true" nameIsGenerated="true">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <mocha-package>$PROJECT_DIR$/node_modules/mocha</mocha-package>
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>TEST_FILE</test-kind>
+      <test-file>$PROJECT_DIR$/test/supportUnitTests.js</test-file>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Mocha.test/controllers/support.controller.spec.js" />
+        <item itemvalue="Mocha.test/supportUnitTests.js" />
+        <item itemvalue="Mocha.test/supportUnitTests" />
         <item itemvalue="Node.js.app.js" />
         <item itemvalue="Node.js.app.js (1)" />
       </list>
@@ -100,11 +139,23 @@
       <workItem from="1589085030180" duration="14901000" />
       <workItem from="1589252108262" duration="2660000" />
       <workItem from="1589260739751" duration="1861000" />
+      <workItem from="1591271698427" duration="2248000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="1705" y="-191" key="#app.js" timestamp="1591182639772">
@@ -116,37 +167,41 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1589001517469" />
-    <state x="1818" y="-119" key="#test/controllers/support.controller.spec.js" timestamp="1591182884429">
+    <state x="1818" y="-119" key="#test/controllers/support.controller.spec.js" timestamp="1591272347510">
       <screen x="1152" y="-337" width="1920" height="1057" />
     </state>
-    <state x="1818" y="-119" key="#test/controllers/support.controller.spec.js/1152.-337.1920.1057/0.23.1152.697@1152.-337.1920.1057" timestamp="1591182884429" />
+    <state x="1818" y="-119" key="#test/controllers/support.controller.spec.js/1152.-337.1920.1057/0.23.1152.697@1152.-337.1920.1057" timestamp="1591272347510" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1588411997308">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.23.1440.877@0.23.1440.877" timestamp="1588411997308" />
-    <state width="1899" height="290" key="GridCell.Tab.0.bottom" timestamp="1591233075075">
-      <screen x="1152" y="-337" width="1920" height="1057" />
+    <state width="1899" height="290" key="GridCell.Tab.0.bottom" timestamp="1591278004805">
+      <screen x="0" y="23" width="1344" height="817" />
     </state>
     <state width="1419" height="400" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589299849352" />
+    <state width="1899" height="290" key="GridCell.Tab.0.bottom/0.23.1344.817@0.23.1344.817" timestamp="1591278004805" />
     <state width="1419" height="176" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1589259535526" />
-    <state width="1899" height="290" key="GridCell.Tab.0.bottom/1152.-337.1920.1057/0.23.1152.697@1152.-337.1920.1057" timestamp="1591233075075" />
-    <state width="1899" height="290" key="GridCell.Tab.0.center" timestamp="1591233075075">
-      <screen x="1152" y="-337" width="1920" height="1057" />
+    <state width="1899" height="290" key="GridCell.Tab.0.bottom/1152.-337.1920.1057/0.23.1152.697@1152.-337.1920.1057" timestamp="1591272794535" />
+    <state width="1899" height="290" key="GridCell.Tab.0.center" timestamp="1591278004805">
+      <screen x="0" y="23" width="1344" height="817" />
     </state>
     <state width="1419" height="400" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1589299849351" />
+    <state width="1899" height="290" key="GridCell.Tab.0.center/0.23.1344.817@0.23.1344.817" timestamp="1591278004805" />
     <state width="1419" height="176" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1589259535525" />
-    <state width="1899" height="290" key="GridCell.Tab.0.center/1152.-337.1920.1057/0.23.1152.697@1152.-337.1920.1057" timestamp="1591233075075" />
-    <state width="1899" height="290" key="GridCell.Tab.0.left" timestamp="1591233075075">
-      <screen x="1152" y="-337" width="1920" height="1057" />
+    <state width="1899" height="290" key="GridCell.Tab.0.center/1152.-337.1920.1057/0.23.1152.697@1152.-337.1920.1057" timestamp="1591272794534" />
+    <state width="1899" height="290" key="GridCell.Tab.0.left" timestamp="1591278004804">
+      <screen x="0" y="23" width="1344" height="817" />
     </state>
     <state width="1419" height="400" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1589299849348" />
+    <state width="1899" height="290" key="GridCell.Tab.0.left/0.23.1344.817@0.23.1344.817" timestamp="1591278004804" />
     <state width="1419" height="176" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1589259535523" />
-    <state width="1899" height="290" key="GridCell.Tab.0.left/1152.-337.1920.1057/0.23.1152.697@1152.-337.1920.1057" timestamp="1591233075075" />
-    <state width="1899" height="290" key="GridCell.Tab.0.right" timestamp="1591233075075">
-      <screen x="1152" y="-337" width="1920" height="1057" />
+    <state width="1899" height="290" key="GridCell.Tab.0.left/1152.-337.1920.1057/0.23.1152.697@1152.-337.1920.1057" timestamp="1591272794534" />
+    <state width="1899" height="290" key="GridCell.Tab.0.right" timestamp="1591278004805">
+      <screen x="0" y="23" width="1344" height="817" />
     </state>
     <state width="1419" height="400" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1589299849352" />
+    <state width="1899" height="290" key="GridCell.Tab.0.right/0.23.1344.817@0.23.1344.817" timestamp="1591278004805" />
     <state width="1419" height="176" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1589259535525" />
-    <state width="1899" height="290" key="GridCell.Tab.0.right/1152.-337.1920.1057/0.23.1152.697@1152.-337.1920.1057" timestamp="1591233075075" />
+    <state width="1899" height="290" key="GridCell.Tab.0.right/1152.-337.1920.1057/0.23.1152.697@1152.-337.1920.1057" timestamp="1591272794534" />
   </component>
 </project>
