@@ -23,7 +23,7 @@ const defaultImage = "https://res.cloudinary.com/drvfo389c/image/upload/c_thumb,
 var createConversation =  async function(req, res, next) {
     
     //uploads a conversation image if it exists
-    if (req.body.topicImage!= 'undefined') {
+    if (req.files!= null) {
         await cloudinary.v2.uploader.upload(req.files.topicImage.tempFilePath, (error, result) => {
             if(result)
             {
@@ -106,14 +106,17 @@ var readParticipants = function(req, res, next) {
 //tracks participants that enter a covnersation
 //and changes the status of the conversation to active if there
 //are 2 or more people in the chat
-var addParticipantsInConversation = function(req, res) {
+var addParticipantsInConversation = async function(req, res) {
     var conversationId = req.body.conversationId;
     var participantsId = req.body.participantsId;
-    Conversations.findById(conversationId, function(err, doc){
+    
+    await Conversations.findById(conversationId, function(err, doc){
         if(err || doc == undefined ){
+            
             console.error('error, no conversation found');
         }
         else{
+            
              //tracks the arrival of a new participant to the conversation
             doc.participantsId.addToSet(participantsId);
             console.log(doc.participantsId.length)
@@ -131,6 +134,7 @@ var addParticipantsInConversation = function(req, res) {
             else if (doc.participantsId.length < 1){
             doc.status = constants.ENDED
             }
+            conversationDoc = doc
             doc.save();
         }
        
@@ -139,7 +143,7 @@ var addParticipantsInConversation = function(req, res) {
 
     //updates the user account record to keep track of the covnersation
     //they have joined
-    Accounts.findById(participantsId, function (err, doc){
+    await Accounts.findById(participantsId, function (err, doc){
         if(err){
             console.error('error, no account found');
         }
@@ -147,7 +151,7 @@ var addParticipantsInConversation = function(req, res) {
         doc.save();
     });
 
-    res.redirect('/');
+    res.json(conversationDoc);
 }; 
 
 //removes recorded patient from the conversation when they leave 

@@ -21,7 +21,7 @@ const defaultImage = "https://res.cloudinary.com/drvfo389c/image/upload/v1589694
 // create account
 var createAccount = async function(req, res, next) {
     //creates account profile image if available
-    if (req.body.userImage!= 'undefined') {
+    if (req.files!= null) {
         await cloudinary.v2.uploader.upload(req.files.userImage.tempFilePath, (error, result) => {
             if(result)
             {
@@ -51,7 +51,15 @@ var createAccount = async function(req, res, next) {
         data.save();
         //console.log("account created");
 
-        res.send('True');
+        data.save((function(err, doc) {
+            if (err || doc == undefined) {
+                res.json(err);
+              } else {
+                res.json(doc);
+              }
+          }))
+
+      
     });
 };
 
