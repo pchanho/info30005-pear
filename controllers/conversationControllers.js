@@ -56,12 +56,12 @@ var createConversation =  async function(req, res, next) {
 };
 
 // read all conversations and their items
-var readAllConversations = function(req, res, next) {
-    Conversations.find({}, function(err, doc) {
+var readAllConversations = async function(req, res) {
+    await Conversations.find({}, function(err, doc) {
         if (err || doc == undefined) {
           console.log(err);
         } else {
-          res.json(doc);
+          res.send(doc);
         }
       });
 };
@@ -119,7 +119,6 @@ var addParticipantsInConversation = async function(req, res) {
             
              //tracks the arrival of a new participant to the conversation
             doc.participantsId.addToSet(participantsId);
-            console.log(doc.participantsId.length)
             //if there are 2 or more participants in the conversation, 
             //the status is set to full
             if (doc.participantsId.length > 1){

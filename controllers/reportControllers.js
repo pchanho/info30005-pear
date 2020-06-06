@@ -21,9 +21,13 @@ var createReport = function(req, res, next) {
     };
 
     var data = new Reports(item);
-    data.save();
-
-    res.redirect('/');
+    data.save((function(err, doc) {
+        if (err || doc == undefined) {
+            res.json(err);
+          } else {
+            res.json(doc);
+          }
+      }))
 };
 
 //read functions
