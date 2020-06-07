@@ -1,4 +1,4 @@
-# info30005-pear
+﻿# info30005-pear
 
 INFO30005 Group Assignment - Pear
 
@@ -16,6 +16,12 @@ Notes for testers:
 	HOWEVER the back end works perfectly fine and the record is deleted as required
 * Where "id" is taken as a parameter
 	it MUST link to an existing object id in the database for the function to work
+
+##TESTING GUIDE
+run "npm test" to run both the integration and unit tests
+
+The core functionality that we are testing can be found in "integrationTests.js" line (90)
+This core functionality simulates a user logging in, creating a conversation and joining it
 
 ## Q5. Account
 
